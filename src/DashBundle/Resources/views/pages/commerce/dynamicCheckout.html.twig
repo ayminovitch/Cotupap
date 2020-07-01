@@ -1,0 +1,44 @@
+<div id="template" class="row panel-wrapper">
+    <div class="col-12 panel-header basket-header">
+        <div class="row">
+            <div class="col-6 basket-title">
+                <span class="description">passez en revue votre</span><br><span class="emphasized">Résumé du Panier</span>
+            </div>
+            <div class="col-6 order-number align-right">
+                <span class="description">commande #</span><br><span class="emphasized">1-23-456789A</span>
+            </div>
+        </div>
+        <div class="row column-titles padding-top-10">
+            <div class="col-5 align-center"><span>Nom/Ref</span></div>
+            <div class="col-2 align-center"><span>Quantité</span></div>
+            <div class="col-3 align-right"><span>Prix Unitaire</span></div>
+            <div class="col-2 align-right"><span>Action</span></div>
+        </div>
+    </div>
+    <div class="col-12 panel-body basket-body" id="basket-body">
+        {% for item in items %}
+            <div class="row product" data-ref="{{ item['reference'] }}">
+                <div class="item-ref" style="display: none; visibility: hidden;" data-value="{{ item['reference'] }}"></div>
+                <div class="col-5">{{ item['name'] }}<br><span class="additional">Ref: {{ item['reference'] }}</span></div>
+                <div class="col-2 align-right" style="display: flex;"><span class="sub" style="margin-top: 15%;">PC</span> <input class="qte" style="border: none; margin-left: 10px; width: 100%;" type="number" value="{{ item['qte'] }}" min="1" max="1000"></div>
+                <div class="col-3 align-right">{{ item['totalSingle'] }} <span class="sub">TND</span></div>
+                <div class="col-2 align-right delete-article"><i class="icon-trash" style="color: red"></i></div>
+            </div>
+        {% endfor %}
+        <div class="col-12 align-right"><input type="button" onclick="updateBasket()" id="btnSubmit" class="update-content" value="Mise a jour panier"></div>
+    </div>
+    <div class="col-12 panel-footer basket-footer">
+        <hr>
+        <div class="row">
+            <div class="col-8 align-right description"><div class="dive">Total</div></div>
+            <div class="col-4 align-right"><span class="emphasized">{{somme}} TND</span></div>
+            <div class="col-8 align-right description"><div class="dive">livraison</div></div>
+            <div class="col-4 align-right"><span class="emphasized">{{livraison}} TND</span></div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-8 align-right description"><div class="dive">Total</div></div>
+            <div class="col-4 align-right"><span class="very emphasized">{{total}} TND</span></div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+<li class="nav-item dropdown">
+    <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
+        <i class="icon-basket icon-lg mx-0"></i>
+        <span class="count" style="font-size: small;">{{ nbrItems }}</span>
+    </a>
+    <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list {{ status }}" aria-labelledby="messageDropdown" padding="0">
+        {% for item in items %}
+        <a class="dropdown-item preview-item">
+            <div class="preview-item-content flex-grow">
+                <h7 class="preview-subject ellipsis font-weight-medium">{{ item['name'] }}
+                    <span class="float-right font-weight-light small-text">{{ item['prix'] }} DT</span>
+                </h7>
+                <p class="font-weight-light small-text">
+                    QTE: {{ item['qte'] }}
+                </p>
+            </div>
+        </a>
+        <div class="dropdown-divider"></div>
+        {% endfor %}
+        <div class="dropdown-divider"></div>
+        <div class="dropdown-item">
+            <p class="mb-0 font-weight-normal float-left">Vous avez {{ nbrItems }} Articles
+            </p>
+            <a href="{{ path('panier') }}">
+            <span class="badge badge-info badge-pill float-right">Commander</span>
+            </a>
+        </div>
+    </div>
+</li>

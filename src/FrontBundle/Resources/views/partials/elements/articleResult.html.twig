@@ -1,0 +1,95 @@
+<div class="page-content">
+    <div class="container">
+        <div id="products" class="products" data-url="{{ path('ajouter_produit') }}">
+            <div class="row">
+            {% for article in productsPaged %}
+{#                    {{ dump(article) }}#}
+                <div class="col-6 col-md-4 col-lg-4 col-xl-3">
+                    <div class="product">
+                        <figure class="product-media">
+{#                            <span class="product-label label-new">New</span>#}
+                            <a href="javascript:void(0)">
+                                <img src="https://via.placeholder.com/280x280.png?text=Article+Cotupap" alt="Product image" class="product-image">
+                            </a>
+
+{#                            <div class="product-action-vertical">#}
+{#                                <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>favoris</span></a>#}
+{#                            </div><!-- End .product-action -->#}
+
+                            <div class="product-action action-icon-top">
+                                <a href="javascript:void(0)" class="btn-product btn-cart" data-desc="{{ article['tdescription'] }}" data-prix="{{ article['prix'] }}" data-ref="{{ article['tarticle'] }}"><span>ajouter au panier</span></a>
+{#                                <a href="{{ path('apercu_rapide_ajx') }}" class="btn-product btn-quickview" title="Quick view"><span>aperçu rapide</span></a>#}
+                            </div><!-- End .product-action -->
+                        </figure><!-- End .product-media -->
+
+                        <div class="product-body">
+                            <div class="product-cat">
+{#                                <a href="#">{{ article['tmarque'] }}</a>#}
+                            </div><!-- End .product-cat -->
+                            <h3 class="product-title"><a href="javascript:void(0)">{{ article['tdescription'] }}</a></h3><!-- End .product-title -->
+                            <div class="product-price">
+                                {{ article['prix'] }} DT
+                            </div><!-- End .product-price -->
+                        </div><!-- End .product-body -->
+                    </div><!-- End .product -->
+                </div><!-- End .col-sm-6 col-lg-4 col-xl-3 -->
+                {% if loop.index is divisible by(4) %}
+                    </div><div class="row">
+                {% endif %}
+                {% endfor %}
+            </div><!-- End .row -->
+
+            {% spaceless %}
+                {% if pager.getNbPages() > 1 %}
+
+                    {# Number of page around current page+1 #}
+                    {% set nearbyPagesLimit = 4 %}
+
+            <nav aria-label="Page navigation">
+                        <ul class="pagination justify-content-center">
+                            {% set state = '' %}
+                            {% set aria = '' %}
+                            {% if pager.getCurrentPage() != 1 %}
+                                {% set state = 'disabled' %}
+                                {% set aria = 'true' %}
+                                <li class=" page-item {{ state }}">
+                                    <a class="page-link page-link-prev" href="{{ path('global_articles_result', { 'page': 1, 'category': category.id }) }}">
+                                        <span aria-hidden="{{ aria }}"><i class="icon-long-arrow-left"></i></span>Prev
+                                    </a>
+                                </li>
+                            {% endif %}
+
+                            {% for i in 1..pager.getNbPages() %}
+                                {% if 0 == (pager.getCurrentPage() - nearbyPagesLimit) - loop.index %} {# dot before #}
+                                    <li  class="disabled page-item"><a href="#">...</a></li>
+                                {% elseif 0 == (pager.getCurrentPage() + nearbyPagesLimit) - loop.index %} {# dot after #}
+                                    <li class="disabled page-item"><a href="#">...</a></li>
+                                {% elseif 0 < (pager.getCurrentPage() - nearbyPagesLimit) - loop.index %} {# hide all before #}
+                                {% elseif 0 > (pager.getCurrentPage() + nearbyPagesLimit) - loop.index %} {# hide all after #}
+                                {% else %}
+                                    <li class="page-item {% if pager.getCurrentPage() == loop.index  %}active{% endif %}">
+                                        <a class="page-link" href="{{ path('global_articles_result', { 'page': loop.index, 'category': category.reference }) }}">
+                                            {{ loop.index }}
+                                        </a>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                            {% set state = '' %}
+                            {% set aria = '' %}
+                            {% if pager.getCurrentPage() != pager.getNbPages() %}
+                                {% set state = 'disabled' %}
+                                {% set aria = 'true' %}
+                                <li class="page-item {{ state }}" >
+                                    <a class="page-link page-link-next" href="{{ path('global_articles_result', { 'page': pager.getNbPages(), 'category': category.reference }) }}">
+                                        Next <span aria-hidden="{{ aria }}"><i class="icon-long-arrow-right"></i></span>
+                                    </a>
+                                </li>
+                            {% endif %}
+                        </ul>
+            </nav>
+                {% endif %}
+            {% endspaceless %}
+        </div><!-- End .products -->
+
+    </div><!-- End .container -->
+</div><!-- End .page-content -->

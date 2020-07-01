@@ -1,0 +1,76 @@
+{% extends '@Dash/base.html.twig' %}
+{% block stylesheets %}
+    {{  parent() }}
+{#Style For the categorys Block#}
+    <link rel="stylesheet" href="{{ asset('assets/DashBundle/css/categorys.css') }}">
+{% endblock %}
+{% block body %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb breadcrumb-custom">
+            <li class="breadcrumb-item"><a href="{{ path('categorys_list') }}">Accueille</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><span>Catalogue</span></li>
+        </ol>
+    </nav>
+    {% for heading in heading %}
+        {% if heading.active == 1 %}
+        <div class="row">
+            <div class="col"><h2 style="font-weight: bold; text-align: center;">{{ heading.name }}</h2></div>
+        </div>
+    <section class="kc-elm kc-css-607898 kc_row">
+        <div class="kc-row-container  kc-container">
+            <div class="kc-wrap-columns">
+                <div class="kc-elm kc-css-955533 kc_col-sm-12 kc_column kc_col-sm-12">
+                    <div class="kc-col-container">
+                        <div data-open-on-mouseover="" data-tab-active="1" data-effect-option=""
+                             class="kc-elm kc-css-574543 kc_tabs group">
+                            <div class="kc_wrapper ui-tabs kc_clearfix">
+                                <div id="latest-ads"
+                                     class="kc-elm kc-css-812103 kc_tab ui-tabs-panel kc_ui-tabs-hide kc_clearfix ui-tabs-body-active kc-section-active">
+                                    <div class="kc_tab_content">
+                                        <div class="kc-elm kc-css-186782"
+                                             style="height: 30px; clear: both; width:100%;"></div>
+                                        <div class="adverts-list clearfix af-items-4" data-visibleitems="" data-autoplay="">
+{#                                            {{ dump(categorys) }}#}
+{#                                            {% if categorys|length > 0 %}#}
+                                                {% for category in categorys %}
+                                                    {% if category.active == 1 %}
+                                                    {% if category.parent == heading.id %}
+                                                    {#Single Category Card#}
+                                                    <div class="af-item-wrap">
+                                                        <div class="white-block hover-shadow advert-item advert-grid advert-hightlight">
+                                                            <a href="{{ path('category_single', {'id': category.id}) }}" class="advert-media">
+                                                                <img width="355" height="250" src="{{ asset('uploads/imgs/categorys/'~category.image) }}" class="Test" alt="">
+                                                            </a>
+                                                            <div class="white-block-content">
+                                                                <div class="top-advert-meta flex-wrap">
+                                                                    <div class="advert-cat text-overflow">
+                                                                        <a href="javascript:void(0)">{{ heading.name }}</a>
+                                                                    </div>
+                                                                    <div class="advert-city text-overflow">
+                                                                        <a href="{{ path('category_single', {'id': category.id}) }}">Ouvrir</a>
+                                                                    </div>
+                                                                </div>
+                                                                <h5 class="adv-title">
+                                                                    <a href="{{ path('category_single', {'id': category.id}) }}" class="text-overflow" title="test"> {{ category.name }}</a>
+                                                                </h5>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {#Single Category Card#}
+                                                        {% endif %}
+                                                    {% endif %}
+                                                {% endfor %}
+{#                                                {% endif %}#}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+        {% endif %}
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,19 @@
+admin:
+    resource: "@AdminBundle/Resources/config/routing.yml"
+    prefix:   /dashboard-admin133785
+
+front:
+    resource: "@FrontBundle/Resources/config/routing.yml"
+    prefix:   /
+
+dash:
+    resource: "@DashBundle/Resources/config/routing.yml"
+    prefix:   /
+
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation
+
+soap_test:
+    path: /soap-service
+    defaults: {_controller: AppBundle:Default:soap}

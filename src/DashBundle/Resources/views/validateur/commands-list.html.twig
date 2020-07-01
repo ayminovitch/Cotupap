@@ -1,0 +1,31 @@
+{% extends '@Dash/validateur/base-validateur.html.twig' %}
+
+{% block body %}
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Liste des Commands</h4>
+            {#            <h3 id="category-name" style="display: none;">{{ heading[0].name }}</h3>#}
+            <div class="row">
+                <div class="col-12 table-responsive">
+                    <table id="order-listing" class="table" data-url="{{ app.request.scheme ~'://' ~ app.request.httpHost ~ path('validateur_list_commands') }}">
+                        <thead>
+                        <tr>
+                            <th>Status</th>
+                            <th>Date</th>
+                            <th>Facture</th>
+                            <th>Action</th>
+{#                            <th>Fax</th>#}
+{#                            <th>Matricule Fiscale</th>#}
+                        </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{  parent() }}
+    <script src="{{ asset('assets/DashBundle/js/data-table-validateur-list-commands.js') }}"></script>
+{% endblock %}

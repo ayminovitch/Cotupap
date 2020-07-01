@@ -1,0 +1,47 @@
+<div id="panier-reload" class="dropdown cart-dropdown">
+    <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+       data-display="static">
+        <i class="icon-shopping-cart"></i>
+        <span class="cart-count">{{ nbrItems }}</span>
+{#        <span class="cart-txt">164,00 TND</span>#}
+    </a>
+    {% if nbrItems > 0 %}
+    <div class="dropdown-menu dropdown-menu-right">
+        <div class="dropdown-cart-products">
+            {% for item in items %}
+            <div class="product">
+                <div class="product-cart-details">
+                    <h4 class="product-title">
+                        <a href="#">{{ item['name'] }}</a>
+                    </h4>
+
+                    <span class="cart-product-info">
+                                                <span class="cart-product-qty">{{ item['qte'] }}</span>
+                                                x {{ item['prix'] }} DT
+                                            </span>
+                </div><!-- End .product-cart-details -->
+
+                <figure class="product-image-container">
+                    <a href="javascript:void(0)" class="product-image">
+                        <img src="https://via.placeholder.com/60x60.png?text=Article+Cotupap" alt="{{ item['name'] }}">
+                    </a>
+                </figure>
+                <a href="javascript:void(0)" class="btn-remove" title="Supprimer l'article"><i class="icon-close"></i></a>
+            </div><!-- End .product -->
+            {% endfor %}
+        </div><!-- End .cart-product -->
+
+        <div class="dropdown-cart-total">
+            <span>Total</span>
+
+            <span class="cart-total-price">{{ somme }} TND</span>
+        </div><!-- End .dropdown-cart-total -->
+
+        <div class="dropdown-cart-action" style="margin-top: 10px;">
+{#            <a href="#" class="btn btn-primary">Panier</a>#}
+            <a href="{{ path('panier') }}" class="btn btn-outline-primary-2"><span>Commander</span><i
+                        class="icon-long-arrow-right"></i></a>
+        </div><!-- End .dropdown-cart-total -->
+    </div><!-- End .dropdown-menu -->
+    {% endif %}
+</div><!-- End .cart-dropdown -->

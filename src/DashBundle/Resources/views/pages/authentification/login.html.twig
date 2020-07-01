@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %}Cotupap{% endblock %}</title>
+    {% block stylesheets %}
+        <!-- plugins:css -->
+        <link rel="stylesheet" href="{{ asset('assets/DashBundle/vendors/iconfonts/simple-line-icon/css/simple-line-icons.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/DashBundle/vendors/iconfonts/flag-icon-css/css/flag-icon.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/DashBundle/vendors/css/vendor.bundle.base.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/DashBundle/vendors/css/vendor.bundle.addons.css') }}">
+        <!-- endinject -->
+        <!-- plugin css for this page -->
+        <!-- End plugin css for this page -->
+        <!-- inject:css -->
+        <link rel="stylesheet" href="{{ asset('assets/DashBundle/css/style.css') }}">
+        <!-- endinject -->
+        <link rel="shortcut icon" href="{{ asset('assets/DashBundle/images/favicon.ico') }}" />
+    {% endblock %}
+</head>
+
+<body>
+<div class="container-scroller">
+    <div class="container-fluid page-body-wrapper full-page-wrapper">
+        <div class="content-wrapper d-flex align-items-center auth auth-bg-1 theme-one">
+            <div class="row w-100 mx-auto">
+                <div class="col-lg-4 mx-auto">
+                    <div class="auto-form-wrapper">
+                        <form action="#">
+                            <div class="form-group">
+                                <label class="label">Nom d'utilisateur</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Nom d'utilisateur">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text"><i class="icon-check"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="label">Mot de passe</label>
+                                <div class="input-group">
+                                    <input type="password" class="form-control" placeholder="*********">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text"><i class="icon-check"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-primary submit-btn btn-block" onclick="window.location.href='{{ path('dash_homepage') }}'">Connectez</button>
+                            </div>
+                        </form>
+                    </div>
+                    <p class="footer-text text-center">copyright © 2020 The Webside. Tous les droits sont réservés.</p>
+                </div>
+            </div>
+        </div>
+        <!-- content-wrapper ends -->
+    </div>
+    {% block javascripts %}
+        <!-- plugins:js -->
+        <script src="{{ asset('assets/DashBundle/vendors/js/vendor.bundle.base.js') }}"></script>
+        <script src="{{ asset('assets/DashBundle/vendors/js/vendor.bundle.addons.js') }}"></script>
+        <!-- endinject -->
+        <!-- Plugin js for this page-->
+        <!-- End plugin js for this page-->
+        <!-- inject:js -->
+        <script src="{{ asset('assets/DashBundle/js/template.js') }}"></script>
+        <!-- endinject -->
+        <!-- Custom js for this page-->
+        <script src="{{ asset('assets/DashBundle/js/dashboard.js') }}"></script>
+        <script src="{{ asset('assets/DashBundle/js/todolist.js') }}"></script>
+        <!-- End custom js for this page-->
+    {% endblock %}
+</div>
+</body>
+</html>

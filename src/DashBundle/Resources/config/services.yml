@@ -1,0 +1,11 @@
+services:
+#  DashBundle\Command\ReloadArticlesCommand:
+#    tags:
+#      - { name: 'console.command', command: 'webside:reload-articles' }
+##    arguments:
+##      ['@service_container']
+#  cron.article:
+#    class: DashBundle\Service\CronArticlesReload
+#    arguments:
+#      ['@service_container']
+

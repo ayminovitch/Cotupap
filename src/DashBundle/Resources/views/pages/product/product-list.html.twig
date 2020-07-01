@@ -1,0 +1,34 @@
+{% extends '@Dash/base.html.twig' %}
+
+{% block body %}
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Liste des Articles de {{ heading[0].name }}</h4>
+            <h3 id="category-name" style="display: none;">{{ heading[0].name }}</h3>
+            <div class="row">
+                <div class="col-12 table-responsive">
+                    <table id="order-listing" class="table" data-url="{{ app.request.scheme ~'://' ~ app.request.httpHost ~ path('ajouter_produit') }}">
+                        <thead>
+                        <tr>
+                            <th>Référence #</th>
+                            <th>Image</th>
+                            <th>Description</th>
+                            <th>Unite</th>
+                            <th>Catégorie</th>
+                            <th>Sous-Catégorie</th>
+                            <th>Marque</th>
+                            <th>Prix</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{  parent() }}
+    <script src="{{ asset('assets/DashBundle/js/data-table.js') }}"></script>
+{% endblock %}

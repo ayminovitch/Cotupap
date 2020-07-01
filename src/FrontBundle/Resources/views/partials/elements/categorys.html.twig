@@ -1,0 +1,33 @@
+{% for parentCategory in heading %}
+<li>
+    <a href="#" class="sf-with-ul">{{ parentCategory.name }}</a>
+    <div class="megamenu megamenu-sm">
+        <div class="row no-gutters">
+            <div class="col-md-6">
+                <div class="menu-col">
+{#                    <div class="menu-title">{{ parentCategory.name }} Details</div><!-- End .menu-title -->#}
+                    <ul>
+                        {% for category in categorys %}
+                        {% if parentCategory.reference == category.parent %}
+                        <li><a href="{{ path('global_articles_result', {'category': category.reference, 'page': 1}) }}">{{ category.name }}</a></li>
+                        {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div><!-- End .menu-col -->
+            </div><!-- End .col-md-6 -->
+
+            <div class="col-md-6">
+                <div class="banner banner-overlay">
+                    <a href="#">
+                        <img src="https://via.placeholder.com/250x250?text=Cotupap" alt="Banner">
+
+                        <div class="banner-content banner-content-bottom">
+                            <div class="banner-title text-white">Nouveautés de<br><span><strong>{{ parentCategory.name }}</strong></span></div><!-- End .banner-title -->
+                        </div><!-- End .banner-content -->
+                    </a>
+                </div><!-- End .banner -->
+            </div><!-- End .col-md-6 -->
+        </div><!-- End .row -->
+    </div><!-- End .megamenu megamenu-sm -->
+</li>
+{% endfor %}

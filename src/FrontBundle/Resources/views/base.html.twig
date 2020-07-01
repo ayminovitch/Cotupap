@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %}Cotupap{% endblock %}</title>
+    <meta name="keywords" content="Cotupap">
+    <meta name="description" content="Cotupap">
+    <meta name="author" content="Aymen Hammami">
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/FrontBundle/images/icons/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/FrontBundle/images/icons/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/FrontBundle/images/icons/favicon-16x16.png') }}">
+    <link rel="manifest" href="#">
+    <link rel="mask-icon" href="{{ asset('assets/FrontBundle/images/icons/safari-pinned-tab.svg') }}" color="#666666">
+    <link rel="shortcut icon" href="{{ asset('assets/FrontBundle/images/icons/favicon.ico') }}">
+    <meta name="apple-mobile-web-app-title" content="Cotupap">
+    <meta name="application-name" content="Cotupap">
+    <meta name="msapplication-TileColor" content="#cc9966">
+    <meta name="msapplication-config" content="{{ asset('assets/FrontBundle/images/icons/browserconfig.xml') }}">
+    <meta name="theme-color" content="#ffffff">
+    {% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('assets/FrontBundle/vendor/line-awesome/line-awesome/line-awesome/css/line-awesome.min.css') }}">
+    <!-- Plugins CSS File -->
+    <link rel="stylesheet" href="{{ asset('assets/FrontBundle/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/FrontBundle/css/plugins/owl-carousel/owl.carousel.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/FrontBundle/css/plugins/magnific-popup/magnific-popup.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/FrontBundle/css/plugins/jquery.countdown.css') }}">
+    <!-- Main CSS File -->
+    <link rel="stylesheet" href="{{ asset('assets/FrontBundle/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/FrontBundle/css/cotupap/skin-cotupap.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/FrontBundle/css/cotupap/cotupap.css') }}">
+    {% endblock %}
+</head>
+
+<body>
+<div class="page-wrapper">
+    {% block navbar %} {% include '@Front/partials/navbar.html.twig' %} {% endblock %}
+    {% block mainContent %}{% endblock %}
+    {% block footer %} {% include '@Front/partials/footer.html.twig' %} {% endblock %}
+</div>
+<button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
+{% block mobileMenu %}{% include '@Front/partials/mobile-menu.html.twig' %}{% endblock %}
+{% block loginModal %}{% include '@Front/partials/signin-modal.html.twig' %}{% endblock %}
+{% block newsletterModal %}{% include '@Front/partials/newsletter-modal.html.twig' %}{% endblock %}
+{% block javascript %}
+    <script src="{{ asset('assets/FrontBundle/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/FrontBundle/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/FrontBundle/js/jquery.hoverIntent.min.js') }}"></script>
+    <script src="{{ asset('assets/FrontBundle/js/jquery.waypoints.min.js') }}"></script>
+    <script src="{{ asset('assets/FrontBundle/js/superfish.min.js') }}"></script>
+    <script src="{{ asset('assets/FrontBundle/js/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('assets/FrontBundle/js/jquery.plugin.min.js') }}"></script>
+    <script src="{{ asset('assets/FrontBundle/js/jquery.magnific-popup.min.js') }}"></script>
+    <script src="{{ asset('assets/FrontBundle/js/jquery.countdown.min.js') }}"></script>
+    <!-- Main JS File -->
+    <script src="{{ asset('assets/FrontBundle/js/main.js') }}"></script>
+    <script src="{{ asset('assets/FrontBundle/js/cotupap/cotupap.js') }}"></script>
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,23 @@
+#front_homepage:
+#    path:     /
+#    defaults: { _controller: FrontBundle:Default:index }
+
+global_articles_result:
+    path: /articles/{category}/page/{page}
+    defaults: { _controller: FrontBundle\Controller\ArticlesController::globalArticlesAction }
+
+articles_result:
+    path: /api/{catRef}/{page}
+    defaults: { _controller: FrontBundle\Controller\ArticlesController::articleResultAction }
+
+contact:
+    path: /contact
+    defaults: { _controller: FrontBundle\Controller\ContactController::contactAction }
+
+favoris:
+    path: /favoris
+    defaults: { _controller: FrontBundle\Controller\FavorisController::favorisAction }
+
+apercu_rapide_ajx:
+    path: /apercu-rapide-ajx
+    defaults: { _controller: FrontBundle\Controller\ArticlesController::apercuRapideAction }
