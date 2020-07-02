@@ -11,9 +11,8 @@ class CategoryController extends Controller
     //Dedicated For Client Dash
     public function indexAction(){
         $em = $this->getDoctrine()->getManager()->getRepository('DashBundle:Category');
-        $categorys = $em->findBy(array('niveau' => 2));
-        $heading = $em->findBy(array('niveau' => 1));
-        return $this->render('@Front/pages/index.html.twig', array('categorys' => $categorys, 'heading' => $heading));
+        $categorys = $em->findBy(array('parent' => 0));
+        return $this->render('@Front/pages/index.html.twig', array('cats' => $categorys));
     }
 
     public function tableInsideCategoryAction($id){

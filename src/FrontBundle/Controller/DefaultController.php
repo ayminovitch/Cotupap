@@ -9,7 +9,14 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('@Front/Default/index.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $categories = $em->getRepository('DashBundle:Category');
+        $parentCat = $categories->findBy(array('parent'=> 0));
+        $catArray = array();
+//        foreach ($parentCat as $onelement){
+//
+//        }
+        return $this->render('@Front/Default/index.html.twig', array('cats'=>$parentCat));
     }
 
     public function categorysAction(){
