@@ -31,7 +31,7 @@
                                     <a class="nav-link" id="tab-account-link" data-toggle="tab" href="#tab-account" role="tab" aria-controls="tab-account" aria-selected="false">Détails du compte</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Déconnexion</a>
+                                    <a class="nav-link" href="{{ path('logout_page') }}">Déconnexion</a>
                                 </li>
                             </ul>
                         </aside><!-- End .col-lg-3 -->
@@ -45,45 +45,47 @@
                                 </div><!-- .End .tab-pane -->
 
                                 <div class="tab-pane fade" id="tab-orders" role="tabpanel" aria-labelledby="tab-orders-link">
-                                    <p>No order has been made yet.</p>
+                                    {# Condition and loop throught orders #}
+                                    <p>Aucune commande n'a encore été effectuée.</p>
                                     <a href="{{ path('dash_homepage') }}" class="btn btn-outline-primary-2"><span>GO SHOP</span><i class="icon-long-arrow-right"></i></a>
                                 </div><!-- .End .tab-pane -->
 
                                 <div class="tab-pane fade" id="tab-account" role="tabpanel" aria-labelledby="tab-account-link">
-{#                                    <form action="#">#}
-{#                                        <div class="row">#}
-{#                                            <div class="col-sm-6">#}
-{#                                                <label>First Name *</label>#}
-{#                                                <input type="text" class="form-control" required>#}
-{#                                            </div><!-- End .col-sm-6 -->#}
+                                    <form action="#">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <label>Nom</label>
+                                                <input type="text" class="form-control" value="{{ client['tnom'] }}" readonly>
+                                            </div><!-- End .col-sm-6 -->
 
-{#                                            <div class="col-sm-6">#}
-{#                                                <label>Last Name *</label>#}
-{#                                                <input type="text" class="form-control" required>#}
-{#                                            </div><!-- End .col-sm-6 -->#}
-{#                                        </div><!-- End .row -->#}
+                                            <div class="col-sm-6">
+                                                <label>Code Client</label>
+                                                <input type="text" class="form-control" value="{{ client['tclient'] }}" readonly>
+                                            </div><!-- End .col-sm-6 -->
+                                        </div><!-- End .row -->
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <label>Telephone</label>
+                                                <input type="text" class="form-control" value="{{ client['tphone'] }}" readonly>
+                                            </div><!-- End .col-sm-6 -->
 
-{#                                        <label>Display Name *</label>#}
-{#                                        <input type="text" class="form-control" required>#}
-{#                                        <small class="form-text">This will be how your name will be displayed in the account section and in reviews</small>#}
+                                            <div class="col-sm-6">
+                                                <label>Fax</label>
+                                                <input type="text" class="form-control" value="{{ client['tfax'] }}" readonly>
+                                            </div><!-- End .col-sm-6 -->
+                                        </div><!-- End .row -->
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <label>Matricule Fiscale</label>
+                                                <input type="text" class="form-control" value="{{ client['tmatFiscale'] }}" readonly>
+                                            </div><!-- End .col-sm-6 -->
 
-{#                                        <label>Email address *</label>#}
-{#                                        <input type="email" class="form-control" required>#}
-
-{#                                        <label>Current password (leave blank to leave unchanged)</label>#}
-{#                                        <input type="password" class="form-control">#}
-
-{#                                        <label>New password (leave blank to leave unchanged)</label>#}
-{#                                        <input type="password" class="form-control">#}
-
-{#                                        <label>Confirm new password</label>#}
-{#                                        <input type="password" class="form-control mb-2">#}
-
-{#                                        <button type="submit" class="btn btn-outline-primary-2">#}
-{#                                            <span>SAVE CHANGES</span>#}
-{#                                            <i class="icon-long-arrow-right"></i>#}
-{#                                        </button>#}
-{#                                    </form>#}
+                                            <div class="col-sm-6">
+                                                <label>Adresse</label>
+                                                <input type="text" class="form-control" value="{{ client['tadresse'] }}" readonly>
+                                            </div><!-- End .col-sm-6 -->
+                                        </div><!-- End .row -->
+                                    </form>
                                 </div><!-- .End .tab-pane -->
                             </div>
                         </div><!-- End .col-lg-9 -->

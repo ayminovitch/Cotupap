@@ -18,6 +18,10 @@ favoris:
     path: /favoris
     defaults: { _controller: FrontBundle\Controller\FavorisController::favorisAction }
 
+#Client Account Routing
+compte_client:
+    path: /espace-client
+    defaults: { _controller: FrontBundle\Controller\CompteClientController::mainAccountAction }
 apercu_rapide_ajx:
     path: /apercu-rapide-ajx
     defaults: { _controller: FrontBundle\Controller\ArticlesController::apercuRapideAction }

@@ -15,6 +15,9 @@ class PanierController extends Controller
 {
     public function panierAction(Request $request){
         $session = $request->getSession();
+        if (!($session->has('client')) || count($session->get('client')) == 0){
+            return $this->redirectToRoute('dash_homepage');
+        }
         if (!($session->has('panier'))){
             $session->set('panier', []);
         }
@@ -120,7 +123,7 @@ class PanierController extends Controller
         $em = $this->getDoctrine()->getManager();
         if (!($session->has('client'))){
 //            $session->set('client', []);
-            return $this->redirectToRoute('login_page');
+            return $this->redirectToRoute('dash_homepage');
         }
         if (!($session->has('panier'))){
             return $this->redirectToRoute('dash_homepage');

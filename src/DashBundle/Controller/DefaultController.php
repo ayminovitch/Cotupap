@@ -140,7 +140,7 @@ class DefaultController extends Controller
         $session = $request->getSession();
         $session->clear();
 //        $session->set('client', ['status'=> 'out']);
-        return $this->redirectToRoute('login_page');
+        return $this->redirectToRoute('dash_homepage');
     }
 
 }
