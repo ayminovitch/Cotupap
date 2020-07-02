@@ -25,7 +25,6 @@ class PanierController extends Controller
             $tmprice = $element['prix'] * $element['qte'];
             $sumprod += $tmprice;
         }
-        dump($panier);
         $livraison = 20;
         return $this->render('@Front/pages/panier.html.twig', array('items'=>$panier, 'nbrItems' => $nbrItems, 'somme'=>$sumprod, 'livraison' => $livraison, 'total' => $sumprod + $livraison));
     }
@@ -113,35 +112,42 @@ class PanierController extends Controller
     //This Action Dedicated for Confirm Button
     public function invoicePanierAction (Request $request) {
         //Guard Clause
-        if (!($request->isMethod('POST'))){
-            return $this->redirectToRoute('dash_homepage');
-        }
+        //if (!($request->isMethod('POST'))){
+        //   return $this->redirectToRoute('dash_homepage');
+        //}
         //Initialisation Basic Stuff
         $session = $request->getSession();
         $em = $this->getDoctrine()->getManager();
         if (!($session->has('client'))){
-            $session->set('client', []);
+//            $session->set('client', []);
+            return $this->redirectToRoute('login_page');
         }
         if (!($session->has('panier'))){
             return $this->redirectToRoute('dash_homepage');
         }
+        if (count($session->get('panier')) == 0 || count($session->get('client')) == 0){
+            return $this->redirectToRoute('dash_homepage');
+        }
+        $client = $session->get('client');
         $panier = $session->get('panier');
         $frmArray = [
-            'name'   => $request->get('name'),
-            'shipping'   => $request->get('shipping'),
-            'phone'  => $request->get('phone'),
-            'mf'     => $request->get('mf')
+            'tclient'   => $client['tclient'],
+            'tnom'   => $client['tnom'],
+            'tadresse'   => $client['tadresse'],
+            'tphone'  => $client['tphone'],
+            'tfax'  => $client['tfax'],
+            'tmatFiscale'     => $client['tmatFiscale']
         ];
 
         //get Client from session
         //get Client form to persist on the db
-        $verifClient = $em->getRepository('DashBundle:Client')->findOneBy(array('mfiscal'=> $frmArray['mf']));
+        $verifClient = $em->getRepository('DashBundle:Client')->findOneBy(array('mfiscal'=> $frmArray['tmatFiscale']));
         if (empty($verifClient)){
             $newClientDB = new Client();
-            $newClientDB->setFullname($frmArray['name']);
-            $newClientDB->setAddresse($frmArray['shipping']);
-            $newClientDB->setPhone($frmArray['phone']);
-            $newClientDB->setMfiscal($frmArray['mf']);
+            $newClientDB->setFullname($frmArray['tnom']);
+            $newClientDB->setAddresse($frmArray['tadresse']);
+            $newClientDB->setPhone($frmArray['tphone']);
+            $newClientDB->setMfiscal($frmArray['tmatFiscale']);
             $em->persist($newClientDB);
             $em->flush();
             $verifClient = $newClientDB;
@@ -169,11 +175,12 @@ class PanierController extends Controller
             $singleArticlePrice = $panier[$keyz]['qte'] * $panier[$keyz]['prix'];
             $somme += $singleArticlePrice;
         }
-        $livraison = 20;
+        $livraison = 0;
         $total = $livraison + $somme;
-        $session->clear();
-        $viewResult = $this->renderView('@Dash/pages/commerce/invoice.html.twig', array('items' => $panier, 'total' => $total, 'somme' => $somme, 'livraison' => $livraison, 'client' => $frmArray));
-        return new JsonResponse($viewResult);
+        $session->remove('panier');
+        return $this->render('@Front/pages/facture.html.twig', array('items' => $panier, 'total' => $total, 'somme' => $somme, 'livraison' => $livraison, 'client' => $frmArray));
+//        $viewResult = $this->renderView('@Dash/pages/commerce/invoice.html.twig', array('items' => $panier, 'total' => $total, 'somme' => $somme, 'livraison' => $livraison, 'client' => $frmArray));
+//        return new JsonResponse($viewResult);
     }
 
     public function orderListAction (Request $request) {

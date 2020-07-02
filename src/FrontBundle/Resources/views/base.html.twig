@@ -36,6 +36,12 @@
 
 <body>
 <div class="page-wrapper">
+    {% set client = app.session.get('client') %}
+    {% if client['status'] is defined %}
+        {% set status = client['status'] %}
+    {% else %}
+        {% set status = 'out' %}
+    {% endif %}
     {% block navbar %} {% include '@Front/partials/navbar.html.twig' %} {% endblock %}
     {% block mainContent %}{% endblock %}
     {% block footer %} {% include '@Front/partials/footer.html.twig' %} {% endblock %}
@@ -57,6 +63,7 @@
     <!-- Main JS File -->
     <script src="{{ asset('assets/FrontBundle/js/main.js') }}"></script>
     <script src="{{ asset('assets/FrontBundle/js/cotupap/cotupap.js') }}"></script>
+    <script src="{{ asset('assets/FrontBundle/js/cotupap/login.js') }}"></script>
 {% endblock %}
 </body>
 </html>

@@ -17,7 +17,17 @@
 {#                            </div><!-- End .product-action -->#}
 
                             <div class="product-action action-icon-top">
-                                <a href="javascript:void(0)" class="btn-product btn-cart" data-desc="{{ article['tdescription'] }}" data-prix="{{ article['prix'] }}" data-ref="{{ article['tarticle'] }}"><span>ajouter au panier</span></a>
+                                {% set client = app.session.get('client') %}
+                                {% if client['status'] is defined %}
+                                    {% set status = client['status'] %}
+                                {% else %}
+                                    {% set status = 'out' %}
+                                {% endif %}
+                                {% if status == 'in' %}
+                                    <a href="javascript:void(0)" class="btn-product btn-cart btn-carta" data-desc="{{ article['tdescription'] }}" data-prix="{{ article['prix'] }}" data-ref="{{ article['tarticle'] }}"><span>ajouter au panier</span></a>
+                                {% else %}
+                                    <a href="{{ path('login_page') }}" class="btn-product btn-cart" ><span>ajouter au panier</span></a>
+                                {% endif %}
 {#                                <a href="{{ path('apercu_rapide_ajx') }}" class="btn-product btn-quickview" title="Quick view"><span>aperçu rapide</span></a>#}
                             </div><!-- End .product-action -->
                         </figure><!-- End .product-media -->
@@ -28,7 +38,11 @@
                             </div><!-- End .product-cat -->
                             <h3 class="product-title"><a href="javascript:void(0)">{{ article['tdescription'] }}</a></h3><!-- End .product-title -->
                             <div class="product-price">
+                                {% if status == 'in' %}
                                 {{ article['prix'] }} DT
+                                {% else %}
+                                    Connectez pour afficher le prix
+                                {% endif %}
                             </div><!-- End .product-price -->
                         </div><!-- End .product-body -->
                     </div><!-- End .product -->

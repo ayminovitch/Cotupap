@@ -37,7 +37,7 @@ ajouter_produit:
     path:     /comptoir-client/ajouter-produit-ajx
     defaults: { _controller: DashBundle:Panier:panierTopHeaderAddProduct }
 panier_invoice:
-    path:     /comptoir-client/success/invoice
+    path:     /success/invoice
     defaults: { _controller: DashBundle:Panier:invoicePanier }
 order_list:
     path:     /comptoir-client/orders

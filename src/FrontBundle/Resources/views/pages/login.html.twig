@@ -1,12 +1,8 @@
-<!-- Sign in / Register Modal -->
-<div class="modal fade" id="signin-modal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true"><i class="icon-close"></i></span>
-                </button>
-
+{% extends '@Front/base.html.twig' %}
+{% block mainContent %}
+    <main class="main">
+        <div class="login-page bg-image pt-8 pb-8 pt-md-12 pb-md-12 pt-lg-17 pb-lg-17" style="background-image: url('assets/images/backgrounds/login-bg.jpg')">
+            <div class="container">
                 <div class="form-box">
                     <div class="form-tab">
                         <ul class="nav nav-pills nav-fill" role="tablist">
@@ -19,7 +15,7 @@
                         </ul>
                         <div class="tab-content" id="tab-content-5">
                             <div class="tab-pane fade show active" id="signin" role="tabpanel" aria-labelledby="signin-tab">
-                                <form id="loginform" action="#" data-url="{{ path('login_page') }}">
+                                <form id="loginform" data-url="{{ path('login_page') }}" action="#">
                                     <div class="form-group">
                                         <label for="singin-email">Nom d'utilisateur ou adresse e-mail *</label>
                                         <input type="text" class="form-control" id="singin-email" name="singin-email" required>
@@ -35,28 +31,11 @@
                                             <span>S'IDENTIFIER</span>
                                             <i class="icon-long-arrow-right"></i>
                                         </button>
-
-{#                                        <div class="custom-control custom-checkbox">#}
-{#                                            <input type="checkbox" class="custom-control-input" id="signin-remember">#}
-{#                                            <label class="custom-control-label" for="signin-remember">Remember Me</label>#}
-{#                                        </div><!-- End .custom-checkbox -->#}
-
-{#                                        <a href="#" class="forgot-link">Forgot Your Password?</a>#}
                                     </div><!-- End .form-footer -->
                                 </form>
                             </div><!-- .End .tab-pane -->
                             <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
                                 <form action="#">
-{#                                    <div class="form-group">#}
-{#                                        <label for="register-email">Your email address *</label>#}
-{#                                        <input type="email" class="form-control" id="register-email" name="register-email" required>#}
-{#                                    </div><!-- End .form-group -->#}
-
-{#                                    <div class="form-group">#}
-{#                                        <label for="register-password">Password *</label>#}
-{#                                        <input type="password" class="form-control" id="register-password" name="register-password" required>#}
-{#                                    </div><!-- End .form-group -->#}
-
                                     <div class="form-footer">
                                         <button type="submit" class="btn btn-outline-primary-2">
                                             <span>S'INSCRIRE</span>
@@ -73,7 +52,7 @@
                         </div><!-- End .tab-content -->
                     </div><!-- End .form-tab -->
                 </div><!-- End .form-box -->
-            </div><!-- End .modal-body -->
-        </div><!-- End .modal-content -->
-    </div><!-- End .modal-dialog -->
-</div><!-- End .modal -->
+            </div><!-- End .container -->
+        </div><!-- End .login-page section-bg -->
+    </main><!-- End .main -->
+{% endblock %}

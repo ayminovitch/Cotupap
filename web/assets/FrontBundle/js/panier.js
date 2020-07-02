@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    $('.btn-cart').on( 'click', function () {
+    $('.btn-carta').on( 'click', function () {
         var data = $(this).data();
         console.log(data);
         $.ajax({

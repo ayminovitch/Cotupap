@@ -23,7 +23,12 @@
                     <li>
                         <a href="#">Links</a>
                         <ul>
-                            <li><a href="#signin-modal" data-toggle="modal"><i class="icon-user"></i>Mon Compte</a></li>
+                            {% if status == 'in' %}
+                                <li><a href=""><i class="icon-user"></i>{{ client['tnom'] }}</a></li>
+                                <li><a href="{{ path('logout_page') }}">Déconnecter</a></li>
+                            {% else %}
+                                <li><a href="#signin-modal" data-toggle="modal"><i class="icon-user"></i>login / register</a></li>
+                            {% endif %}
                         </ul>
                     </li>
                 </ul><!-- End .top-menu -->
