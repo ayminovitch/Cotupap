@@ -1,6 +1,6 @@
 admin:
     resource: "@AdminBundle/Resources/config/routing.yml"
-    prefix:   /dashboard-admin133785
+    prefix:   /cotupap-admin133785
 
 front:
     resource: "@FrontBundle/Resources/config/routing.yml"

@@ -14,10 +14,10 @@
 
             <div class="header-right">
                 <div class="social-icons social-icons-color">
-                    <a href="#" class="social-icon social-facebook" title="Facebook" target="_blank"><i class="icon-facebook-f"></i></a>
-                    <a href="#" class="social-icon social-twitter" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
-                    <a href="#" class="social-icon social-instagram" title="Pinterest" target="_blank"><i class="icon-instagram"></i></a>
-                    <a href="#" class="social-icon social-pinterest" title="Instagram" target="_blank"><i class="icon-pinterest-p"></i></a>
+                    <a href="{{ settings.settings.facebook }}" class="social-icon social-facebook" title="Facebook" target="_blank"><i class="icon-facebook-f"></i></a>
+                    <a href="{{ settings.settings.twitter }}" class="social-icon social-twitter" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
+                    <a href="{{ settings.settings.instagram }}" class="social-icon social-instagram" title="Pinterest" target="_blank"><i class="icon-instagram"></i></a>
+                    <a href="{{ settings.settings.pinterest }}" class="social-icon social-pinterest" title="Instagram" target="_blank"><i class="icon-pinterest-p"></i></a>
                 </div><!-- End .soial-icons -->
                 <ul class="top-menu top-link-menu">
                     <li>
@@ -38,6 +38,7 @@
     <div class="header-middle">
         <div class="container">
             <div class="header-left">
+                {% if settings.settings.search == "true" %}
                 <div class="header-search header-search-extended header-search-visible d-none d-lg-block">
                     <a href="#" class="search-toggle" role="button"><i class="icon-search"></i></a>
                     <form action="{{ path('global_articles_result', {'category': 'CA01' , 'page': 1}) }}" method="get">
@@ -48,6 +49,7 @@
                         </div><!-- End .header-search-wrapper -->
                     </form>
                 </div><!-- End .header-search -->
+                {% endif %}
             </div>
             <div class="header-center">
                 <a href="{{ path('dash_homepage') }}" class="logo">

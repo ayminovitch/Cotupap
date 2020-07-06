@@ -1,0 +1,101 @@
+{% extends '@Admin/base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+{% endblock %}
+{% block body %}
+    <div class="row">
+        <div class="col-lg-6 grid-margin stretch-card">
+            <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Les Modules</h4>
+                {#            <h3 id="category-name" style="display: none;">{{ heading[0].name }}</h3>#}
+                <div class="row">
+                    <div class="col-12 table-responsive">
+                        <table id="parameters-list" class="table" data-url="{{ app.request.scheme ~'://' ~ app.request.httpHost ~ path('admin_parameters_list') }}">
+                            <thead>
+                            <tr>
+                                <th>Module #</th>
+                                <th>Etat</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Newsletter</td>
+                                    <td><input id="newsletter" type="checkbox" {% if parameters.newsletter == "true" %}checked{% else %}{% endif %} data-toggle="toggle" data-onstyle="success" data-offstyle="danger"></td>
+                                </tr>
+                                <tr>
+                                    <td>Modal</td>
+                                    <td><input id="modal" type="checkbox" {% if parameters.modal == "true" %}checked{% else %}{% endif %} data-toggle="toggle" data-onstyle="success" data-offstyle="danger"></td>
+                                </tr>
+                                <tr>
+                                    <td>Search Bar</td>
+                                    <td><input id="search" type="checkbox" {% if parameters.search == "true" %}checked{% else %}{% endif %} data-toggle="toggle" data-onstyle="success" data-offstyle="danger"></td>
+                                </tr>
+                                <tr>
+                                    <td>Maintenance Mode</td>
+                                    <td><input id="maintenance" type="checkbox" {% if parameters.maintenanceMode == "true" %}checked{% else %}{% endif %} data-toggle="toggle" data-onstyle="success" data-offstyle="danger"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="col-lg-6 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">LES RÉSEAUX SOCIAUX</h4>
+                        <div class="form-group">
+                            <label for="exampleInputName1">Facebook</label>
+                            <input type="text" class="form-control" id="facebook" placeholder="{{ parameters.facebook }}" value="{{ parameters.facebook }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail3">Instagram</label>
+                            <input type="text" class="form-control" id="instagram" placeholder="{{ parameters.instagram }}" value="{{ parameters.instagram }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword4">Twitter</label>
+                            <input type="text" class="form-control" id="twitter" placeholder="{{ parameters.twitter }}" value="{{ parameters.twitter }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword4">Pinterest</label>
+                            <input type="text" class="form-control" id="pinterest" placeholder="{{ parameters.pinterest }}" value="{{ parameters.pinterest }}">
+                        </div>
+                        <button id="save" type="submit" class="btn btn-primary mr-2">Save</button>
+                </div>
+            </div>
+        </div>
+{#        <div class="col-lg-12 grid-margin stretch-card">#}
+{#            <div class="card">#}
+{#                <div class="card-body">#}
+{#                    <h4 class="card-title">Les Autres Parameters</h4>#}
+{#                    <div class="form-group">#}
+{#                        <label>Logo</label>#}
+{#                        <input type="file" name="img[]" class="file-upload-default">#}
+{#                        <div class="input-group col-xs-12">#}
+{#                            <input type="text" class="form-control file-upload-info" disabled="" placeholder="Upload Logo">#}
+{#                            <span class="input-group-append">#}
+{#                                    <button class="file-upload-browse btn btn-primary" type="button">Upload</button>#}
+{#                                </span>#}
+{#                        </div>#}
+{#                    </div>#}
+
+{#                    <div class="form-group">#}
+{#                        <label for="exampleTextarea1">Description General</label>#}
+{#                        <textarea class="form-control" id="exampleTextarea1" rows="4"></textarea>#}
+{#                    </div>#}
+{#                    <button type="submit" class="btn btn-primary mr-2">Submit</button>#}
+{#                    <button class="btn btn-light">Cancel</button>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{  parent() }}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.4/js/bootstrap-switch.js" data-turbolinks-track="true"></script>
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+    <script src="{{ asset('assets/AdminBumdle/js/settings.js') }}"></script>
+{% endblock %}

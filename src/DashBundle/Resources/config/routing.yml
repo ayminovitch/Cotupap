@@ -47,24 +47,6 @@ update_article_qte:
     defaults: { _controller: DashBundle:Panier:updateQteArticle }
 #ZONE MANAGER
 
-#ZONE ADMIN
-admin_category_list:
-    path: /administration/category/list
-    defaults: { _controller: DashBundle:Category:adminCategoryList }
-admin_category_add:
-    path: /administration/category/add
-    defaults: { _controller: DashBundle:Category:adminCategoryAdd }
-admin_category_edit:
-    path: /administration/category/edit/{id}
-    defaults: { _controller: DashBundle:Category:adminCategoryEdit }
-admin_category_delete:
-    path: /administration/category/list/{id}
-    defaults: { _controller: DashBundle:Category:adminCategoryDelete }
-#Cron Clients
-admin_cron_clients:
-    path: /administration/cron/clients
-    defaults: { _controller: DashBundle:CronArticlesReload:cronClients }
-
 #ZONE VALIDATEUR
 validateur_list_clients:
     path: /validateur/list-clients

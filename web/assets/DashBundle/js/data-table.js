@@ -22,8 +22,7 @@
         { "data": "tsouscateg" },
         { "data": "tmarque" },
         { "data": "prix",  render: $.fn.dataTable.render.number( ',', '.', 3, '', ' TND' ) },
-        { "data": null, "bSortable": false, "render": function(data, type, full) { return '<button class="btn btn-info btn-sm Buy" id="Buy" href="javascript:void(0)" ><i class="icon-basket mx-0"></i>' + ' Ajouter' + '</button>';
-          } }
+        { "data": null, "bSortable": false, "render": function(data, type, full) { return '<button class="btn btn-info btn-sm Buy" id="Buy" href="javascript:void(0)" ><i class="icon-basket mx-0"></i>' + ' Ajouter' + '</button>';} }
       ]
     });
     var table = $('#order-listing').DataTable();

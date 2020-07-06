@@ -1,3 +1,24 @@
 dashboard_admin_homepage:
   path:     /
   defaults: { _controller: AdminBundle:Default:index }
+
+admin_parameters_list:
+  path: /parameters
+  defaults: {_controller: AdminBundle:Settings:settings}
+#ZONE ADMIN
+admin_category_list:
+  path: /category/list
+  defaults: { _controller: DashBundle:Category:adminCategoryList }
+admin_category_add:
+  path: /category/add
+  defaults: { _controller: DashBundle:Category:adminCategoryAdd }
+admin_category_edit:
+  path: /category/edit/{id}
+  defaults: { _controller: DashBundle:Category:adminCategoryEdit }
+admin_category_delete:
+  path: /category/list/{id}
+  defaults: { _controller: DashBundle:Category:adminCategoryDelete }
+#Cron Clients
+admin_cron_clients:
+  path: /cron/clients
+  defaults: { _controller: DashBundle:CronArticlesReload:cronClients }

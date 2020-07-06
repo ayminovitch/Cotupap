@@ -42,14 +42,20 @@
     {% else %}
         {% set status = 'out' %}
     {% endif %}
-    {% block navbar %} {% include '@Front/partials/navbar.html.twig' %} {% endblock %}
-    {% block mainContent %}{% endblock %}
-    {% block footer %} {% include '@Front/partials/footer.html.twig' %} {% endblock %}
+    {% if settings.settings.maintenanceMode == "true" %}
+        {% include '@Front/pages/maintenance-mode.html.twig' %}
+    {% else %}
+        {% block navbar %} {% include '@Front/partials/navbar.html.twig' %} {% endblock %}
+        {% block mainContent %}{% endblock %}
+        {% block footer %} {% include '@Front/partials/footer.html.twig' %} {% endblock %}
+    {% endif %}
 </div>
 <button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
 {% block mobileMenu %}{% include '@Front/partials/mobile-menu.html.twig' %}{% endblock %}
 {% block loginModal %}{% include '@Front/partials/signin-modal.html.twig' %}{% endblock %}
+{% if settings.settings.modal == "true" %}
 {% block newsletterModal %}{% include '@Front/partials/newsletter-modal.html.twig' %}{% endblock %}
+{% endif %}
 {% block javascript %}
     <script src="{{ asset('assets/FrontBundle/js/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/FrontBundle/js/bootstrap.bundle.min.js') }}"></script>
@@ -64,6 +70,23 @@
     <script src="{{ asset('assets/FrontBundle/js/main.js') }}"></script>
     <script src="{{ asset('assets/FrontBundle/js/cotupap/cotupap.js') }}"></script>
     <script src="{{ asset('assets/FrontBundle/js/cotupap/login.js') }}"></script>
+    {% if settings.settings.maintenanceMode == "true" %}
+    <script>
+    $(function() {
+        "use strict";
+        if ($.fn.countdown) {
+            $('.coming-countdown').countdown({
+                until: new Date(2021, 7, 20), // 7th month = August / Months 0 - 11 (January  - December)
+                format: 'DHMS',
+                padZeroes: true
+            });
+
+            // Pause
+            // $('.coming-countdown').countdown('pause');
+        }
+    });
+    </script>
+    {% endif %}
 {% endblock %}
 </body>
 </html>
