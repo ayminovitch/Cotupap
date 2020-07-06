@@ -1,0 +1,5 @@
+{% trans_default_domain 'FOSUserBundle' %}
+{{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'forms-sample' } }) }}
+    {{ form_widget(form) }}
+    <button type="submit" class="btn btn-primary mr-2">{{ 'profile.edit.submit'|trans }}</button>
+{{ form_end(form) }}

@@ -47,14 +47,18 @@
                                         </h3><!-- End .product-title -->
                                     </div><!-- End .product -->
                                 </td>
-                                <td class="price-col">{{ item['totalSingle'] / item['qte'] }} DT</td>
+                                {% if item['qte'] > 0 %}
+                                    <td class="price-col">{{ item['totalSingle'] / item['qte'] }} DT</td>
+                                {% else %}
+                                    <td class="price-col">{{ item['totalSingle'] }} DT</td>
+                                {% endif %}
                                 <td class="quantity-col">
                                     <div class="cart-product-quantity">
                                         <input type="number" class="qte form-control" value="{{ item['qte'] }}" min="1" max="10" step="1" data-decimals="0" required>
                                     </div><!-- End .cart-product-quantity -->
                                 </td>
                                 <td class="total-col">{{ item['totalSingle'] }} DT</td>
-                                <td class="remove-col"><button class="btn-remove"><i class="icon-close"></i></button></td>
+                                <td class="remove-col"><button class="btn-remove" id="remove-panier-element" data-ref="{{ item['reference'] }}"><i class="icon-close"></i></button></td>
                             </tr>
                             {% endfor %}
                             </tbody>
@@ -139,7 +143,29 @@
                 }
             });
         }
-
+        $('#remove-panier-element').on('click', function () {
+            var data = $(this).data();
+            // console.log(data);
+            $.ajax({
+                url: $('.custom-url').data('url'),
+                type: "POST",
+                dataType: "json",
+                data: {
+                    "action": "delete",
+                    "reference": data['ref'],
+                },
+                async: true,
+                success: function (data)
+                {
+                    if (data['status'] === 'Done'){
+                        location.reload();
+                    }else {
+                        // $('#panier-reload').html(data);
+                        location.reload();
+                    }
+                }
+            });
+        } );
         $("#formoid").submit(function(event) {
             /* stop form from submitting normally */
             event.preventDefault();

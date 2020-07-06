@@ -17,3 +17,7 @@ app:
 soap_test:
     path: /soap-service
     defaults: {_controller: AppBundle:Default:soap}
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+#    prefix:   /cotupap-admin133785

@@ -1,0 +1,17 @@
+<div class="auto-form-wrapper">
+    <form action="{{ path('fos_user_resetting_send_email') }}" method="post">
+        <div class="form-group">
+            <label class="label">Nom d'utilisateur Ou Email</label>
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Nom d'utilisateur" id="username" name="username" required="required">
+                <div class="input-group-append">
+                    <span class="input-group-text"><i class="icon-check"></i></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary submit-btn btn-block" type="submit">Récupérer mot de passe</button>
+        </div>
+    </form>
+</div>
+<p class="footer-text text-center">copyright © 2020 The Webside. Tous les droits sont réservés.</p>

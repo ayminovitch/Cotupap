@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %}Cotupap{% endblock %}</title>
+    {% block stylesheets %}
+        <!-- plugins:css -->
+        <link rel="stylesheet" href="{{ asset('assets/DashBundle/vendors/iconfonts/simple-line-icon/css/simple-line-icons.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/DashBundle/vendors/iconfonts/flag-icon-css/css/flag-icon.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/DashBundle/vendors/css/vendor.bundle.base.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/DashBundle/vendors/css/vendor.bundle.addons.css') }}">
+        <!-- endinject -->
+        <!-- plugin css for this page -->
+        <!-- End plugin css for this page -->
+        <!-- inject:css -->
+        <link rel="stylesheet" href="{{ asset('assets/DashBundle/css/style.css') }}">
+        <!-- endinject -->
+        <link rel="shortcut icon" href="{{ asset('assets/DashBundle/images/favicon.ico') }}" />
+    {% endblock %}
+</head>
+
+<body>
+{#<div>#}
+{#    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}#}
+{#        {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |#}
+{#        <a href="{{ path('fos_user_security_logout') }}">#}
+{#            {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}#}
+{#        </a>#}
+{#    {% else %}#}
+{#        <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>#}
+{#    {% endif %}#}
+{#</div>#}
+
+<div class="container-scroller">
+    <div class="container-fluid page-body-wrapper full-page-wrapper">
+        <div class="content-wrapper d-flex align-items-center auth auth-bg-1 theme-one">
+            <div class="row w-100 mx-auto">
+                {% if app.request.hasPreviousSession %}
+                    {% for type, messages in app.session.flashbag.all() %}
+                        {% for message in messages %}
+                            <div class="flash-{{ type }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                {% endif %}
+                <div class="col-lg-4 mx-auto">
+                    {% block fos_user_content %}
+                    {% endblock fos_user_content %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% block javascripts %}
+    <!-- plugins:js -->
+    <script src="{{ asset('assets/DashBundle/vendors/js/vendor.bundle.base.js') }}"></script>
+    <script src="{{ asset('assets/DashBundle/vendors/js/vendor.bundle.addons.js') }}"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page-->
+    <!-- End plugin js for this page-->
+    <!-- inject:js -->
+    <script src="{{ asset('assets/DashBundle/js/template.js') }}"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <script src="{{ asset('assets/DashBundle/js/dashboard.js') }}"></script>
+    <script src="{{ asset('assets/DashBundle/js/todolist.js') }}"></script>
+    <!-- End custom js for this page-->
+{% endblock %}
+</body>
+</html>

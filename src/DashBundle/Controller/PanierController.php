@@ -151,6 +151,7 @@ class PanierController extends Controller
             $newClientDB->setAddresse($frmArray['tadresse']);
             $newClientDB->setPhone($frmArray['tphone']);
             $newClientDB->setMfiscal($frmArray['tmatFiscale']);
+            $newClientDB->setCodeClient($frmArray['tclient']);
             $em->persist($newClientDB);
             $em->flush();
             $verifClient = $newClientDB;

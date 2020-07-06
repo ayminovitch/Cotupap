@@ -51,6 +51,13 @@ class Client
     private $phone;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="code_client", type="string", length=255, nullable=true)
+     */
+    private $codeClient;
+
+    /**
      * @ORM\OneToMany(targetEntity="DashBundle\Entity\Commande", mappedBy="client")
      */
     private $commande;
@@ -180,6 +187,22 @@ class Client
     public function setCommande($commande)
     {
         $this->commande = $commande;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCodeClient()
+    {
+        return $this->codeClient;
+    }
+
+    /**
+     * @param string $codeClient
+     */
+    public function setCodeClient($codeClient)
+    {
+        $this->codeClient = $codeClient;
     }
 
 

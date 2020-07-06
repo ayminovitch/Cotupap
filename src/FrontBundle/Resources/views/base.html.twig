@@ -76,17 +76,40 @@
         "use strict";
         if ($.fn.countdown) {
             $('.coming-countdown').countdown({
-                until: new Date(2021, 7, 20), // 7th month = August / Months 0 - 11 (January  - December)
+                until: new Date(2020, 7, 20), // 7th month = August / Months 0 - 11 (January  - December)
                 format: 'DHMS',
                 padZeroes: true
             });
-
-            // Pause
-            // $('.coming-countdown').countdown('pause');
         }
     });
     </script>
     {% endif %}
+    <script>
+    $(document).ready(function(){
+    $('.btn-remove').on( 'click', function () {
+        var data = $(this).data();
+        console.log(data);
+        $.ajax({
+            url: $('.custom-url').data('url'),
+            type: "POST",
+            dataType: "json",
+            data: {
+                "action": "delete",
+                "reference": data['ref'],
+            },
+            async: true,
+            success: function (data)
+            {
+                if (data['status'] === 'Done'){
+                    $('#panier-reload').html(data);
+                }else {
+                    // $('#panier-reload').html(data);
+                }
+            }
+        });
+    } );
+});
+</script>
 {% endblock %}
 </body>
 </html>
