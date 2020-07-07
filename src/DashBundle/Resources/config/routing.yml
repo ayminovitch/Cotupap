@@ -48,6 +48,9 @@ update_article_qte:
 #ZONE MANAGER
 
 #ZONE VALIDATEUR
+validateur:
+    path: /validateur
+    defaults: { _controller: DashBundle:Validateur:commandList }
 validateur_list_clients:
     path: /validateur/list-clients
     defaults: { _controller: DashBundle:Validateur:clientsList }

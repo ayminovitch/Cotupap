@@ -30,3 +30,4 @@ security:
 #        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/cotupap-admin133785/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/cotupap-admin133785/, role: ROLE_ADMIN }
+        - { path: ^/validateur/, role: ROLE_VALIDATEUR }

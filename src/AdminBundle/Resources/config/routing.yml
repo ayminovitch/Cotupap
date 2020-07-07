@@ -1,6 +1,6 @@
 dashboard_admin_homepage:
   path:     /
-  defaults: { _controller: AdminBundle:Default:index }
+  defaults: {_controller: AdminBundle:Settings:settings}
 
 admin_parameters_list:
   path: /parameters
