@@ -21,6 +21,5 @@ class SettingsProvider
 
     public function settings(){
         return $this->em->getRepository('AdminBundle:Settings')->findOneBy(array('id' => 1));
-//        return true;
     }
 }
