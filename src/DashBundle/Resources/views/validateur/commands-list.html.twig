@@ -10,15 +10,28 @@
                     <table id="order-listing" class="table" data-url="{{ app.request.scheme ~'://' ~ app.request.httpHost ~ path('validateur_list_commands') }}">
                         <thead>
                         <tr>
+                            <th>Command ID</th>
+                            <th>Code Client</th>
+                            <th>Client Name</th>
+                            <th>Client Phone</th>
+                            <th>Date Command</th>
                             <th>Status</th>
-                            <th>Date</th>
-                            <th>Facture</th>
-                            <th>Action</th>
-{#                            <th>Fax</th>#}
-{#                            <th>Matricule Fiscale</th>#}
+                            <th style="color: red;">Action</th>
                         </tr>
                         </thead>
-                        <tbody></tbody>
+                        <tbody>
+                        {% for command in commands %}
+                            <tr>
+                                <td>{{ command.id }}</td>
+                                <td>{{ command.client.codeClient }}</td>
+                                <td>{{ command.client.fullname }}</td>
+                                <td>{{ command.client.phone }}</td>
+                                <td>{{ command.dcr | date ('d/m/Y') }}</td>
+                                <td><label class="badge badge-{% if command.status == 'En Attente' %}warning{% else %}info{% endif %}">{{ command.status }}</label></td>
+                                <td><button class="btn btn-outline-primary">View</button></td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
                     </table>
                 </div>
             </div>
@@ -27,5 +40,5 @@
 {% endblock %}
 {% block javascripts %}
     {{  parent() }}
-    <script src="{{ asset('assets/DashBundle/js/data-table-validateur-list-commands.js') }}"></script>
+{#    <script src="{{ asset('assets/DashBundle/js/data-table-validateur-list-commands.js') }}"></script>#}
 {% endblock %}

@@ -39,27 +39,36 @@ class ValidateurController extends Controller
  }
 
  public function commandListAction(Request $request){
-     if ($request->isMethod('POST')){
+//     if ($request->isMethod('POST')){
          //Get Article List From File And Convert From XML To Json Array
-            $query = $this->getDoctrine()
-                ->getRepository('DashBundle:Commande')
-                ->createQueryBuilder('c')
-                ->getQuery();
-            $result = $query->getArrayResult();
+//            $query = $this->getDoctrine()
+//                ->getRepository('DashBundle:Commande')
+//                ->createQueryBuilder('c')
+//                ->getQuery();
+//            $result = $query->getArrayResult();
 //         dump($result);
 //         die();
 
-         $recordsTotoal = count($result);
+//         $recordsTotoal = count($result);
 
          //Pagination to Fast Load Cotupap Article Result
-         $page = $request->request->get('draw', 1);
-         $maxpage = $request->request->get('length', 10);
-         $adapter= new ArrayAdapter($result);
-         $pagerfanta = new Pagerfanta($adapter);
-         $pagerfanta->setMaxPerPage($maxpage);
-         $pagerfanta->setCurrentPage($page);
-         return new JsonResponse(array('data' =>$pagerfanta->getCurrentPageResults(), 'draw'=>$page, 'recordsTotal'=>$recordsTotoal));
-     }
-    return $this->render('@Dash/validateur/commands-list.html.twig');
+//         $page = $request->request->get('draw', 1);
+//         $maxpage = $request->request->get('length', 10);
+//         $adapter= new ArrayAdapter($result);
+//         $pagerfanta = new Pagerfanta($adapter);
+//         $pagerfanta->setMaxPerPage($maxpage);
+//         $pagerfanta->setCurrentPage($page);
+//         return new JsonResponse(array('data' =>$pagerfanta->getCurrentPageResults(), 'draw'=>$page, 'recordsTotal'=>$recordsTotoal));
+//     }
+//    return $this->render('@Dash/validateur/commands-list.html.twig');
+
+     $em = $this->getDoctrine()->getManager();
+     $listeCommands = $em->getRepository('DashBundle:Commande')->findAll();
+     $commands = $this->get('knp_paginator')->paginate(
+       $listeCommands,
+       $request->request->get('page',1),
+       6
+     );
+     return $this->render('@Dash/validateur/commands-list.html.twig', array('commands' => $commands));
  }
 }
