@@ -3,124 +3,124 @@
 <main class="main">
     <div class="intro-section bg-lighter pt-3">
         <div class="container">
-            <div class="banner-group">
-                <div class="row">
-                    <div class="col-lg-5">
-                            <div class="banner banner-overlay">
-                                <a href="{{ path('global_articles_result', {'category': cats[0].reference , 'page': 1}) }}">
-                                    <img src="{{ asset('uploads/imgs/tree/categorys/global/accessoiresand pieces.png') }}" alt="Banner" style="filter: grayscale(70%);">
-                                </a>
+{#            <div class="banner-group">#}
+{#                <div class="row">#}
+{#                    <div class="col-lg-5">#}
+{#                            <div class="banner banner-overlay">#}
+{#                                <a href="{{ path('global_articles_result', {'category': cats[0].reference , 'page': 1}) }}">#}
+{#                                    <img src="{{ asset('uploads/imgs/tree/categorys/global/accessoiresand pieces.png') }}" alt="Banner" style="filter: grayscale(70%);">#}
+{#                                </a>#}
 
-                                <div class="banner-content banner-content-bottom">
-                                    {#                                <h4 class="banner-subtitle text-white"><a href="#">Trending now</a></h4><!-- End .banner-subtitle -->#}
-                                    <h3 class="banner-title text-white"><a href="#">{{ cats[0].name }}</a></h3><!-- End .banner-title -->
-                                    <a href="{{ path('global_articles_result', {'category': cats[0].reference , 'page': 1}) }}" class="banner-link">Découvrez maintenant <i class="icon-long-arrow-right"></i></a>
-                                </div><!-- End .banner-content -->
-                            </div><!-- End .banner -->
-                        <div class="row">
-                            <div class="col-sm-12">
-                            <div class="banner banner-overlay">
-                                <a href="{{ path('global_articles_result', {'category': cats[1].reference , 'page': 1}) }}">
-                                    <img src="{{ asset('uploads/imgs/tree/categorys/global/accessoires informatique.png') }}" alt="Banner" style="filter: grayscale(70%);">
-                                </a>
+{#                                <div class="banner-content banner-content-bottom">#}
+{#                                    #}{#                                <h4 class="banner-subtitle text-white"><a href="#">Trending now</a></h4><!-- End .banner-subtitle -->#}
+{#                                    <h3 class="banner-title text-white"><a href="#">{{ cats[0].name }}</a></h3><!-- End .banner-title -->#}
+{#                                    <a href="{{ path('global_articles_result', {'category': cats[0].reference , 'page': 1}) }}" class="banner-link">Découvrez maintenant <i class="icon-long-arrow-right"></i></a>#}
+{#                                </div><!-- End .banner-content -->#}
+{#                            </div><!-- End .banner -->#}
+{#                        <div class="row">#}
+{#                            <div class="col-sm-12">#}
+{#                            <div class="banner banner-overlay">#}
+{#                                <a href="{{ path('global_articles_result', {'category': cats[1].reference , 'page': 1}) }}">#}
+{#                                    <img src="{{ asset('uploads/imgs/tree/categorys/global/accessoires informatique.png') }}" alt="Banner" style="filter: grayscale(70%);">#}
+{#                                </a>#}
 
-                                <div class="banner-content banner-content-bottom">
-                                    {#                                <h4 class="banner-subtitle text-white"><a href="#">Trending now</a></h4><!-- End .banner-subtitle -->#}
-                                    <h3 class="banner-title text-white"><a href="#">{{ cats[1].name }}</a></h3><!-- End .banner-title -->
-                                    <a href="{{ path('global_articles_result', {'category': cats[1].reference , 'page': 1}) }}" class="banner-link">Découvrez maintenant <i class="icon-long-arrow-right"></i></a>
-                                </div><!-- End .banner-content -->
-                            </div><!-- End .banner -->
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="banner banner-overlay">
-                                    <a href="{{ path('global_articles_result', {'category': cats[2].reference , 'page': 1}) }}">
-                                        <img src="{{ asset('uploads/imgs/tree/categorys/global/classements and archivages.png') }}" alt="Banner" style="filter: grayscale(70%);">
-                                    </a>
+{#                                <div class="banner-content banner-content-bottom">#}
+{#                                    #}{#                                <h4 class="banner-subtitle text-white"><a href="#">Trending now</a></h4><!-- End .banner-subtitle -->#}
+{#                                    <h3 class="banner-title text-white"><a href="#">{{ cats[1].name }}</a></h3><!-- End .banner-title -->#}
+{#                                    <a href="{{ path('global_articles_result', {'category': cats[1].reference , 'page': 1}) }}" class="banner-link">Découvrez maintenant <i class="icon-long-arrow-right"></i></a>#}
+{#                                </div><!-- End .banner-content -->#}
+{#                            </div><!-- End .banner -->#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <div class="row">#}
+{#                            <div class="col-sm-12">#}
+{#                                <div class="banner banner-overlay">#}
+{#                                    <a href="{{ path('global_articles_result', {'category': cats[2].reference , 'page': 1}) }}">#}
+{#                                        <img src="{{ asset('uploads/imgs/tree/categorys/global/classements and archivages.png') }}" alt="Banner" style="filter: grayscale(70%);">#}
+{#                                    </a>#}
 
-                                    <div class="banner-content banner-content-bottom">
-                                        {#                                <h4 class="banner-subtitle text-white"><a href="#">Trending now</a></h4><!-- End .banner-subtitle -->#}
-                                        <h3 class="banner-title text-white"><a href="#">{{ cats[2].name }}</a></h3><!-- End .banner-title -->
-                                        <a href="{{ path('global_articles_result', {'category': cats[2].reference , 'page': 1}) }}" class="banner-link">Découvrez maintenant <i class="icon-long-arrow-right"></i></a>
-                                    </div><!-- End .banner-content -->
-                                </div><!-- End .banner -->
-                            </div>
-                        </div>
-                    </div><!-- End .col-lg-5 -->
+{#                                    <div class="banner-content banner-content-bottom">#}
+{#                                        #}{#                                <h4 class="banner-subtitle text-white"><a href="#">Trending now</a></h4><!-- End .banner-subtitle -->#}
+{#                                        <h3 class="banner-title text-white"><a href="#">{{ cats[2].name }}</a></h3><!-- End .banner-title -->#}
+{#                                        <a href="{{ path('global_articles_result', {'category': cats[2].reference , 'page': 1}) }}" class="banner-link">Découvrez maintenant <i class="icon-long-arrow-right"></i></a>#}
+{#                                    </div><!-- End .banner-content -->#}
+{#                                </div><!-- End .banner -->#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div><!-- End .col-lg-5 -->#}
 
-                    <div class="col-lg-7">
-                        <div class="banner banner-overlay">
-                            <a href="{{ path('global_articles_result', {'category': cats[3].reference , 'page': 1}) }}">
-                                <img src="{{ asset('uploads/imgs/tree/categorys/global/consommables.png') }}" alt="Banner" style="filter: grayscale(70%);">
-                            </a>
-                            <div class="banner-content banner-content-right">
+{#                    <div class="col-lg-7">#}
+{#                        <div class="banner banner-overlay">#}
+{#                            <a href="{{ path('global_articles_result', {'category': cats[3].reference , 'page': 1}) }}">#}
+{#                                <img src="{{ asset('uploads/imgs/tree/categorys/global/consommables.png') }}" alt="Banner" style="filter: grayscale(70%);">#}
+{#                            </a>#}
+{#                            <div class="banner-content banner-content-right">#}
 {#                                <h4 class="banner-subtitle text-white"><a href="#">clearance</a></h4><!-- End .banner-subtitle -->#}
-                                <h3 class="banner-title text-white"><a href="#">{{ cats[3].name }}</a></h3><!-- End .banner-title -->
-                                <a href="{{ path('global_articles_result', {'category': cats[3].reference , 'page': 1}) }}" class="banner-link">Découvrez maintenant <i class="icon-long-arrow-right"></i></a>
-                            </div><!-- End .banner-content -->
-                        </div><!-- End .banner -->
+{#                                <h3 class="banner-title text-white"><a href="#">{{ cats[3].name }}</a></h3><!-- End .banner-title -->#}
+{#                                <a href="{{ path('global_articles_result', {'category': cats[3].reference , 'page': 1}) }}" class="banner-link">Découvrez maintenant <i class="icon-long-arrow-right"></i></a>#}
+{#                            </div><!-- End .banner-content -->#}
+{#                        </div><!-- End .banner -->#}
 
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="banner banner-overlay">
-                                    <a href="{{ path('global_articles_result', {'category': cats[4].reference , 'page': 1}) }}">
-                                        <img src="{{ asset('uploads/imgs/tree/categorys/global/ecriture.png') }}" alt="Banner" style="filter: grayscale(70%);">
-                                    </a>
+{#                        <div class="row">#}
+{#                            <div class="col-sm-6">#}
+{#                                <div class="banner banner-overlay">#}
+{#                                    <a href="{{ path('global_articles_result', {'category': cats[4].reference , 'page': 1}) }}">#}
+{#                                        <img src="{{ asset('uploads/imgs/tree/categorys/global/ecriture.png') }}" alt="Banner" style="filter: grayscale(70%);">#}
+{#                                    </a>#}
 
-                                    <div class="banner-content banner-content-top ">
+{#                                    <div class="banner-content banner-content-top ">#}
 {#                                        <h4 class="banner-subtitle text-white"><a href="#">you might love</a></h4><!-- End .banner-subtitle -->#}
-                                        <h3 class="banner-title text-white"><a href="#">{{ cats[4].name }}</a></h3><!-- End .banner-title -->
-                                        <a href="{{ path('global_articles_result', {'category': cats[4].reference , 'page': 1}) }}" class="banner-link">Découvrez maintenant <i class="icon-long-arrow-right"></i></a>
-                                    </div><!-- End .banner-content -->
-                                </div><!-- End .banner -->
-                            </div><!-- End .col-sm-6 -->
+{#                                        <h3 class="banner-title text-white"><a href="#">{{ cats[4].name }}</a></h3><!-- End .banner-title -->#}
+{#                                        <a href="{{ path('global_articles_result', {'category': cats[4].reference , 'page': 1}) }}" class="banner-link">Découvrez maintenant <i class="icon-long-arrow-right"></i></a>#}
+{#                                    </div><!-- End .banner-content -->#}
+{#                                </div><!-- End .banner -->#}
+{#                            </div><!-- End .col-sm-6 -->#}
 
-                            <div class="col-sm-6">
-                                <div class="banner banner-overlay">
-                                    <a href="{{ path('global_articles_result', {'category': cats[5].reference , 'page': 1}) }}">
-                                        <img src="{{ asset('uploads/imgs/tree/categorys/global/fourniture.png') }}" alt="Banner" style="filter: grayscale(70%);">
-                                    </a>
+{#                            <div class="col-sm-6">#}
+{#                                <div class="banner banner-overlay">#}
+{#                                    <a href="{{ path('global_articles_result', {'category': cats[5].reference , 'page': 1}) }}">#}
+{#                                        <img src="{{ asset('uploads/imgs/tree/categorys/global/fourniture.png') }}" alt="Banner" style="filter: grayscale(70%);">#}
+{#                                    </a>#}
 
-                                    <div class="banner-content  banner-content-top banner-content-reverse">
+{#                                    <div class="banner-content  banner-content-top banner-content-reverse">#}
 {#                                        <h4 class="banner-subtitle text-white"><a href="#">The new pretty</a></h4><!-- End .banner-subtitle -->#}
-                                        <h3 class="banner-title text-white"><a href="#">{{ cats[5].name }}</a></h3><!-- End .banner-title -->
-                                        <a href="{{ path('global_articles_result', {'category': cats[5].reference , 'page': 1}) }}" class="banner-link">Découvrez maintenant <i class="icon-long-arrow-right"></i></a>
-                                    </div><!-- End .banner-content -->
-                                </div><!-- End .banner -->
-                            </div><!-- End .col-sm-6 -->
-                        </div><!-- End .row -->
-                    </div><!-- End .col-lg-7 -->
-                </div><!-- End .row -->
-                <div class="row">
-                    <div class="col-lg-5">
-                        <div class="banner banner-overlay">
-                            <a href="{{ path('global_articles_result', {'category': cats[6].reference , 'page': 1}) }}">
-                                <img src="{{ asset('uploads/imgs/tree/categorys/global/machines bureau.png') }}" alt="Banner" style="filter: grayscale(70%);">
-                            </a>
+{#                                        <h3 class="banner-title text-white"><a href="#">{{ cats[5].name }}</a></h3><!-- End .banner-title -->#}
+{#                                        <a href="{{ path('global_articles_result', {'category': cats[5].reference , 'page': 1}) }}" class="banner-link">Découvrez maintenant <i class="icon-long-arrow-right"></i></a>#}
+{#                                    </div><!-- End .banner-content -->#}
+{#                                </div><!-- End .banner -->#}
+{#                            </div><!-- End .col-sm-6 -->#}
+{#                        </div><!-- End .row -->#}
+{#                    </div><!-- End .col-lg-7 -->#}
+{#                </div><!-- End .row -->#}
+{#                <div class="row">#}
+{#                    <div class="col-lg-5">#}
+{#                        <div class="banner banner-overlay">#}
+{#                            <a href="{{ path('global_articles_result', {'category': cats[6].reference , 'page': 1}) }}">#}
+{#                                <img src="{{ asset('uploads/imgs/tree/categorys/global/machines bureau.png') }}" alt="Banner" style="filter: grayscale(70%);">#}
+{#                            </a>#}
 
-                            <div class="banner-content banner-content-bottom">
-                                {#                                <h4 class="banner-subtitle text-white"><a href="#">Trending now</a></h4><!-- End .banner-subtitle -->#}
-                                <h3 class="banner-title text-white"><a href="#">{{ cats[6].name }}</a></h3><!-- End .banner-title -->
-                                <a href="{{ path('global_articles_result', {'category': cats[6].reference , 'page': 1}) }}" class="banner-link">Découvrez maintenant <i class="icon-long-arrow-right"></i></a>
-                            </div><!-- End .banner-content -->
-                        </div><!-- End .banner -->
-                    </div><!-- End .col-lg-5 -->
+{#                            <div class="banner-content banner-content-bottom">#}
+{#                                #}{#                                <h4 class="banner-subtitle text-white"><a href="#">Trending now</a></h4><!-- End .banner-subtitle -->#}
+{#                                <h3 class="banner-title text-white"><a href="#">{{ cats[6].name }}</a></h3><!-- End .banner-title -->#}
+{#                                <a href="{{ path('global_articles_result', {'category': cats[6].reference , 'page': 1}) }}" class="banner-link">Découvrez maintenant <i class="icon-long-arrow-right"></i></a>#}
+{#                            </div><!-- End .banner-content -->#}
+{#                        </div><!-- End .banner -->#}
+{#                    </div><!-- End .col-lg-5 -->#}
 
-                    <div class="col-lg-7">
-                        <div class="banner banner-overlay">
-                            <a href="{{ path('global_articles_result', {'category': cats[7].reference , 'page': 1}) }}">
-                                <img src="{{ asset('uploads/imgs/tree/categorys/global/papiertre.png') }}" alt="Banner" style="filter: grayscale(70%);">
-                            </a>
-                            <div class="banner-content banner-content-right">
-                                {#                                <h4 class="banner-subtitle text-white"><a href="#">clearance</a></h4><!-- End .banner-subtitle -->#}
-                                <h3 class="banner-title text-white"><a href="#">{{ cats[7].name }}</a></h3><!-- End .banner-title -->
-                                <a href="{{ path('global_articles_result', {'category': cats[7].reference , 'page': 1}) }}" class="banner-link">Découvrez maintenant <i class="icon-long-arrow-right"></i></a>
-                            </div><!-- End .banner-content -->
-                        </div><!-- End .banner -->
-                    </div><!-- End .col-lg-7 -->
-                </div><!-- End .row -->
-            </div><!-- End .banner-group -->
+{#                    <div class="col-lg-7">#}
+{#                        <div class="banner banner-overlay">#}
+{#                            <a href="{{ path('global_articles_result', {'category': cats[7].reference , 'page': 1}) }}">#}
+{#                                <img src="{{ asset('uploads/imgs/tree/categorys/global/papiertre.png') }}" alt="Banner" style="filter: grayscale(70%);">#}
+{#                            </a>#}
+{#                            <div class="banner-content banner-content-right">#}
+{#                                #}{#                                <h4 class="banner-subtitle text-white"><a href="#">clearance</a></h4><!-- End .banner-subtitle -->#}
+{#                                <h3 class="banner-title text-white"><a href="#">{{ cats[7].name }}</a></h3><!-- End .banner-title -->#}
+{#                                <a href="{{ path('global_articles_result', {'category': cats[7].reference , 'page': 1}) }}" class="banner-link">Découvrez maintenant <i class="icon-long-arrow-right"></i></a>#}
+{#                            </div><!-- End .banner-content -->#}
+{#                        </div><!-- End .banner -->#}
+{#                    </div><!-- End .col-lg-7 -->#}
+{#                </div><!-- End .row -->#}
+{#            </div><!-- End .banner-group -->#}
         </div><!-- End .container -->
     </div><!-- End .bg-lighter -->
 </main><!-- End .main -->

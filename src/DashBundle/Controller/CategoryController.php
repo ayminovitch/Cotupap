@@ -12,6 +12,7 @@ class CategoryController extends Controller
     public function indexAction(){
         $em = $this->getDoctrine()->getManager()->getRepository('DashBundle:Category');
         $categorys = $em->findBy(array('parent' => 0));
+//        dump($categorys);
         return $this->render('@Front/pages/index.html.twig', array('cats' => $categorys));
     }
 

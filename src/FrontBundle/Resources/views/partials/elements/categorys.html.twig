@@ -1,60 +1,28 @@
 {% for parentCategory in heading %}
-{#<li>#}
-{#    <a href="#" class="sf-with-ul">{{ parentCategory.name }}</a>#}
-{#    <div class="megamenu megamenu-sm">#}
-{#        <div class="row no-gutters">#}
-{#            <div class="col-md-6">#}
-{#                <div class="menu-col">#}
-{#                    <div class="menu-title">{{ parentCategory.name }} Details</div><!-- End .menu-title -->#}
-{#                    <ul>#}
-{#                        {% for category in categorys %}#}
-{#                        {% if parentCategory.reference == category.parent %}#}
-{#                        <li><a href="{{ path('global_articles_result', {'category': category.reference, 'page': 1}) }}">{{ category.name }}</a></li>#}
-{#                        {% endif %}#}
-{#                        {% endfor %}#}
-{#                    </ul>#}
-{#                </div><!-- End .menu-col -->#}
-{#            </div><!-- End .col-md-6 -->#}
-
-{#            <div class="col-md-6">#}
-{#                <div class="banner banner-overlay">#}
-{#                    <a href="#">#}
-{#                        <img src="https://via.placeholder.com/250x250?text=Cotupap" alt="Banner">#}
-
-{#                        <div class="banner-content banner-content-bottom">#}
-{#                            <div class="banner-title text-white">Nouveautés de<br><span><strong>{{ parentCategory.name }}</strong></span></div><!-- End .banner-title -->#}
-{#                        </div><!-- End .banner-content -->#}
-{#                    </a>#}
-{#                </div><!-- End .banner -->#}
-{#            </div><!-- End .col-md-6 -->#}
-{#        </div><!-- End .row -->#}
-{#    </div><!-- End .megamenu megamenu-sm -->#}
-{#</li>#}
-
-
-    <li class="megamenu-container">
-        <a class="sf-with-ul" href="javascript:void(0)">{{ parentCategory.name }}</a>
+    <li class="megamenu-container" style="border-left: 1px solid #80808036;">
+        <a href="javascript:void(0)" class="sf-with-ul">{{ parentCategory.name }}</a>
 
         <div class="megamenu">
-            <div class="row no-gutters">
-                <div class="col-md-12">
+            <div class="row no-gutters" style="margin-left: auto; margin-right: auto; width: 80%;-webkit-box-shadow: 0px 12px 19px -6px rgba(0,0,0,0.71); box-shadow: 0px 12px 19px -6px rgba(0,0,0,0.71);">
+                <div class="col-md-8">
                     <div class="menu-col">
                         <div class="row">
                             <div class="col-md-6">
                                 <ul>
                                     {% set myVal = 0 %}
                                     {% for category in categorys %}
-                                        {% if parentCategory.reference == category.parent %}
-                                            {% set myVal = myVal + 1 %}
-                                            <li><a href="{{ path('global_articles_result', {'category': category.reference, 'page': 1}) }}">{{ category.name }}</a></li>
+                                    {% if parentCategory.reference == category.parent %}
+                                    {% set myVal = myVal + 1 %}
+                                    <li><a href="{{ path('global_articles_result', {'category': category.reference, 'page': 1}) }}">{{ category.name }}</a></li>
                                     {% if myVal is divisibleby(10) %}
                                     {% set myVal = 0 %}
                                 </ul>
+
                             </div>
                             <div class="col-md-6">
                                 <ul>
                                     {% endif %}
-                                        {% endif %}
+                                    {% endif %}
                                     {% endfor %}
                                 </ul>
                             </div><!-- End .col-md-6 -->
@@ -62,14 +30,18 @@
                     </div><!-- End .menu-col -->
                 </div><!-- End .col-md-8 -->
 
-{#                <div class="col-md-4">#}
-{#                    <div class="banner banner-overlay">#}
-{#                        <a href="javascript:void(0)" class="banner banner-menu">#}
-{#                            <img src="assets/images/demos/demo-13/menu/banner-1.jpg" alt="Banner">#}
-{#                        </a>#}
-{#                    </div><!-- End .banner banner-overlay -->#}
-{#                </div><!-- End .col-md-4 -->#}
+                <div class="col-md-4">
+                    <div class="banner banner-overlay">
+                        <a href="javascript:void(0)" class="banner banner-menu">
+                            <img src="https://via.placeholder.com/218x314?text=Cotupap" alt="{{ parentCategory.name }}">
+
+                            <div class="banner-content banner-content-top">
+                                <div class="banner-title text-white">Last <br>Chance<br><span><strong>Sale</strong></span></div><!-- End .banner-title -->
+                            </div><!-- End .banner-content -->
+                        </a>
+                    </div><!-- End .banner banner-overlay -->
+                </div><!-- End .col-md-4 -->
             </div><!-- End .row -->
-        </div><!-- End .megamenu -->
+        </div><!-- End .megamenu megamenu-md -->
     </li>
 {% endfor %}

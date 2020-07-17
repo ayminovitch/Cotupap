@@ -18,6 +18,15 @@ admin_category_edit:
 admin_category_delete:
   path: /category/list/{id}
   defaults: { _controller: DashBundle:Category:adminCategoryDelete }
+upload_slider:
+  path: /slider/uploadajx
+  defaults: { _controller: AdminBundle:Slider:uploadInit }
+list_slider:
+  path: /slider/manage
+  defaults: { _controller: AdminBundle:Slider:sliderManage }
+remove_slider:
+  path: /slider/remove
+  defaults: { _controller: AdminBundle:Slider:removeSlider }
 #Cron Clients
 admin_cron_clients:
   path: /cron/clients

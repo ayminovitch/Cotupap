@@ -14,20 +14,26 @@
 
             <div class="header-right">
                 <div class="social-icons social-icons-color">
-                    <a href="{{ settings.settings.facebook }}" class="social-icon social-facebook" title="Facebook" target="_blank"><i class="icon-facebook-f"></i></a>
-                    <a href="{{ settings.settings.twitter }}" class="social-icon social-twitter" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
-                    <a href="{{ settings.settings.instagram }}" class="social-icon social-instagram" title="Pinterest" target="_blank"><i class="icon-instagram"></i></a>
-                    <a href="{{ settings.settings.pinterest }}" class="social-icon social-pinterest" title="Instagram" target="_blank"><i class="icon-pinterest-p"></i></a>
+                    <a href="{{ settings.settings.facebook }}" class="social-icon social-facebook" title="Facebook"
+                       target="_blank"><i class="icon-facebook-f"></i></a>
+                    <a href="{{ settings.settings.twitter }}" class="social-icon social-twitter" title="Twitter"
+                       target="_blank"><i class="icon-twitter"></i></a>
+                    <a href="{{ settings.settings.instagram }}" class="social-icon social-instagram" title="Pinterest"
+                       target="_blank"><i class="icon-instagram"></i></a>
+                    <a href="{{ settings.settings.pinterest }}" class="social-icon social-pinterest" title="Instagram"
+                       target="_blank"><i class="icon-pinterest-p"></i></a>
                 </div><!-- End .soial-icons -->
                 <ul class="top-menu top-link-menu">
                     <li>
                         <a href="#">Links</a>
                         <ul>
                             {% if status == 'in' %}
-                                <li><a href="{{ path('compte_client') }}"><i class="icon-user"></i>{{ client['tnom'] }}</a></li>
+                                <li><a href="{{ path('compte_client') }}"><i class="icon-user"></i>{{ client['tnom'] }}
+                                    </a></li>
                                 <li><a href="{{ path('logout_page') }}">Déconnecter</a></li>
                             {% else %}
-                                <li><a href="#signin-modal" data-toggle="modal"><i class="icon-user"></i>login / register</a></li>
+                                <li><a href="#signin-modal" data-toggle="modal"><i class="icon-user"></i>login /
+                                        register</a></li>
                             {% endif %}
                         </ul>
                     </li>
@@ -39,16 +45,18 @@
         <div class="container">
             <div class="header-left">
                 {% if settings.settings.search == "true" %}
-                <div class="header-search header-search-extended header-search-visible d-none d-lg-block">
-                    <a href="#" class="search-toggle" role="button"><i class="icon-search"></i></a>
-                    <form action="{{ path('global_articles_result', {'category': 'CA01' , 'page': 1}) }}" method="get">
-                        <div class="header-search-wrapper search-wrapper-wide">
-                            <label for="q" class="sr-only">Search</label>
-                            <button class="btn btn-primary" type="submit"><i class="icon-search"></i></button>
-                            <input type="search" class="form-control" name="q" id="q" placeholder="Rechercher un produit ..." required>
-                        </div><!-- End .header-search-wrapper -->
-                    </form>
-                </div><!-- End .header-search -->
+                    <div class="header-search header-search-extended header-search-visible d-none d-lg-block">
+                        <a href="#" class="search-toggle" role="button"><i class="icon-search"></i></a>
+                        <form action="{{ path('global_articles_result', {'category': 'CA01' , 'page': 1}) }}"
+                              method="get">
+                            <div class="header-search-wrapper search-wrapper-wide">
+                                <label for="q" class="sr-only">Search</label>
+                                <button class="btn btn-primary" type="submit"><i class="icon-search"></i></button>
+                                <input type="search" class="form-control" name="q" id="q"
+                                       placeholder="Rechercher un produit ..." required>
+                            </div><!-- End .header-search-wrapper -->
+                        </form>
+                    </div><!-- End .header-search -->
                 {% endif %}
             </div>
             <div class="header-center">
@@ -58,74 +66,50 @@
             </div><!-- End .header-left -->
 
             <div class="header-right custom-url" data-url="{{ path('ajouter_produit') }}">
-{#                <a href="#" class="wishlist-link">#}
-{#                    <i class="icon-heart-o"></i>#}
-{#                    <span class="wishlist-count">3</span>#}
-{#                    <span class="wishlist-txt">My Wishlist</span>#}
-{#                </a>#}
-                    {{ render(controller('FrontBundle:Default:panierTopHeader')) }}
+                {#                <a href="#" class="wishlist-link">#}
+                {#                    <i class="icon-heart-o"></i>#}
+                {#                    <span class="wishlist-count">3</span>#}
+                {#                    <span class="wishlist-txt">My Wishlist</span>#}
+                {#                </a>#}
+                {{ render(controller('FrontBundle:Default:panierTopHeader')) }}
             </div>
         </div><!-- End .container -->
     </div><!-- End .header-middle -->
 
-{#    <div class="header-bottom sticky-header">#}
-{#        <div class="container">#}
-{#            <div class="header-center">#}
-{#                <nav class="main-nav">#}
-{#                    <ul class="menu sf-arrows">#}
-{#                        <li class="megamenu-container active">#}
-{#                            <a href="{{ path('dash_homepage') }}" class="sr-only-focusable">Accueil</a>#}
-{#                        </li>#}
-{#                        {{ render(controller('FrontBundle:Default:categorys')) }}#}
-{#                    </ul><!-- End .menu -->#}
-{#                </nav><!-- End .main-nav -->#}
+    {#    <div class="header-bottom sticky-header">#}
+    {#        <div class="container">#}
+    {#            <div class="header-center">#}
+    {#                <nav class="main-nav">#}
+    {#                    <ul class="menu sf-arrows">#}
+    {#                        <li class="megamenu-container active">#}
+    {#                            <a href="{{ path('dash_homepage') }}" class="sr-only-focusable">Accueil</a>#}
+    {#                        </li>#}
+    {#                        {{ render(controller('FrontBundle:Default:categorys')) }}#}
+    {#                    </ul><!-- End .menu -->#}
+    {#                </nav><!-- End .main-nav -->#}
 
-{#                <button class="mobile-menu-toggler">#}
-{#                    <span class="sr-only">Basculer le menu mobile</span>#}
-{#                    <i class="icon-bars"></i>#}
-{#                </button>#}
-{#            </div><!-- End .header-left -->#}
+    {#                <button class="mobile-menu-toggler">#}
+    {#                    <span class="sr-only">Basculer le menu mobile</span>#}
+    {#                    <i class="icon-bars"></i>#}
+    {#                </button>#}
+    {#            </div><!-- End .header-left -->#}
 
-{#            <div class="header-right">#}
-{#                <i class="la la-lightbulb-o"></i><p>Jusqu'à 30% de rabais</p>#}
-{#            </div>#}
-{#        </div><!-- End .container -->#}
-{#    </div><!-- End .header-bottom -->#}
+    {#            <div class="header-right">#}
+    {#                <i class="la la-lightbulb-o"></i><p>Jusqu'à 30% de rabais</p>#}
+    {#            </div>#}
+    {#        </div><!-- End .container -->#}
+    {#    </div><!-- End .header-bottom -->#}
 
-    <div class="header-bottom sticky-header">
+    <div class="header-bottom sticky-header" style="box-shadow: 0px 0px 13px -5px rgba(0,0,0,0.71);">
         <div class="container">
-            <div class="header-left">
-                <div class="dropdown category-dropdown">
-                    <a href="javascript:void(0)" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static" title="PARCOURIR LES CATÉGORIES">
-                        PARCOURIR LES CATÉGORIES
-                    </a>
-
-                    <div class="dropdown-menu">
-                        <nav class="side-nav">
-                            <ul class="menu-vertical sf-arrows">
-                                {{ render(controller('FrontBundle:Default:categorys')) }}
-                            </ul><!-- End .menu-vertical -->
-                        </nav><!-- End .side-nav -->
-                    </div><!-- End .dropdown-menu -->
-                </div><!-- End .category-dropdown -->
-            </div><!-- End .header-left -->
-
             <div class="header-center">
                 <nav class="main-nav">
                     <ul class="menu sf-arrows">
-                        <li class="megamenu-container active">
-                            <a href="{{ path('dash_homepage') }}">Accueil</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('contact') }}">Contact</a>
-                        </li>
-                    </ul><!-- End .menu -->
-                </nav><!-- End .main-nav -->
-            </div><!-- End .header-center -->
-
-            <div class="header-right">
-                <i class="la la-lightbulb-o"></i><p>Bienvenue chez<span class="highlight">&nbsp;Cotupap</span></p>
-            </div>
-        </div><!-- End .container -->
+                        {{ render(controller('FrontBundle:Default:categorys')) }}
+                    </ul><!-- End .menu-vertical -->
+                </nav><!-- End .side-nav -->
+            </div><!-- End .category-dropdown -->
+        </div><!-- End .header-left -->
+    </div><!-- End .container -->
     </div><!-- End .header-bottom -->
 </header><!-- End .header -->

@@ -12,3 +12,4 @@ parameters:
     secret: ThisTokenIsNotSoSecretChangeIt
     articles_path: '%kernel.project_dir%/web/uploads/articles.xml'
     clients_path: '%kernel.project_dir%/web/uploads/clients.xml'
+    products_images_directory: '%kernel.project_dir%/web/uploads/media'

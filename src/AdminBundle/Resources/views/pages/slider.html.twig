@@ -1,0 +1,62 @@
+{% extends '@Admin/base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+{% endblock %}
+{% block body %}
+    <div class="row">
+        <div class="col-lg-6 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Upload your slider</h4>
+                    {{ form_start(uploadForm, {'action':path('upload_slider'), 'method' : 'POST', 'attr': {'id' : 'form-with-dropzone', 'class' : 'form-horizontal dropzone' }}) }}
+                    <div class="row">
+                        <div class="dropzone-previews"></div>
+                        <div class="fallback">
+                            {{ form_widget(uploadForm.files) }}
+                        </div>
+                    </div>
+                    {{ form_end(uploadForm) }}
+                    <div class="row no-margin-right no-margin-left">
+                        <div class="form-group no-margin-right no-margin-left" style="margin-top: 30px;">
+                            <div class="pull-right">
+                                <button id="submit" type="submit" class="btn btn-sm btn-inverse"><i class="ace-icon typcn typcn-location-arrow-outline align-top bigger-115"></i>&nbsp;Upload Image(s)</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 grid-margin grid-margin-md-0 stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    {% if sliders is not empty %}
+                        <h4 class="card-title">List of Sliders</h4>
+                    {% else %}
+                        <h4 class="card-title">There is no sliders to show!!!</h4>
+                    {% endif %}
+                    {% for slider in sliders %}
+                        <div class="d-flex align-items-center py-3 border-bottom">
+                        <img class="img-sm rounded-circle" src="{{ asset('uploads/media/') ~ slider.files }}" alt="{{ slider.files }}">
+                        <div class="ml-3">
+                            {% if slider.size matches '/^\\d+$/' %}
+                                <h6 class="mb-1">File-Size: {{ (slider.size / 1024)|round(2) }} Kb</h6>
+                            {% else %}
+                                <h6 class="mb-1">File-Size: 0 Kb</h6>
+                            {% endif %}
+                            <small class="text-muted mb-0"><i class="icon-location-pin-outline mr-1"></i>Date of creation: {{ slider.dateCreated | date }}</small>
+                        </div>
+                        <i class="icon-trash font-weight-bold ml-auto px-1 py-1 text-info" style="cursor: pointer;" onclick="removeSlider({{ slider.id }}, '{{ path('remove_slider') }}')"></i>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{  parent() }}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.4/js/bootstrap-switch.js" data-turbolinks-track="true"></script>
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+    <script src="{{ asset('assets/AdminBumdle/js/slider.js') }}"></script>
+{% endblock %}
