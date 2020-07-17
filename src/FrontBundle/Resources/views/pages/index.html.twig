@@ -1,6 +1,7 @@
 {% extends '@Front/base.html.twig' %}
 {% block mainContent %}
 <main class="main">
+    {{ render(controller('FrontBundle:Slider:renderSlider')) }}
     <div class="intro-section bg-lighter pt-3">
         <div class="container">
 {#            <div class="banner-group">#}
