@@ -16,4 +16,12 @@ class SliderController extends Controller
 //        die();
         return $this->render('@Front/partials/slider.html.twig', array('sliders' => $sliders));
     }
+
+    public function renderAdsAction (Request $request){
+        $em = $this->getDoctrine()->getManager();
+        $sliders = $em->getRepository('AdminBundle:Ads')->findAll();
+//        dump($sliders);
+//        die();
+        return $this->render('@Front/partials/elements/ads.html.twig', array('ads' => $sliders));
+    }
 }

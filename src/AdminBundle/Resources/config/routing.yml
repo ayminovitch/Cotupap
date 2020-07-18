@@ -18,6 +18,7 @@ admin_category_edit:
 admin_category_delete:
   path: /category/list/{id}
   defaults: { _controller: DashBundle:Category:adminCategoryDelete }
+#Slider Routers
 upload_slider:
   path: /slider/uploadajx
   defaults: { _controller: AdminBundle:Slider:uploadInit }
@@ -27,6 +28,17 @@ list_slider:
 remove_slider:
   path: /slider/remove
   defaults: { _controller: AdminBundle:Slider:removeSlider }
+
+#Ads Routers
+upload_ads:
+  path: /ads/uploadajx
+  defaults: { _controller: AdminBundle:Ads:uploadInit }
+list_ads:
+  path: /ads/manage
+  defaults: { _controller: AdminBundle:Ads:adsManage }
+remove_ads:
+  path: /ads/remove
+  defaults: { _controller: AdminBundle:Ads:removeAds }
 #Cron Clients
 admin_cron_clients:
   path: /cron/clients

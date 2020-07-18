@@ -2,7 +2,7 @@
 parameters:
     database_host: 127.0.0.1
     database_port: null
-    database_name: cotupap-development
+    database_name: cotupap
     database_user: root
     database_password: null
     mailer_transport: smtp
@@ -13,3 +13,4 @@ parameters:
     articles_path: '%kernel.project_dir%/web/uploads/articles.xml'
     clients_path: '%kernel.project_dir%/web/uploads/clients.xml'
     products_images_directory: '%kernel.project_dir%/web/uploads/media'
+    ads_images_directory: '%kernel.project_dir%/web/uploads/media/ads'

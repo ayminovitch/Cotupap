@@ -1,0 +1,7 @@
+{% for ad in ads %}
+    {% if ad.size == 0 %}
+        <div class="col-12" style="background-image: url(http://via.placeholder.com/376x133?text=Cotupap+Banner)"></div>
+    {% else %}
+        <div class="col-12" style="background-image: url({{ asset('uploads/media/ads/') ~ ad.files }})"></div>
+    {% endif %}
+{% endfor %}
