@@ -24,4 +24,12 @@ class SliderController extends Controller
 //        die();
         return $this->render('@Front/partials/elements/ads.html.twig', array('ads' => $sliders));
     }
+
+    public function renderMarquesAction (Request $request){
+        $em = $this->getDoctrine()->getManager();
+        $marques = $em->getRepository('AdminBundle:Marques')->findAll();
+//        dump($sliders);
+//        die();
+        return $this->render('@Front/partials/elements/_marques.html.twig', array('marques' => $marques));
+    }
 }

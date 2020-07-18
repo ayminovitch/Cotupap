@@ -1,15 +1,25 @@
 <div class="page-content">
     <div class="container">
+        {% set client = app.session.get('client') %}
+        {% if client['status'] is defined %}
+            {% set status = client['status'] %}
+        {% else %}
+            {% set status = 'out' %}
+        {% endif %}
         <div id="products" class="products" data-url="{{ path('ajouter_produit') }}">
+            {% if status != 'in' %}<p style="color: red;text-align: end;">*Veuillez vous connecter pour afficher les prix</p>{% endif %}
             <div class="row">
             {% for article in productsPaged %}
-{#                    {{ dump(article) }}#}
                 <div class="col-6 col-md-4 col-lg-4 col-xl-3">
                     <div class="product">
                         <figure class="product-media">
 {#                            <span class="product-label label-new">New</span>#}
                             <a href="javascript:void(0)">
-                                <img src="https://via.placeholder.com/280x280.png?text=Article+Cotupap" alt="Product image" class="product-image">
+                                {% if file_exists(asset('uploads/articles/') ~ article.tcateg ~ ('/') ~ article.tsouscateg ~ ('/') ~ article.tarticle | split('.', 3)[2] ~ ('.png')) %}
+                                    <img src="{{ asset('uploads/articles/') ~ article.tcateg ~ ('/') ~ article.tsouscateg ~ ('/') ~ article.tarticle | split('.', 3)[2] ~ ('.png') }}" alt="{{ article.tdescription }}" class="product-image">
+                                {% else %}
+                                    <img src="https://via.placeholder.com/280x280.png?text=Article+Cotupap" alt="{{ article.tdescription }}" class="product-image">
+                                {% endif %}
                             </a>
 
 {#                            <div class="product-action-vertical">#}
@@ -17,12 +27,6 @@
 {#                            </div><!-- End .product-action -->#}
 
                             <div class="product-action action-icon-top">
-                                {% set client = app.session.get('client') %}
-                                {% if client['status'] is defined %}
-                                    {% set status = client['status'] %}
-                                {% else %}
-                                    {% set status = 'out' %}
-                                {% endif %}
                                 {% if status == 'in' %}
                                     <a href="javascript:void(0)" class="btn-product btn-cart btn-carta" data-desc="{{ article['tdescription'] }}" data-prix="{{ article['prix'] }}" data-ref="{{ article['tarticle'] }}"><span>ajouter au panier</span></a>
                                 {% else %}
@@ -37,13 +41,7 @@
 {#                                <a href="#">{{ article['tmarque'] }}</a>#}
                             </div><!-- End .product-cat -->
                             <h3 class="product-title"><a href="javascript:void(0)">{{ article['tdescription'] }}</a></h3><!-- End .product-title -->
-                            <div class="product-price">
-                                {% if status == 'in' %}
-                                {{ article['prix'] }} DT
-                                {% else %}
-                                    Connectez pour afficher le prix
-                                {% endif %}
-                            </div><!-- End .product-price -->
+                            <div class="product-price" style="{% if status != 'in' %}filter: blur(3px);-webkit-filter: blur(3px);-moz-filter: blur(3px);{% endif %}">{{ article['prix'] }} DT</div>
                         </div><!-- End .product-body -->
                     </div><!-- End .product -->
                 </div><!-- End .col-sm-6 col-lg-4 col-xl-3 -->

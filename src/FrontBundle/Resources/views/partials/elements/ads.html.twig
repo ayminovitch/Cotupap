@@ -1,7 +1,24 @@
-{% for ad in ads %}
-    {% if ad.size == 0 %}
-        <div class="col-12" style="background-image: url(http://via.placeholder.com/376x133?text=Cotupap+Banner)"></div>
-    {% else %}
-        <div class="col-12" style="background-image: url({{ asset('uploads/media/ads/') ~ ad.files }})"></div>
-    {% endif %}
-{% endfor %}
+<div class="w-18 banner">
+    {% for ad in ads %}
+        {% if ad.position == 'Right' %}
+            {% if ad.size == 0 %}
+                <div class="col-12" style="background-image: url(http://via.placeholder.com/376x133?text=Cotupap+Banner)"></div>
+            {% else %}
+                <div class="col-12" style="background-image: url({{ asset('uploads/media/banners/') ~ ad.files }})"></div>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+</div>
+<div class="w-100 banner" style="display: inline-flex;">
+{#    <div class="row">#}
+    {% for ad in ads %}
+        {% if ad.position == 'Bottom' %}
+            {% if ad.size == 0 %}
+                <div class="col-3 m-2" style="background-image: url(http://via.placeholder.com/376x133?text=Cotupap+Banner)"></div>
+            {% else %}
+                <div class="col-3 m-2" style="background-image: url({{ asset('uploads/media/banners/') ~ ad.files }})"></div>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+{#    </div>#}
+</div>

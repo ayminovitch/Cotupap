@@ -2,8 +2,9 @@
 {% block mainContent %}
 <main class="main">
     {{ render(controller('FrontBundle:Slider:renderSlider')) }}
-    <div class="intro-section bg-lighter pt-3">
-        <div class="container">
+    {{ include('@Front/partials/marques.html.twig') }}
+{#    <div class="intro-section bg-lighter pt-3">#}
+{#        <div class="container">#}
 {#            <div class="banner-group">#}
 {#                <div class="row">#}
 {#                    <div class="col-lg-5">#}
@@ -13,7 +14,7 @@
 {#                                </a>#}
 
 {#                                <div class="banner-content banner-content-bottom">#}
-{#                                    #}{#                                <h4 class="banner-subtitle text-white"><a href="#">Trending now</a></h4><!-- End .banner-subtitle -->#}
+{#                                    #}{##}{#                                <h4 class="banner-subtitle text-white"><a href="#">Trending now</a></h4><!-- End .banner-subtitle -->#}
 {#                                    <h3 class="banner-title text-white"><a href="#">{{ cats[0].name }}</a></h3><!-- End .banner-title -->#}
 {#                                    <a href="{{ path('global_articles_result', {'category': cats[0].reference , 'page': 1}) }}" class="banner-link">Découvrez maintenant <i class="icon-long-arrow-right"></i></a>#}
 {#                                </div><!-- End .banner-content -->#}
@@ -26,7 +27,7 @@
 {#                                </a>#}
 
 {#                                <div class="banner-content banner-content-bottom">#}
-{#                                    #}{#                                <h4 class="banner-subtitle text-white"><a href="#">Trending now</a></h4><!-- End .banner-subtitle -->#}
+{#                                    #}{##}{#                                <h4 class="banner-subtitle text-white"><a href="#">Trending now</a></h4><!-- End .banner-subtitle -->#}
 {#                                    <h3 class="banner-title text-white"><a href="#">{{ cats[1].name }}</a></h3><!-- End .banner-title -->#}
 {#                                    <a href="{{ path('global_articles_result', {'category': cats[1].reference , 'page': 1}) }}" class="banner-link">Découvrez maintenant <i class="icon-long-arrow-right"></i></a>#}
 {#                                </div><!-- End .banner-content -->#}
@@ -41,7 +42,7 @@
 {#                                    </a>#}
 
 {#                                    <div class="banner-content banner-content-bottom">#}
-{#                                        #}{#                                <h4 class="banner-subtitle text-white"><a href="#">Trending now</a></h4><!-- End .banner-subtitle -->#}
+{#                                        #}{##}{#                                <h4 class="banner-subtitle text-white"><a href="#">Trending now</a></h4><!-- End .banner-subtitle -->#}
 {#                                        <h3 class="banner-title text-white"><a href="#">{{ cats[2].name }}</a></h3><!-- End .banner-title -->#}
 {#                                        <a href="{{ path('global_articles_result', {'category': cats[2].reference , 'page': 1}) }}" class="banner-link">Découvrez maintenant <i class="icon-long-arrow-right"></i></a>#}
 {#                                    </div><!-- End .banner-content -->#}
@@ -101,7 +102,7 @@
 {#                            </a>#}
 
 {#                            <div class="banner-content banner-content-bottom">#}
-{#                                #}{#                                <h4 class="banner-subtitle text-white"><a href="#">Trending now</a></h4><!-- End .banner-subtitle -->#}
+{#                                #}{##}{#                                <h4 class="banner-subtitle text-white"><a href="#">Trending now</a></h4><!-- End .banner-subtitle -->#}
 {#                                <h3 class="banner-title text-white"><a href="#">{{ cats[6].name }}</a></h3><!-- End .banner-title -->#}
 {#                                <a href="{{ path('global_articles_result', {'category': cats[6].reference , 'page': 1}) }}" class="banner-link">Découvrez maintenant <i class="icon-long-arrow-right"></i></a>#}
 {#                            </div><!-- End .banner-content -->#}
@@ -114,7 +115,7 @@
 {#                                <img src="{{ asset('uploads/imgs/tree/categorys/global/papiertre.png') }}" alt="Banner" style="filter: grayscale(70%);">#}
 {#                            </a>#}
 {#                            <div class="banner-content banner-content-right">#}
-{#                                #}{#                                <h4 class="banner-subtitle text-white"><a href="#">clearance</a></h4><!-- End .banner-subtitle -->#}
+{#                                #}{##}{#                                <h4 class="banner-subtitle text-white"><a href="#">clearance</a></h4><!-- End .banner-subtitle -->#}
 {#                                <h3 class="banner-title text-white"><a href="#">{{ cats[7].name }}</a></h3><!-- End .banner-title -->#}
 {#                                <a href="{{ path('global_articles_result', {'category': cats[7].reference , 'page': 1}) }}" class="banner-link">Découvrez maintenant <i class="icon-long-arrow-right"></i></a>#}
 {#                            </div><!-- End .banner-content -->#}
@@ -122,7 +123,7 @@
 {#                    </div><!-- End .col-lg-7 -->#}
 {#                </div><!-- End .row -->#}
 {#            </div><!-- End .banner-group -->#}
-        </div><!-- End .container -->
-    </div><!-- End .bg-lighter -->
+{#        </div><!-- End .container -->#}
+{#    </div><!-- End .bg-lighter -->#}
 </main><!-- End .main -->
 {% endblock %}

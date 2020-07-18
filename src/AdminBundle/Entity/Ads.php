@@ -56,6 +56,13 @@ class Ads
      */
     private $alt;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="position", type="string", length=500, nullable=true)
+     */
+    private $position;
+
 
     /**
      * Get id
@@ -186,5 +193,22 @@ class Ads
     {
         return $this->alt;
     }
+
+    /**
+     * @return string
+     */
+    public function getPosition()
+    {
+        return $this->position;
+    }
+
+    /**
+     * @param string $position
+     */
+    public function setPosition($position)
+    {
+        $this->position = $position;
+    }
+
 }
 

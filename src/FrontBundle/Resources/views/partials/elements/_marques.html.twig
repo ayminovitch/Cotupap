@@ -1,0 +1,5 @@
+{% for marque in marques %}
+    <a href="javascript:void(0)" class="brand">
+        <img src="{{ asset('uploads/media/marques/') ~ marque.files }}" alt="{{ marque.name }}">
+    </a>
+{% endfor %}

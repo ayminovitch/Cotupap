@@ -4,23 +4,24 @@
 namespace AdminBundle\Controller;
 
 
-use AdminBundle\Entity\Ads;
-use AdminBundle\Form\AdsType;
+use AdminBundle\Entity\Marques;
+use AdminBundle\Form\MarquesType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Validator\Constraints\DateTime;
 
-class AdsController extends Controller
+class MarquesController extends Controller
 {
-    public function adsManageAction (){
+    public function marquesManageAction (){
         $em = $this->getDoctrine()->getManager();
-        $ads = $em->getRepository('AdminBundle:Ads')->findAll();
-        $ad = new Ads();
-        $form = $this->createForm(AdsType::class, $ad);
-        return $this->render('@Admin/pages/ads.html.twig', array('uploadForm' => $form->createView(), 'ads' => $ads));
+        $marques = $em->getRepository('AdminBundle:Marques')->findAll();
+        $marque = new Marques();
+        $form = $this->createForm(MarquesType::class, $marque);
+        return $this->render('@Admin/pages/marques.html.twig', array('uploadForm' => $form->createView(), 'marques' => $marques));
     }
     /**
-     * Upload Ads Image(s)
+     * Upload Marques Image(s)
      *
      *
      * @access public
@@ -31,8 +32,8 @@ class AdsController extends Controller
     {
         $files = $request->files->get('files');
         $alt = $request->request->get('alt');
-        $url = $request->request->get('url');
-        $position = $request->request->get('position');
+        $ref = $request->request->get('ref');
+        $name = $request->request->get('name');
 
         $uploaded = false;
         $message = null;
@@ -45,7 +46,7 @@ class AdsController extends Controller
 //            for($count; $count < count($files); $count++)
 //            {
 //                if(in_array($files->guessClientExtension(), $mimeTypes)){
-            $uploaded = $this->uploadExec($files, $alt, $url, $position);
+            $uploaded = $this->uploadExec($files, $alt, $name, $ref);
 //                }
 //                    $countValid++;
 //            if($countValid == count($files))
@@ -73,7 +74,7 @@ class AdsController extends Controller
      * @return Boolean
      *
      */
-    private function uploadExec($args, $alt, $url, $position)
+    private function uploadExec($args, $alt, $name, $ref)
     {
         /**
          * Make sure this is a new product without images saved yet
@@ -82,7 +83,7 @@ class AdsController extends Controller
 //        $image_files = [];
         $doctrine = $this->getDoctrine()->getManager();
 
-        $uploadDir = $this->getParameter('ads_images_directory') . DIRECTORY_SEPARATOR ;
+        $uploadDir = $this->getParameter('marques_images_directory') . DIRECTORY_SEPARATOR ;
 
         if(!is_dir($uploadDir))
         {
@@ -111,28 +112,27 @@ class AdsController extends Controller
             /*
              * Persist Uploaded Image(s) to the Database
              */
-            $ads = new Ads();
-            $ads->setFiles($image_files['file']);
-            $ads->setSize($image_files['file_size']);
-            $ads->setDateCreated(strtotime(date('y-m-d h:i:s a')));
-            $ads->setAlt($alt);
-            $ads->setUrl($url);
-            $ads->setPosition($position);
+            $marques = new Marques();
+            $marques->setFiles($image_files['file']);
+            $marques->setSize($image_files['file_size']);
+            $marques->setAlt($alt);
+            $marques->setName($name);
+            $marques->setRef($ref);
 
-            $doctrine->persist($ads);
+            $doctrine->persist($marques);
             $doctrine->flush();
 
-            if( NULL != $ads->getId() )return TRUE;
+            if( NULL != $marques->getId() )return TRUE;
         }
 
         return FALSE;
     }
 
-    public function removeAdsAction(Request $request){
+    public function removeMarquesAction(Request $request){
         $em = $this->getDoctrine()->getManager();
-        $ads = $em->getRepository('AdminBundle:Ads')->findOneBy(array('id'=>$request->request->get('id')));
-        $em->remove($ads);
+        $marques = $em->getRepository('AdminBundle:Marques')->findOneBy(array('id'=>$request->request->get('id')));
+        $em->remove($marques);
         $em->flush();
-        return new JsonResponse('Ads removed');
+        return new JsonResponse('Marques removed');
     }
 }

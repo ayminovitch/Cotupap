@@ -45,6 +45,12 @@ class Marques
     /**
      * @var string
      *
+     * @ORM\Column(name="size", type="string", length=255, nullable=true)
+     */
+    private $size;
+    /**
+     * @var string
+     *
      * @ORM\Column(name="alt", type="string", length=255, nullable=true)
      */
     private $alt;
@@ -56,6 +62,10 @@ class Marques
      */
     private $createdAt;
 
+    public function __construct()
+    {
+        $this->createdAt= new \DateTime();
+    }
 
     /**
      * Get id
@@ -186,5 +196,22 @@ class Marques
     {
         return $this->createdAt;
     }
+
+    /**
+     * @return string
+     */
+    public function getSize()
+    {
+        return $this->size;
+    }
+
+    /**
+     * @param string $size
+     */
+    public function setSize($size)
+    {
+        $this->size = $size;
+    }
+
 }
 

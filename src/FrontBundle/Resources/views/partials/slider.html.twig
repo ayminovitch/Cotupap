@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row" style="margin-top: 2%;">
         <div class="w-79 mr-4">
-            <div class="intro-slider-container">
+            <div class="intro-slider-container" style="margin-bottom: 5px;">
                 <div class="intro-slider owl-carousel owl-theme owl-nav-inside owl-light" data-toggle="owl"
                      data-owl-options='{
                                     "dots": true,
@@ -36,8 +36,6 @@
                 <span class="slider-loader"></span><!-- End .slider-loader -->
             </div><!-- End .intro-slider-container -->
         </div>
-        <div class="w-18 banner">
-            {{ render(controller('FrontBundle:Slider:renderAds')) }}
-        </div>
+        {{ render(controller('FrontBundle:Slider:renderAds')) }}
     </div>
 </div>

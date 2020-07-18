@@ -39,6 +39,16 @@ list_ads:
 remove_ads:
   path: /ads/remove
   defaults: { _controller: AdminBundle:Ads:removeAds }
+#Marques Routers
+upload_marque:
+  path: /marques/uploadajx
+  defaults: { _controller: AdminBundle:Marques:uploadInit }
+list_marques:
+  path: /marques/manage
+  defaults: { _controller: AdminBundle:Marques:marquesManage }
+remove_marque:
+  path: /marques/remove
+  defaults: { _controller: AdminBundle:Marques:removeMarques }
 #Cron Clients
 admin_cron_clients:
   path: /cron/clients
