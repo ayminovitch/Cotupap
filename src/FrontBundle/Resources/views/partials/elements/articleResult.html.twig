@@ -32,7 +32,7 @@
                                 {% else %}
                                     <a href="{{ path('login_page') }}" class="btn-product btn-cart" ><span>ajouter au panier</span></a>
                                 {% endif %}
-{#                                <a href="{{ path('apercu_rapide_ajx') }}" class="btn-product btn-quickview" title="Quick view"><span>aperçu rapide</span></a>#}
+                                <a href="{{ path('single_article_result', { tcateg: article.tcateg, tsouscateg: article.tsouscateg, ref: article.tarticle }) }}" class="btn-product btn-quickview" title="aperçu rapide"><span>aperçu rapide</span></a>
                             </div><!-- End .product-action -->
                         </figure><!-- End .product-media -->
 
@@ -41,7 +41,7 @@
 {#                                <a href="#">{{ article['tmarque'] }}</a>#}
                             </div><!-- End .product-cat -->
                             <h3 class="product-title"><a href="javascript:void(0)">{{ article['tdescription'] }}</a></h3><!-- End .product-title -->
-                            <div class="product-price" style="{% if status != 'in' %}filter: blur(3px);-webkit-filter: blur(3px);-moz-filter: blur(3px);{% endif %}">{{ article['prix'] }} DT</div>
+                            <div class="product-price{% if status != 'in' %} noselect" style="filter: blur(3px);-webkit-filter: blur(3px);-moz-filter: blur(3px);{% endif %}">{{ article['prix'] }} DT</div>
                         </div><!-- End .product-body -->
                     </div><!-- End .product -->
                 </div><!-- End .col-sm-6 col-lg-4 col-xl-3 -->

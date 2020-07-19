@@ -1,0 +1,96 @@
+{% extends '@Front/base.html.twig' %}
+{% block mainContent %}
+    <main class="main">
+        <nav aria-label="breadcrumb" class="breadcrumb-nav border-0 mb-0">
+            <div class="container d-flex align-items-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ path('homepage') }}">Acceuil</a></li>
+                    <li class="breadcrumb-item"><a href="#">{{ cat.name }}</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ soucat.name }}</li>
+                </ol>
+            </div><!-- End .container -->
+        </nav><!-- End .breadcrumb-nav -->
+        {% set client = app.session.get('client') %}
+        {% if client['status'] is defined %}
+            {% set status = client['status'] %}
+        {% else %}
+            {% set status = 'out' %}
+        {% endif %}
+        <div class="page-content">
+            <div class="container">
+                <div class="product-details-top" id="products" data-url="{{ path('ajouter_produit') }}">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="product-gallery product-gallery-vertical">
+                                <div class="row">
+                                    <figure class="product-main-image">
+                                        {% if file_exists(asset('uploads/articles/') ~ cat.reference ~ ('/') ~ soucat.reference ~ ('/') ~ article.tarticle | split('.', 3)[2] ~ ('.png')) %}
+                                            <img src="{{ asset('uploads/articles/') ~ cat.reference ~ ('/') ~ soucat.reference ~ ('/') ~ article.tarticle | split('.', 3)[2] ~ ('.png') }}" alt="{{ article.tdescription }}" class="product-image">
+                                        {% else %}
+                                            <img src="https://via.placeholder.com/1200x1200.png?text=Article+Cotupap" alt="{{ article.tdescription }}" class="product-image">
+                                        {% endif %}
+                                    </figure><!-- End .product-main-image -->
+                                </div><!-- End .row -->
+                            </div><!-- End .product-gallery -->
+                        </div><!-- End .col-md-6 -->
+
+                        <div class="col-md-6">
+                            {% if status != 'in' %}<p style="color: red;text-align: start;">*Veuillez vous connecter pour afficher les prix</p>{% endif %}
+                            <div class="product-details">
+                                <h1 class="product-title">{{ article.tdescription }}</h1><!-- End .product-title -->
+
+                                <div class="product-price{% if status != 'in' %} noselect" style="filter: blur(4px);-webkit-filter: blur(4px);-moz-filter: blur(4px);{% endif %}">
+                                    {{ article.prix }} DT
+                                </div><!-- End .product-price -->
+
+                                <div class="details-filter-row details-row-size">
+                                    <label>Reference: {{ article.tarticle | split('.', 3)[2] }}</label>
+                                </div>
+                                {% if article.tunite is not empty %}
+                                <div class="details-filter-row details-row-size">
+                                    <label>Unite: {{ article.tunite }}</label>
+                                </div>
+                                {% endif %}
+                                {% if options is not empty %}
+                                <div class="details-filter-row details-row-size">
+                                    <label>Les Options:</label>
+                                    <div class="product-nav product-nav-thumbs">
+                                        {% for option in options %}
+                                        <a>
+                                            <img src="{{ asset('uploads/articles/') ~ cat.reference ~ ('/') ~ soucat.reference ~ ('/') ~ article.tarticle | split('.', 3)[2] ~ ('/') ~ option }}" alt="{{ option }}">
+                                        </a>
+                                        {% endfor %}
+                                    </div><!-- End .product-nav -->
+                                </div><!-- End .details-filter-row -->
+                                {% endif %}
+{#                                {{ dump(article) }}#}
+                                <div class="product-details-action">
+                                    <a href="javascript:void(0)" class="btn-product btn-cart {% if status == 'in' %}btn-carta{% else %}" style="pointer-events: none; cursor: default;color: gray; border-color: gray;" {% endif %} data-desc="{{ article['tdescription'] }}" data-prix="{{ article['prix'] }}" data-ref="{{ article['tarticle'] }}"><span>ajouter au panier</span></a>
+                                </div><!-- End .product-details-action -->
+
+                                <div class="product-details-footer">
+                                    <div class="product-cat">
+                                        <span>CATÉGORIE:</span>
+                                        <a>{{ soucat.name }}</a>
+                                    </div><!-- End .product-cat -->
+
+                                    <div class="social-icons social-icons-sm">
+                                        <span class="social-label">Partager:</span>
+                                        <a href="https://www.facebook.com/sharer/sharer.php?u=example.org" class="social-icon" title="Facebook" target="_blank"><i class="icon-facebook-f"></i></a>
+                                        <a href="#" class="social-icon" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
+                                        <a href="#" class="social-icon" title="Instagram" target="_blank"><i class="icon-instagram"></i></a>
+                                        <a href="#" class="social-icon" title="Pinterest" target="_blank"><i class="icon-pinterest"></i></a>
+                                    </div>
+                                </div><!-- End .product-details-footer -->
+                            </div><!-- End .product-details -->
+                        </div><!-- End .col-md-6 -->
+                    </div><!-- End .row -->
+                </div><!-- End .product-details-top -->
+               </div><!-- End .container -->
+        </div><!-- End .page-content -->
+    </main><!-- End .main -->
+{% endblock %}
+{% block javascript %}
+{{ parent() }}
+<script src="{{ asset('assets/FrontBundle/js/panier.js') }}"></script>
+{% endblock %}

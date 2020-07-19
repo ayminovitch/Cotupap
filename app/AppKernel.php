@@ -55,6 +55,11 @@ class AppKernel extends Kernel
         return dirname(__DIR__).'/var/logs';
     }
 
+    public function getArticlesDir()
+    {
+        return dirname(__DIR__).'/web/uploads/articles';
+    }
+
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
         $loader->load(function (ContainerBuilder $container) {

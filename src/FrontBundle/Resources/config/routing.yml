@@ -10,6 +10,10 @@ articles_result:
     path: /api/{catRef}/{page}
     defaults: { _controller: FrontBundle\Controller\ArticlesController::articleResultAction }
 
+single_article_result:
+    path: /article/{tcateg}/{tsouscateg}/{ref}
+    defaults: { _controller: FrontBundle\Controller\ArticlesController::apercuRapideAction }
+
 contact:
     path: /contact
     defaults: { _controller: FrontBundle\Controller\ContactController::contactAction }

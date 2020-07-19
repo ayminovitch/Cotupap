@@ -10,10 +10,12 @@ parameters:
     mailer_user: web2@yetgroup.com
     mailer_password: null
     secret: ThisTokenIsNotSoSecretChangeIt
-    articles_path: '%kernel.project_dir%/web/uploads/articles.xml'
+    articles_path: '/web/uploads/test.xml'
+#    articles_path: '%kernel.project_dir%/web/uploads/articles.xml'
     clients_path: '%kernel.project_dir%/web/uploads/clients.xml'
     products_images_directory: '%kernel.project_dir%/web/uploads/media'
     ads_images_directory: '%kernel.project_dir%/web/uploads/media/banners'
     marques_images_directory: '%kernel.project_dir%/web/uploads/media/marques'
     articles_images_directory: '%kernel.project_dir%/web/upload/articles'
+    finder_articles_images_directory: '%kernel.project_dir%'
     app.file.twig.extension.class: FrontBundle\Twig\Extension\FileExtension

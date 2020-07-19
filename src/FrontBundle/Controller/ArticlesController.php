@@ -8,17 +8,31 @@ use DashBundle\Entity\Category;
 use Pagerfanta\Adapter\ArrayAdapter;
 use Pagerfanta\Pagerfanta;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 class ArticlesController extends Controller
 {
+    public function getArticleContent(){
+        $xmlfile = file_get_contents(dirname($this->get('kernel')->getRootDir()).$this->getParameter('articles_path'));
+        $response1 = str_replace("<SOAP-ENV:Body>", "", $xmlfile);
+        $response2 = str_replace("</SOAP-ENV:Body>", "", $response1);
+        $jsonArray = json_decode(json_encode(simplexml_load_string($response2)), true)['getArticlesResponse']['ttrticles']['ttrticlesRow'];
+        return $jsonArray;
+    }
+
     public function in_array_r($category, $jsonArray, $strict = false, $mode)
     {
         $filterContainer = array();
         foreach ($jsonArray as $row) {
             if ($mode == 'single') {
                 if (($strict ? $row === $category : $row == $category) || (is_array($row) && $this->in_array_r($category, $row, $strict, $mode))) {
+                    array_push($filterContainer, $row);
+                }
+            }
+            elseif ($mode = 'singleArticle'){
+                if ($row['tarticle'] == $category) {
                     array_push($filterContainer, $row);
                 }
             }
@@ -36,11 +50,7 @@ class ArticlesController extends Controller
         $article = $em->findOneBy(array('reference' => $catRef));
         $category = $article->getReference();
         //Get Article List From File And Convert From XML To Json Array
-        $xmlfile = file_get_contents(dirname($this->get('kernel')->getRootDir()).'/web/uploads/test.xml');
-        $response1 = str_replace("<SOAP-ENV:Body>", "", $xmlfile);
-        $response2 = str_replace("</SOAP-ENV:Body>", "", $response1);
-        $jsonArray = json_decode(json_encode(simplexml_load_string($response2)), true)['getArticlesResponse']['ttrticles']['ttrticlesRow'];
-
+        $jsonArray = $this->getArticleContent();
         //Filter HERE
 //        if ($request->isMethod('POST')) {
             $filteredResult = $this->in_array_r($category, $jsonArray, false,'single');
@@ -79,17 +89,9 @@ class ArticlesController extends Controller
         return $this->render('@Front/pages/articleResult.html.twig', array('category' =>$category, 'page'=>$page, 'categoryName'=>$categoryName));
     }
 
-    public function apercuRapideAction(Request $request){
-        return $this->render('@Front/partials/elements/apercuRapide.html.twig');
-    }
-
     public function searchAction(Request $request){
         $query = $request->get('q');
-        $xmlfile = file_get_contents(dirname($this->get('kernel')->getRootDir()).'/web/uploads/test.xml');
-        $response1 = str_replace("<SOAP-ENV:Body>", "", $xmlfile);
-        $response2 = str_replace("</SOAP-ENV:Body>", "", $response1);
-        $jsonArray = json_decode(json_encode(simplexml_load_string($response2)), true)['getArticlesResponse']['ttrticles']['ttrticlesRow'];
-
+        $jsonArray = $this->getArticleContent();
         //Filter HERE
         if ($request->isMethod('POST')) {
         $filteredResult = $this->in_array_r($query, $jsonArray, false,'single');
@@ -118,5 +120,31 @@ class ArticlesController extends Controller
                 'category' => $query
             ));
 //        }
+    }
+
+    public function apercuRapideAction($tcateg, $tsouscateg, $ref, Request $request){
+        //Get Article List From File And Convert From XML To Json Array
+        $jsonArray = $this->getArticleContent();
+        //Filter HERE
+//        $tarticle = $request->request->get('tarticle');
+        $filteredResult = $this->in_array_r($ref, $jsonArray, false,'singleArticle');
+        //get information about category
+        $em = $this->getDoctrine()->getManager()->getRepository(Category::class);
+        $soucat = $em->findOneBy(array('reference' => $tsouscateg));
+        $cat = $em->findOneBy(array('reference' => $tcateg));
+        $refArticle = explode (".", $filteredResult[0]['tarticle']);
+        $uploadDir = $this->get('kernel')->getArticlesDir() . DIRECTORY_SEPARATOR . $cat->getReference() . DIRECTORY_SEPARATOR . $soucat->getReference() . DIRECTORY_SEPARATOR . $refArticle[2] ;
+        $files = [];
+        if(is_dir($uploadDir))
+        {
+            $files = array_map('basename', glob($uploadDir . "/*.{jpg,gif,png}", GLOB_BRACE));
+        }
+        return $this->render('@Front/pages/singleArticle.html.twig',
+            array(
+                'soucat' => $soucat,
+                'cat' => $cat,
+                'article' => $filteredResult[0],
+                'options' => $files
+            ));
     }
 }
