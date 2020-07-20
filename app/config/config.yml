@@ -2,6 +2,7 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
+    - { resource: liip_imagine.yml }
     - { resource: "@DashBundle/Resources/config/services.yml" }
     - { resource: "@FrontBundle/Resources/config/services.yml" }
     - { resource: "@AdminBundle/Resources/config/services.yml" }
@@ -39,6 +40,7 @@ framework:
 twig:
     globals:
         settings: "@settings.provider"
+        web_path: '%web_path%'
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
 

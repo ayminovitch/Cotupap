@@ -26,8 +26,8 @@ security:
             anonymous:    true
 
     access_control:
-#        - { path: ^/cotupap-admin133785/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-#        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
-#        - { path: ^/cotupap-admin133785/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-#        - { path: ^/cotupap-admin133785/, role: ROLE_ADMIN }
-#        - { path: ^/validateur/, role: ROLE_VALIDATEUR }
+        - { path: ^/cotupap-admin133785/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/cotupap-admin133785/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/cotupap-admin133785/, role: ROLE_ADMIN }
+        - { path: ^/validateur/, role: ROLE_VALIDATEUR }

@@ -265,8 +265,8 @@ $(document).ready(function () {
                 navText: ['<i class="icon-angle-left">', '<i class="icon-angle-right">'],
                 dots: true,
                 smartSpeed: 400,
-                autoplay: false,
-                autoplayTimeout: 15000
+                autoplay: true,
+                autoplayTimeout: 4000
             };
             if (typeof $wrap == 'undefined') {
                 $wrap = $('body');
@@ -342,27 +342,31 @@ $(document).ready(function () {
         });
 
         owlProductGallery.owlCarousel({
-            loop: false,
+            loop: true,
             margin: 0,
             responsiveClass: true,
             nav: true,
             navText: ['<i class="icon-angle-left">', '<i class="icon-angle-right">'],
             dots: false,
             smartSpeed: 400,
-            autoplay: false,
-            autoplayTimeout: 15000,
+            autoplay: true,
+            autoplayTimeout: 1000,
             responsive: {
                 0: {
-                    items: 1
+                    items: 1,
+                    loop:true
                 },
                 560: {
-                    items: 2
+                    items: 2,
+                    loop:true
                 },
                 992: {
-                    items: 3
+                    items: 3,
+                    loop:true
                 },
                 1200: {
-                    items: 3
+                    items: 3,
+                    loop:true
                 }
             }
         });

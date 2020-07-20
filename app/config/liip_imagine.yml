@@ -1,0 +1,27 @@
+liip_imagine :
+  resolvers :
+    default :
+      web_path : ~
+
+  filter_sets :
+    cache : ~
+    article_result :
+      quality : 75
+      png_compression_level: 9
+      filters:
+        crop:
+          size:          [200, 200]
+          mode:          outbound
+#          allow_upscale: true
+    single_article_result:
+      quality: 75
+      filters:
+        single_article: { size: [120, 90], mode: outbound }
+    banner_right_front:
+      quality: 75
+      filters:
+        banner_right: { size: [120, 90], mode: outbound }
+    banner_bottom_front:
+      quality: 75
+      filters:
+        banner_bottom: { size: [120, 90], mode: outbound }

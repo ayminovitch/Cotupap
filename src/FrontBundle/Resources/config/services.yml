@@ -1,6 +1,6 @@
 services:
-  app.file.twig.extension:
-    class: %app.file.twig.extension.class%
+  front.twig_extension:
+    class: FrontBundle\Twig\Extension\FileExtension
     tags:
       - { name: twig.extension }
 #    front.example:

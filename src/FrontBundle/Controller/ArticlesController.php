@@ -44,8 +44,7 @@ class ArticlesController extends Controller
     }
     public function articleResultAction($catRef, $page, Request $request)
     {
-//        $catRef = 8;
-//            $id = $request->query->get('id');
+
         $em = $this->getDoctrine()->getManager()->getRepository(Category::class);
         $article = $em->findOneBy(array('reference' => $catRef));
         $category = $article->getReference();
@@ -53,7 +52,19 @@ class ArticlesController extends Controller
         $jsonArray = $this->getArticleContent();
         //Filter HERE
 //        if ($request->isMethod('POST')) {
+
+        //If we have two categorys separated with + then we iterate throw them and merge all arrays
+        if (strpos($catRef, '+') !== false) {
+            $catRefs = explode ("+", $catRef);
+            $filteredResult = [];
+            foreach ($catRefs as $catr){
+                $filteredResult = array_merge($filteredResult, $this->in_array_r($catr, $jsonArray, false,'single'));
+            }
+        }else{
             $filteredResult = $this->in_array_r($category, $jsonArray, false,'single');
+        }
+        //End Of Merging two categorys
+
 //        }else{
 //            $filteredResult = $this->in_array_r($category, $jsonArray, false, 'all');
 //        }
@@ -70,7 +81,8 @@ class ArticlesController extends Controller
                 array(
                     'productsPaged' => $productsPaged,
                     'pager' => $pagerfanta,
-                    'category' => $article
+                    'category' => $article,
+                    'catso' => $catRef
                 ));
             return new JsonResponse($result) ;
         }
@@ -78,7 +90,8 @@ class ArticlesController extends Controller
             array(
                 'productsPaged' => $productsPaged,
                 'pager' => $pagerfanta,
-                'category' => $article
+                'category' => $article,
+                'catso' => $catRef
             ));
 //        }
     }

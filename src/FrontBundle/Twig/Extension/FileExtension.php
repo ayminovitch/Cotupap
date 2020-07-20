@@ -2,7 +2,8 @@
 
 
 namespace FrontBundle\Twig\Extension;
-
+use \Twig_Filter_Function;
+use \Twig_Filter_Method;
 
 class FileExtension extends \Twig_Extension
 {
@@ -14,12 +15,12 @@ class FileExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            new \Twig_SimpleFunction('file_exists', 'file_exists'),
+            'file_exists' => new \Twig_Function_Function('file_exists'),
         );
     }
 
     public function getName()
     {
-        return 'app_file';
+        return 'twig_extension';
     }
 }

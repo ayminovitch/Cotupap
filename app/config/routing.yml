@@ -21,3 +21,6 @@ soap_test:
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 #    prefix:   /cotupap-admin133785
+
+_liip_imagine:
+    resource: "@LiipImagineBundle/Resources/config/routing.yaml"

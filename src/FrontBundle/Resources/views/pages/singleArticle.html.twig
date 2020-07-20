@@ -24,8 +24,8 @@
                             <div class="product-gallery product-gallery-vertical">
                                 <div class="row">
                                     <figure class="product-main-image">
-                                        {% if file_exists(asset('uploads/articles/') ~ cat.reference ~ ('/') ~ soucat.reference ~ ('/') ~ article.tarticle | split('.', 3)[2] ~ ('.png')) %}
-                                            <img src="{{ asset('uploads/articles/') ~ cat.reference ~ ('/') ~ soucat.reference ~ ('/') ~ article.tarticle | split('.', 3)[2] ~ ('.png') }}" alt="{{ article.tdescription }}" class="product-image">
+                                        {% if file_exists(web_path~asset('uploads/articles/') ~ cat.reference ~ ('/') ~ soucat.reference ~ ('/') ~ article.tarticle | split('.', 3)[2] ~ ('.jpg')) %}
+                                            <img src="{{ asset('uploads/articles/') ~ cat.reference ~ ('/') ~ soucat.reference ~ ('/') ~ article.tarticle | split('.', 3)[2] ~ ('.jpg') }}" alt="{{ article.tdescription }}" class="product-image">
                                         {% else %}
                                             <img src="https://via.placeholder.com/1200x1200.png?text=Article+Cotupap" alt="{{ article.tdescription }}" class="product-image">
                                         {% endif %}
@@ -53,7 +53,7 @@
                                 {% endif %}
                                 {% if options is not empty %}
                                 <div class="details-filter-row details-row-size">
-                                    <label>Les Options:</label>
+{#                                    <label>Les Options: </label>#}
                                     <div class="product-nav product-nav-thumbs">
                                         {% for option in options %}
                                         <a>

@@ -14,11 +14,11 @@
                     <div class="product">
                         <figure class="product-media">
 {#                            <span class="product-label label-new">New</span>#}
-                            <a href="javascript:void(0)">
-                                {% if file_exists(asset('uploads/articles/') ~ article.tcateg ~ ('/') ~ article.tsouscateg ~ ('/') ~ article.tarticle | split('.', 3)[2] ~ ('.png')) %}
-                                    <img src="{{ asset('uploads/articles/') ~ article.tcateg ~ ('/') ~ article.tsouscateg ~ ('/') ~ article.tarticle | split('.', 3)[2] ~ ('.png') }}" alt="{{ article.tdescription }}" class="product-image">
+                            <a href="{{ path('single_article_result', { tcateg: catso, tsouscateg: article.tsouscateg, ref: article.tarticle }) }}">
+                                {% if file_exists(web_path~asset('uploads/articles/') ~ catso ~ ('/') ~ article.tsouscateg ~ ('/') ~ article.tarticle | split('.', 3)[2] ~ ('.jpg')) %}
+                                    <img src="{{ asset('uploads/articles/') ~ catso ~ ('/') ~ article.tsouscateg ~ ('/') ~ article.tarticle | split('.', 3)[2] ~ ('.jpg') }}" alt="{{ article.tdescription }} " class="product-image">
                                 {% else %}
-                                    <img src="https://via.placeholder.com/280x280.png?text=Article+Cotupap" alt="{{ article.tdescription }}" class="product-image">
+                                    <img src="https://via.placeholder.com/443x338.png?text=Article+Cotupap" alt="{{ article.tdescription }}" class="product-image">
                                 {% endif %}
                             </a>
 
@@ -32,7 +32,7 @@
                                 {% else %}
                                     <a href="{{ path('login_page') }}" class="btn-product btn-cart" ><span>ajouter au panier</span></a>
                                 {% endif %}
-                                <a href="{{ path('single_article_result', { tcateg: article.tcateg, tsouscateg: article.tsouscateg, ref: article.tarticle }) }}" class="btn-product btn-quickview" title="aperçu rapide"><span>aperçu rapide</span></a>
+                                <a href="{{ path('single_article_result', { tcateg: catso, tsouscateg: article.tsouscateg, ref: article.tarticle }) }}" class="btn-product btn-quickview" title="aperçu rapide"><span>aperçu rapide</span></a>
                             </div><!-- End .product-action -->
                         </figure><!-- End .product-media -->
 
