@@ -24,7 +24,7 @@
                             <div class="product-gallery product-gallery-vertical">
                                 <div class="row">
                                     <figure class="product-main-image">
-                                        {% if file_exists(web_path~asset('uploads/articles/') ~ cat.reference ~ ('/') ~ soucat.reference ~ ('/') ~ article.tarticle | split('.', 3)[2] ~ ('.jpg')) %}
+                                        {% if file_exists(web_path ~ cat.reference ~ ('/') ~ soucat.reference ~ ('/') ~ article.tarticle | split('.', 3)[2] ~ ('.jpg')) %}
                                             <img src="{{ asset('uploads/articles/') ~ cat.reference ~ ('/') ~ soucat.reference ~ ('/') ~ article.tarticle | split('.', 3)[2] ~ ('.jpg') }}" alt="{{ article.tdescription }}" class="product-image" style="max-height: 457px; height: auto">
                                         {% else %}
                                             <img src="https://via.placeholder.com/1200x1200.png?text=Article+Cotupap" alt="{{ article.tdescription }}" class="product-image" style="max-height: 457px; height: auto">

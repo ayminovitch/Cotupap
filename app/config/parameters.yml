@@ -2,7 +2,7 @@
 parameters:
     database_host: 127.0.0.1
     database_port: null
-    database_name: cotupap-development
+    database_name: cotupap
     database_user: root
     database_password: null
     mailer_transport: smtp
@@ -18,4 +18,4 @@ parameters:
     marques_images_directory: '%kernel.project_dir%/web/uploads/media/marques'
     articles_images_directory: '%kernel.project_dir%/web/upload/articles'
     finder_articles_images_directory: '%kernel.project_dir%'
-    web_path: '%kernel.root_dir%/../web'
+    web_path: '%kernel.root_dir%/../web/uploads/articles/'
