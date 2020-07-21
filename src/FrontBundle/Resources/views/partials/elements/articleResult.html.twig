@@ -12,7 +12,7 @@
             {% for article in productsPaged %}
                 <div class="col-6 col-md-4 col-lg-4 col-xl-3">
                     <div class="product">
-                        <figure class="product-media">
+                        <figure class="product-media" style="height: 210px">
 {#                            <span class="product-label label-new">New</span>#}
                             <a href="{{ path('single_article_result', { tcateg: catso, tsouscateg: article.tsouscateg, ref: article.tarticle }) }}">
                                 {% if file_exists(web_path~asset('uploads/articles/') ~ catso ~ ('/') ~ article.tsouscateg ~ ('/') ~ article.tarticle | split('.', 3)[2] ~ ('.jpg')) %}

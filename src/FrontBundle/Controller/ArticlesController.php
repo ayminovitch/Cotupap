@@ -47,12 +47,16 @@ class ArticlesController extends Controller
 
         $em = $this->getDoctrine()->getManager()->getRepository(Category::class);
         $article = $em->findOneBy(array('reference' => $catRef));
+        if (substr($catRef,0,2) == 'CA'){
+            $catRef = $article->getReference();
+        }else{
+            $catRef = $article->getParent();
+        }
         $category = $article->getReference();
         //Get Article List From File And Convert From XML To Json Array
         $jsonArray = $this->getArticleContent();
         //Filter HERE
-//        if ($request->isMethod('POST')) {
-
+        //if ($request->isMethod('POST')) {
         //If we have two categorys separated with + then we iterate throw them and merge all arrays
         if (strpos($catRef, '+') !== false) {
             $catRefs = explode ("+", $catRef);
