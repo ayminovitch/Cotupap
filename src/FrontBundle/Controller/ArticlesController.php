@@ -53,6 +53,7 @@ class ArticlesController extends Controller
             $catRef = $article->getParent();
         }
         $category = $article->getReference();
+        $categoryb = $article->getReference();
         //Get Article List From File And Convert From XML To Json Array
         $jsonArray = $this->getArticleContent();
         //Filter HERE
@@ -85,7 +86,8 @@ class ArticlesController extends Controller
                     'productsPaged' => $productsPaged,
                     'pager' => $pagerfanta,
                     'category' => $article,
-                    'catso' => $catRef
+                    'catso' => $catRef,
+                    'soucatso' => $categoryb
                 ));
             return new JsonResponse($result) ;
         }
@@ -94,7 +96,8 @@ class ArticlesController extends Controller
                 'productsPaged' => $productsPaged,
                 'pager' => $pagerfanta,
                 'category' => $article,
-                'catso' => $catRef
+                'catso' => $catRef,
+                'soucatso' => $categoryb
             ));
 //        }
     }
