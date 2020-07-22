@@ -33,8 +33,11 @@
                 <div class="col-md-4">
                     <div class="banner banner-overlay">
                         <a href="{{ path('global_articles_result', { 'page': 1, 'category': parentCategory.reference }) }}" class="banner banner-menu">
-                            <img src="https://via.placeholder.com/218x314?text=Cotupap" alt="{{ parentCategory.name }}">
-
+                            {% if file_exists(web_path ~ parentCategory.reference ~ ('.png')) %}
+                                <img src="{{ asset('uploads/articles/') ~ parentCategory.reference ~ ('.png') }}" alt="{{ parentCategory.name }}">
+                            {% else %}
+                                <img src="https://via.placeholder.com/218x314.png?text=Cotupap" alt="{{ parentCategory.name }}">
+                            {% endif %}
                             <div class="banner-content banner-content-top" style="left: 0;">
                                 <div class="banner-title text-white">VOIR<br>TOUTES LES<br><span><strong style="font-size: 20px;">{{ parentCategory.name }}</strong></span></div><!-- End .banner-title -->
                             </div><!-- End .banner-content -->
