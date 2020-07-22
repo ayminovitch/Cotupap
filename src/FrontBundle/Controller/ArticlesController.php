@@ -58,17 +58,16 @@ class ArticlesController extends Controller
         //Filter HERE
         //if ($request->isMethod('POST')) {
         //If we have two categorys separated with + then we iterate throw them and merge all arrays
-        if (strpos($catRef, '+') !== false) {
-            $catRefs = explode ("+", $catRef);
+        if (strpos($category, '+') !== false) {
+            $category = explode ("+", $category);
             $filteredResult = [];
-            foreach ($catRefs as $catr){
+            foreach ($category as $catr){
                 $filteredResult = array_merge($filteredResult, $this->in_array_r($catr, $jsonArray, false,'single'));
             }
         }else{
             $filteredResult = $this->in_array_r($category, $jsonArray, false,'single');
         }
         //End Of Merging two categorys
-
 //        }else{
 //            $filteredResult = $this->in_array_r($category, $jsonArray, false, 'all');
 //        }
