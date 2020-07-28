@@ -6,7 +6,8 @@
                     <li>
                         <a href="#">Links</a>
                         <ul>
-                            <li><a href="tel:#"><i class="icon-phone"></i>Tél: +216 70 83 80 24</a></li>
+                            <li><a href="tel:+21671257115">Tél: +216 71 25 71 15</a></li>
+                            <li><a href="tel:+21671838024">Fax: +216 71 83 80 24</a></li>
                         </ul>
                     </li>
                 </ul><!-- End .top-menu -->
@@ -27,14 +28,7 @@
                     <li>
                         <a href="#">Links</a>
                         <ul>
-                            {% if status == 'in' %}
-                                <li><a href="{{ path('compte_client') }}"><i class="icon-user"></i>{{ client['tnom'] }}
-                                    </a></li>
-                                <li><a href="{{ path('logout_page') }}">Déconnecter</a></li>
-                            {% else %}
-                                <li><a href="#signin-modal" data-toggle="modal"><i class="icon-user"></i>login /
-                                        register</a></li>
-                            {% endif %}
+                            <li><a href="{{ path('contact') }}"><i class="icon-heart-o"></i><b>Contactez-nous</b></a></li>
                         </ul>
                     </li>
                 </ul><!-- End .top-menu -->
@@ -44,33 +38,37 @@
     <div class="header-middle">
         <div class="container">
             <div class="header-left">
-                {% if settings.settings.search == "true" %}
-                    <div class="header-search header-search-extended header-search-visible d-none d-lg-block">
-                        <a href="#" class="search-toggle" role="button"><i class="icon-search"></i></a>
-                        <form action="{{ path('global_articles_result', {'category': 'CA01' , 'page': 1}) }}"
-                              method="get">
-                            <div class="header-search-wrapper search-wrapper-wide">
-                                <label for="q" class="sr-only">Search</label>
-                                <button class="btn btn-primary" type="submit"><i class="icon-search"></i></button>
-                                <input type="search" class="form-control" name="q" id="q"
-                                       placeholder="Rechercher un produit ..." required>
-                            </div><!-- End .header-search-wrapper -->
-                        </form>
-                    </div><!-- End .header-search -->
-                {% endif %}
-            </div>
-            <div class="header-center">
                 <a href="{{ path('dash_homepage') }}" class="logo">
-                    <img src="{{ asset('assets/FrontBundle/images/logo.png') }}" alt="Cotupap" width="150" height="20">
+                    <img src="{{ asset('assets/FrontBundle/images/logo.png') }}" alt="Cotupap" width="200" height="20">
                 </a>
             </div><!-- End .header-left -->
-
+            <div class="header-center">
+                {% if settings.settings.search == "true" %}
+                <div class="header-search header-search-extended header-search-visible header-search-no-radius d-none d-lg-block">
+                    <a href="#" class="search-toggle" role="button"><i class="icon-search"></i></a>
+                    <form action="{{ path('global_articles_result', {'category': 'CA01' , 'page': 1}) }}" method="get">
+                        <div class="header-search-wrapper search-wrapper-wide">
+                            <label for="q" class="sr-only">Rechercher</label>
+                            <input type="search" class="form-control" name="q" id="q" placeholder="Rechercher ..." required>
+                            <button class="btn btn-primary" type="submit">OK</button>
+                        </div><!-- End .header-search-wrapper -->
+                    </form>
+                </div><!-- End .header-search -->
+                {% endif %}
+            </div>
             <div class="header-right custom-url" data-url="{{ path('ajouter_produit') }}">
-                {#                <a href="#" class="wishlist-link">#}
-                {#                    <i class="icon-heart-o"></i>#}
-                {#                    <span class="wishlist-count">3</span>#}
-                {#                    <span class="wishlist-txt">My Wishlist</span>#}
-                {#                </a>#}
+                {% if status != 'in' %}
+                <a href="#signin-modal" data-toggle="modal" class="wishlist-link" style="border-right: 1px solid #80808033; padding-right: 2rem;">
+                    <i class="icon-user"></i>
+                    <span class="wishlist-txt"><b>Mon Compte</b><br> Connexion<br> Création de compte</span>
+                </a>
+                {% else %}
+                    <a href="javascript:void(0)" class="wishlist-link" style="border-right: 1px solid #80808033; padding-right: 2rem;">
+                        <i class="icon-user"></i>
+                        <span class="wishlist-txt">Bienvenue {{ client['tnom'] }}<br><b onclick="location.href='{{ path('compte_client') }}';">Mon Compte</b><br><i onclick="location.href='{{ path('logout_page') }}';">Déconnecter</i>
+                    </span>
+                    </a>
+                {% endif %}
                 {{ render(controller('FrontBundle:Default:panierTopHeader')) }}
             </div>
         </div><!-- End .container -->

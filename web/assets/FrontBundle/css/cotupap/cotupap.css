@@ -37,5 +37,13 @@
     /*margin-top: 2rem;*/
     margin-bottom: 1rem;
     padding: 3.25rem 0 3.25rem 4rem;
-    background-size: cover;
+    background-size: 100% 100%;
+}
+.header.header-6.header-intro-cotupap .header-search-extended {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.header-6 .header-search .header-search-wrapper {
+    border-color: #39f;
 }

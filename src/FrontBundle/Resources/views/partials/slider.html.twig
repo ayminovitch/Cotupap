@@ -1,6 +1,6 @@
-<div class="container">
-    <div class="row" style="margin-top: 2%;">
-        <div class="w-79 mr-4">
+<div class="container" style="margin-top: 2%;">
+    <div class="row" style="margin-top: 2%; width: 95%; margin: auto;">
+        <div class="col-lg-9">
             <div class="intro-slider-container" style="margin-bottom: 5px;">
                 <div class="intro-slider owl-carousel owl-theme owl-nav-inside owl-light" data-toggle="owl"
                      data-owl-options='{
@@ -15,7 +15,7 @@
                                 }'>
 
                     {% for slider in sliders %}
-                    <div class="intro-slide banner-lg" style="background-image: url({{ asset('uploads/media/') ~ slider.files }});">
+                    <div class="intro-slide banner-lg" style="background-image: url({{ asset('uploads/media/') ~ slider.files }}); height: -webkit-fill-available; background-size: 100% 100%;">
 {#                        <div class="intro">#}
 {#                            <div class="title">#}
 {#                                <a>deal of the day</a>#}
