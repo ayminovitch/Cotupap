@@ -77,7 +77,7 @@ class ArticlesController extends Controller
         $adapter = new ArrayAdapter($filteredResult);
         $pagerfanta = new Pagerfanta($adapter);
         $productsPaged = $pagerfanta
-            ->setMaxPerPage(12)
+            ->setMaxPerPage(24)
             ->setCurrentPage($page)
             ->getCurrentPageResults();
         if ($request->isMethod('POST')) {
@@ -120,7 +120,7 @@ class ArticlesController extends Controller
         $adapter = new ArrayAdapter($filteredResult);
         $pagerfanta = new Pagerfanta($adapter);
         $productsPaged = $pagerfanta
-            ->setMaxPerPage(12)
+            ->setMaxPerPage(24)
             ->setCurrentPage(1)
             ->getCurrentPageResults();
         if ($request->isMethod('POST')) {
