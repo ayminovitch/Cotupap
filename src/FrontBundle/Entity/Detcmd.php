@@ -29,6 +29,13 @@ class Detcmd
     private $article;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="string", length=255, nullable=true)
+     */
+    private $description;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="qte", type="integer", nullable=true)
@@ -176,6 +183,22 @@ class Detcmd
     public function setCommande($commande)
     {
         $this->commande = $commande;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param string $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
     }
 
 

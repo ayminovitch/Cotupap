@@ -1,0 +1,94 @@
+<div class="modal-body">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Détails de la Client </h3>
+                <table class="table table-striped  table-bordered">
+                    <tbody>
+{#                    <tr>#}
+{#                        <th colspan="2">Info Client </th>#}
+{#                    </tr>#}
+                    <tr>
+                        <td>Code Client</td>
+                        <td>{{ command.client.codeClient }}</td>
+                    </tr>
+                    <tr>
+                        <td>Client Name</td>
+                        <td>{{ command.client.fullname }}</td>
+                    </tr>
+                    <tr>
+                        <td>Client Phone </td>
+                        <td>{{ command.client.phone }}</td>
+                    </tr>
+{#                    <tr>#}
+{#                        <td>Adresse</td>#}
+{#                        <td>{{ res.ville }}, {{ res.region }} </td>#}
+{#                    </tr>#}
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-6">
+                <h3>Détails de la Commande</h3>
+                <table class="table table-striped table-bordered">
+                    <tbody>
+{#                    <tr>#}
+{#                        <th colspan="2">Réservation</th>#}
+{#                    </tr>#}
+                    <tr>
+                        <td>N° Commande</td>
+                        <td>{{ command.id }} </td>
+                    </tr>
+                    <tr>
+                        <td>Date Command </td>
+                        <td>{{ command.dcr | date ('d/m/Y') }} </td>
+                    </tr>
+                    <tr>
+                        <td>Status </td>
+                        <td><label class="badge badge-{% if command.status == 'En Attente' %}warning{% else %}info{% endif %}">{{ command.status }}</label></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- / information personnel -->
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <table border="1px" class="table table-striped  table-bordered">
+                    <tbody>
+                    <tr><td colspan="6">Les Articles</td></tr>
+                    <tr>
+                        <td>
+                            <b>#Refecerence#</b>
+                        </td>
+                        <td>
+                            <b>Description</b>
+                        </td>
+                        <td>
+                            <b>Qte</b>
+                        </td>
+                        <td>
+                            <b>Prix Unitaire</b>
+                        </td>
+                    </tr>
+                    {% for item in command.detcmd %}
+                    <tr>
+                        <td>{{ item.article }}</td>
+                        <td>{{ item.description }}</td>
+                        <td style="width: 20%;"><input class="form-control" type="number" value="{{ item.qte }}" style="width: 100%;"></td>
+                        <td>{{ item.price }}</td>
+                    </tr>
+                    {% endfor %}
+{#                    <tr>#}
+{#                        <td colspan="6"><h4 class="pull-right">Prix Total : 0 DT</h4></td>#}
+{#                    </tr>#}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-focus" data-dismiss="modal">Fermer</button>
+{#    <button type="button" class="btn btn-danger" onclick="changeSituation(2, {{ res.id }})">Refuse reservation</button>#}
+{#    <button type="button" id="btnYes" class="btn btn-success btn-ok" onclick="changeSituation(1, {{ res.id }})">Confirmer Commande</button>#}
+</div>

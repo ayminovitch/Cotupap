@@ -39,30 +39,18 @@ class ValidateurController extends Controller
  }
 
  public function commandListAction(Request $request){
-//     if ($request->isMethod('POST')){
-         //Get Article List From File And Convert From XML To Json Array
-//            $query = $this->getDoctrine()
-//                ->getRepository('DashBundle:Commande')
-//                ->createQueryBuilder('c')
-//                ->getQuery();
-//            $result = $query->getArrayResult();
-//         dump($result);
-//         die();
-
-//         $recordsTotoal = count($result);
-
-         //Pagination to Fast Load Cotupap Article Result
-//         $page = $request->request->get('draw', 1);
-//         $maxpage = $request->request->get('length', 10);
-//         $adapter= new ArrayAdapter($result);
-//         $pagerfanta = new Pagerfanta($adapter);
-//         $pagerfanta->setMaxPerPage($maxpage);
-//         $pagerfanta->setCurrentPage($page);
-//         return new JsonResponse(array('data' =>$pagerfanta->getCurrentPageResults(), 'draw'=>$page, 'recordsTotal'=>$recordsTotoal));
-//     }
-//    return $this->render('@Dash/validateur/commands-list.html.twig');
-
      $em = $this->getDoctrine()->getManager();
+     if ($request->isMethod('POST')){
+         if ($request->request->get('type') == 'singleCommand') {
+             //If Method POST then Trait the logic of showing single command informations
+             $req = $request->request;
+             $id = $req->get('id');
+             $commande = $em->getRepository('DashBundle:Commande')->findOneBy(array('id' => $id));
+             $view = $this->renderView('@Dash/partials/_modalCommand.html.twig', array('command' => $commande));
+             return new JsonResponse($view);
+         }
+     }
+    //Execute this peace of code if not get POST request
      $listeCommands = $em->getRepository('DashBundle:Commande')->findAll();
      $commands = $this->get('knp_paginator')->paginate(
        $listeCommands,

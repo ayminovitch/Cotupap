@@ -164,6 +164,7 @@ class PanierController extends Controller
             $articles = new Detcmd();
             $articles->setCommande($commande);
             $articles->setArticle($value['reference']);
+            $articles->setDescription($value['name']);
             $articles->setPrice($value['prix']);
             $articles->setQte($value['qte']);
             $articles->setTotalprice($value['totalSingle']);
