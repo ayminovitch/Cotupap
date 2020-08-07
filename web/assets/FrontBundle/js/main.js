@@ -601,12 +601,12 @@ $(document).ready(function () {
     if ( document.getElementById("map") && typeof google === "object" ) {
 
         var content =   '<address>' +
-                            '88 Pine St,<br>' +
-                            'New York, NY 10005, USA<br>'+
-                            '<a href="#" class="direction-link" target="_blank">Get Directions <i class="icon-angle-right"></i></a>'+
+                            '8 Avenue Hammouda Pacha,<br>' +
+                            'Tunis 1079.<br>'+
+                            '<a href="https://www.google.com/maps/place/COMPTOIR+TUNISIEN+DES+PAPIERS+TUNIS/@36.7900583,10.185091,15z/data=!4m12!1m6!3m5!1s0x0:0x56540d78d6afd21d!2sCOMPTOIR+TUNISIEN+DES+PAPIERS+TUNIS!8m2!3d36.7900583!4d10.185091!3m4!1s0x0:0x56540d78d6afd21d!8m2!3d36.7900583!4d10.185091" class="direction-link" target="_blank">Obtenir des directions <i class="icon-angle-right"></i></a>'+
                         '</address>';
 
-        var latLong = new google.maps.LatLng(40.8127911,-73.9624553);
+        var latLong = new google.maps.LatLng(36.7900583,10.185091,15);
 
         var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 14,
