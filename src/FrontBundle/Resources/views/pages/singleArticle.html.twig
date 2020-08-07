@@ -40,11 +40,12 @@
                                 <h1 class="product-title">{{ article.tdescription }}</h1><!-- End .product-title -->
 
                                 <div class="product-price{% if status != 'in' %} noselect" style="filter: blur(4px);-webkit-filter: blur(4px);-moz-filter: blur(4px);{% endif %}">
-                                    {{ article.prix }} DT
+                                    {% if status != 'in' %}--{% else %}{{ article.prix }}{% endif %} DT
                                 </div><!-- End .product-price -->
 
                                 <div class="details-filter-row details-row-size">
-                                    <label>Reference: {{ article.tarticle | split('.', 3)[2] }}</label>
+{#                                    <label>Reference: {{ article.tarticle | split('.', 3)[2] }}</label>#}
+                                    <label>Reference: {{ article.tarticle }}</label>
                                 </div>
                                 {% if article.tunite is not empty %}
                                 <div class="details-filter-row details-row-size">

@@ -2,9 +2,9 @@
     {% for ad in ads %}
         {% if ad.position == 'Right' %}
             {% if ad.size == 0 %}
-                <div class="col-12" style="background-image: url(http://via.placeholder.com/376x133?text=Cotupap+Banner)"></div>
+                <div onclick="location.href='{{ ad.url }}';" class="col-12 right-banner" style="background-image: url(http://via.placeholder.com/376x133?text=Cotupap+Banner); cursor: pointer"></div>
             {% else %}
-                <div class="col-12" style="background-image: url({{ asset('uploads/media/banners/') ~ ad.files }}); box-shadow: 1px 3px 7px -4px #343a40; background-color: #E6E6E6; background-repeat: no-repeat; background-size: auto 100%; background-position: left;"></div>
+                <div onclick="location.href='{{ ad.url }}';" class="col-12 right-banner" style="background-image: url({{ asset('uploads/media/banners/') ~ ad.files }}); box-shadow: 1px 3px 7px -4px #343a40; background-color: #E6E6E6; background-repeat: no-repeat; background-size: auto 100%; background-position: left; cursor: pointer"></div>
             {% endif %}
         {% endif %}
     {% endfor %}
@@ -16,12 +16,12 @@
     {% for ad in ads %}
         {% if ad.position == 'Bottom' %}
             {% if ad.size == 0 %}
-                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 mb-2" style="max-height: 25rem;">
-                    <img src="http://via.placeholder.com/376x133?text=Cotupap+Banner" alt="" style="height: 100%; width: 100%;">
+                <div onclick="location.href='{{ ad.url }}';" class="col-lg-3 col-md-3 col-sm-12 col-xs-12 mb-2" style="max-height: 25rem; cursor: pointer">
+                    <img class="bottom-banner" src="http://via.placeholder.com/376x133?text=Cotupap+Banner" alt="" style="height: 100%; width: 100%;">
                 </div>
             {% else %}
-                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 mb-2" style="max-height: 25rem;">
-                    <img src="{{ asset('uploads/media/banners/') ~ ad.files }}" alt="" style="height: 100%; width: 100%;">
+                <div onclick="location.href='{{ ad.url }}';" class="col-lg-3 col-md-3 col-sm-12 col-xs-12 mb-2" style="max-height: 25rem; cursor: pointer">
+                    <img class="bottom-banner" src="{{ asset('uploads/media/banners/') ~ ad.files }}" alt="" style="height: 100%; width: 100%;">
                 </div>
             {% endif %}
         {% endif %}

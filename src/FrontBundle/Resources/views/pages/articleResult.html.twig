@@ -11,6 +11,9 @@
             <div class="container">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ path('dash_homepage') }}">Accueil</a></li>
+                    {% if parentCategory.name != 'NaC' %}
+                        <li class="breadcrumb-item"><a href="{{ path('global_articles_result', { 'page': 1, 'category': parentCategory.ref }) }}">{{ parentCategory.name }}</a></li>
+                    {% endif %}
                     <li class="breadcrumb-item active" aria-current="page">{{ categoryName }}</li>
                 </ol>
             </div><!-- End .container -->

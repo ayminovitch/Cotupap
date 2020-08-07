@@ -41,7 +41,7 @@
 {#                                <a href="#">{{ article['tmarque'] }}</a>#}
                             </div><!-- End .product-cat -->
                             <h3 class="product-title"><a href="javascript:void(0)">{{ article['tdescription'] }}</a></h3><!-- End .product-title -->
-                            <div class="product-price{% if status != 'in' %} noselect" style="filter: blur(3px);-webkit-filter: blur(3px);-moz-filter: blur(3px);{% endif %}">{{ article['prix'] }} DT</div>
+                            <div id="blur" class="product-price{% if status != 'in' %} noselect" style="filter: blur(3px);-webkit-filter: blur(3px);-moz-filter: blur(3px); -o-filter: blur(3px); -ms-filter: blur(3px); filter: url(#blur); filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius='3');{% endif %}">{% if status != 'in' %}--{% else %}{{ article.prix }}{% endif %} DT</div>
                         </div><!-- End .product-body -->
                     </div><!-- End .product -->
                 </div><!-- End .col-sm-6 col-lg-4 col-xl-3 -->

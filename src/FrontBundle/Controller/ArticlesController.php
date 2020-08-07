@@ -105,7 +105,13 @@ class ArticlesController extends Controller
         $em = $this->getDoctrine()->getManager()->getRepository(Category::class);
         $article = $em->findOneBy(array('reference' => $category));
         $categoryName = $article->getName();
-        return $this->render('@Front/pages/articleResult.html.twig', array('category' =>$category, 'page'=>$page, 'categoryName'=>$categoryName));
+        $parentCategory = ['name'=>'NaC', 'ref'=>'NaC'];
+        if ($article->getParent() != '0'){
+            $parentCategory['name'] = $em->findOneBy(array('reference' => $article->getParent()))->getName();
+            $parentCategory['ref'] = $em->findOneBy(array('reference' => $article->getParent()))->getReference();
+//            $parentCategory = 'true';
+        }
+        return $this->render('@Front/pages/articleResult.html.twig', array('category' =>$category, 'page'=>$page, 'categoryName'=>$categoryName, 'parentCategory' => $parentCategory));
     }
 
     public function searchAction(Request $request){

@@ -28,24 +28,11 @@
                                 <td>{{ command.client.phone }}</td>
                                 <td>{{ command.dcr | date ('d/m/Y') }}</td>
                                 <td><label class="badge badge-{% if command.status == 'En Attente' %}warning{% else %}info{% endif %}">{{ command.status }}</label></td>
-                                <td><button class="btn btn-outline-primary command-detail" data-id="{{ command.id }}">View</button></td>
+                                <td><button class="btn btn-outline-primary">View</button></td>
                             </tr>
                         {% endfor %}
                         </tbody>
                     </table>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal" id="commandModal" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-xl" role="document" >
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">Détails de la Commande</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="display: contents;">×</button>
-                </div>
-                <div class="command-information">
-                    {#Content Injected Here#}
                 </div>
             </div>
         </div>
