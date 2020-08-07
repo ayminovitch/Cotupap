@@ -1,30 +1,23 @@
 (function($) {
     'use strict';
-    $('#save').on('click', function () {
-            var data = {
-                //LES MODULES
-                'newsletter': $('#newsletter').bootstrapSwitch('state'),
-                'search': $('#search').bootstrapSwitch('state'),
-                'modal': $('#modal').bootstrapSwitch('state'),
-                'maintenance': $('#maintenance').bootstrapSwitch('state'),
-                //LES RÉSEAUX SOCIAUX
-                'facebook': $('#facebook').val(),
-                'instagram': $('#instagram').val(),
-                'twitter': $('#twitter').val(),
-                'pinterest': $('#pinterest').val(),
-                //LES AUTRES PARAMS
-            };
-            $.ajax({
+    $('#save').on('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            var form = new FormData(document.getElementById("myform"));
+            var checkbox = $("#myForm").find("input[type=checkbox]");
+
+            $.each(checkbox, function(key, val) {
+                form.append($(this).attr('name'), this.is(':checked'))
+            });
+        $.ajax({
                 url: $('#parameters-list').data('url'),
+                data: form,
                 type: "POST",
                 dataType: "json",
-                data: {
-                    "data": data
-                },
-                async: true,
+                processData: false,
+                contentType: false,
                 success: function (data)
                 {
-                    console.log(data)
                     if (data['status'] === 'success'){
                         window.location.reload();
                     }

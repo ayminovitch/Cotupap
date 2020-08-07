@@ -4,6 +4,7 @@
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 {% endblock %}
 {% block body %}
+    <form id="myform" method="post">
     <div class="row">
         <div class="col-lg-6 grid-margin stretch-card">
             <div class="card">
@@ -22,19 +23,21 @@
                             <tbody>
                                 <tr>
                                     <td>Newsletter</td>
-                                    <td><input id="newsletter" type="checkbox" {% if parameters.newsletter == "true" %}checked{% else %}{% endif %} data-toggle="toggle" data-onstyle="success" data-offstyle="danger"></td>
+                                    <td>
+                                        <input name="newsletter" type="checkbox" {% if parameters.newsletter == "true" %}checked{% else %}{% endif %} data-toggle="toggle" data-onstyle="success" data-offstyle="danger">
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Modal</td>
-                                    <td><input id="modal" type="checkbox" {% if parameters.modal == "true" %}checked{% else %}{% endif %} data-toggle="toggle" data-onstyle="success" data-offstyle="danger"></td>
+                                    <td><input name="modal" type="checkbox" {% if parameters.modal == "true" %}checked{% else %}{% endif %} data-toggle="toggle" data-onstyle="success" data-offstyle="danger"></td>
                                 </tr>
                                 <tr>
                                     <td>Search Bar</td>
-                                    <td><input id="search" type="checkbox" {% if parameters.search == "true" %}checked{% else %}{% endif %} data-toggle="toggle" data-onstyle="success" data-offstyle="danger"></td>
+                                    <td><input name="search" type="checkbox" {% if parameters.search == "true" %}checked{% else %}{% endif %} data-toggle="toggle" data-onstyle="success" data-offstyle="danger"></td>
                                 </tr>
                                 <tr>
                                     <td>Maintenance Mode</td>
-                                    <td><input id="maintenance" type="checkbox" {% if parameters.maintenanceMode == "true" %}checked{% else %}{% endif %} data-toggle="toggle" data-onstyle="success" data-offstyle="danger"></td>
+                                    <td><input name="maintenance" type="checkbox" {% if parameters.maintenanceMode == "true" %}checked{% else %}{% endif %} data-toggle="toggle" data-onstyle="success" data-offstyle="danger"></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -49,20 +52,43 @@
                     <h4 class="card-title">LES RÉSEAUX SOCIAUX</h4>
                         <div class="form-group">
                             <label for="exampleInputName1">Facebook</label>
-                            <input type="text" class="form-control" id="facebook" placeholder="{{ parameters.facebook }}" value="{{ parameters.facebook }}">
+                            <input type="text" class="form-control" name="facebook" placeholder="{{ parameters.facebook }}" value="{{ parameters.facebook }}">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail3">Instagram</label>
-                            <input type="text" class="form-control" id="instagram" placeholder="{{ parameters.instagram }}" value="{{ parameters.instagram }}">
+                            <input type="text" class="form-control" name="instagram" placeholder="{{ parameters.instagram }}" value="{{ parameters.instagram }}">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword4">Twitter</label>
-                            <input type="text" class="form-control" id="twitter" placeholder="{{ parameters.twitter }}" value="{{ parameters.twitter }}">
+                            <input type="text" class="form-control" name="twitter" placeholder="{{ parameters.twitter }}" value="{{ parameters.twitter }}">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword4">Pinterest</label>
-                            <input type="text" class="form-control" id="pinterest" placeholder="{{ parameters.pinterest }}" value="{{ parameters.pinterest }}">
+                            <input type="text" class="form-control" name="pinterest" placeholder="{{ parameters.pinterest }}" value="{{ parameters.pinterest }}">
                         </div>
+                    <h4 class="card-title">Les Autres Parameters</h4>
+                    <div class="form-group">
+                        <label for="phone">Telephone</label>
+                        <input type="text" class="form-control" name="phone" placeholder="{{ parameters.phone }}" value="{{ parameters.phone }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="fax">Fax</label>
+                        <input type="text" class="form-control" name="fax" placeholder="{{ parameters.fax }}" value="{{ parameters.fax }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="copyright">copyright</label>
+                        <input type="text" class="form-control" name="copyright" placeholder="{{ parameters.copyright }}" value="{{ parameters.copyright }}">
+                    </div>
+                    <div class="form-group">
+                        <label>Conditions Générales de vente {% if parameters.cg is not empty %}<a href="{{ asset('uploads/') ~ parameters.cg }}" target="_blank">Consulter La versin actuelle + </a>{% endif %}</label>
+                        <input type="file" name="conditionGeneral" id="conditionGeneral" class="file-upload-default">
+                        <div class="input-group col-xs-12">
+                            <input type="text" class="form-control file-upload-info" disabled="" placeholder="{{ parameters.cg }}">
+                            <span class="input-group-append">
+                                <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                            </span>
+                        </div>
+                    </div>
                         <button id="save" type="submit" class="btn btn-primary mr-2">Save</button>
                 </div>
             </div>
@@ -92,10 +118,12 @@
 {#            </div>#}
 {#        </div>#}
     </div>
+    </form>
 {% endblock %}
 {% block javascripts %}
     {{  parent() }}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.4/js/bootstrap-switch.js" data-turbolinks-track="true"></script>
     <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
     <script src="{{ asset('assets/AdminBumdle/js/settings.js') }}"></script>
+    <script src="{{ asset('assets/DashBundle/js/file-upload.js') }}"></script>
 {% endblock %}

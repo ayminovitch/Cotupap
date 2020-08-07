@@ -6,8 +6,12 @@
                     <li>
                         <a href="#">Links</a>
                         <ul>
-                            <li><a href="tel:+21671257115">Tél: +216 71 25 71 15</a></li>
-                            <li><a href="tel:+21671838024">Fax: +216 71 25 71 37</a></li>
+                            {% if settings.settings.phone is not empty %}
+                                <li><a href="tel:+21671257115">Tél: {{ settings.settings.phone }}</a></li>
+                            {% endif %}
+                            {% if settings.settings.fax is not empty %}
+                                <li><a href="tel:+21671838024">Fax: {{ settings.settings.fax }}</a></li>
+                            {% endif %}
                         </ul>
                     </li>
                 </ul><!-- End .top-menu -->

@@ -97,7 +97,30 @@ class Settings
      * @ORM\Column(name="logo", type="string", length=255, nullable=true)
      */
     private $logo;
-
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="phone", type="string", length=255, nullable=true)
+     */
+    private $phone;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="fax", type="string", length=255, nullable=true)
+     */
+    private $fax;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cg", type="string", length=255, nullable=true)
+     */
+    private $cg;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="copyright", type="string", length=255, nullable=true)
+     */
+    private $copyright;
 
     /**
      * Get id
@@ -372,5 +395,71 @@ class Settings
     {
         return $this->logo;
     }
+
+    /**
+     * @return string
+     */
+    public function getPhone()
+    {
+        return $this->phone;
+    }
+
+    /**
+     * @param string $phone
+     */
+    public function setPhone($phone)
+    {
+        $this->phone = $phone;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFax()
+    {
+        return $this->fax;
+    }
+
+    /**
+     * @param string $fax
+     */
+    public function setFax($fax)
+    {
+        $this->fax = $fax;
+    }
+
+    /**
+     * @return string
+     */
+    public function getcg()
+    {
+        return $this->cg;
+    }
+
+    /**
+     * @param string $cg
+     */
+    public function setcg($cg)
+    {
+        $this->cg = $cg;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCopyright()
+    {
+        return $this->copyright;
+    }
+
+    /**
+     * @param string $copyright
+     */
+    public function setCopyright($copyright)
+    {
+        $this->copyright = $copyright;
+    }
+
+
 }
 
