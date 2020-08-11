@@ -14459,7 +14459,7 @@ button.close {
 
 @media (min-width: 576px) {
   .modal-dialog {
-    max-width: 500px;
+    max-width: 60%;
     margin: 30px auto;
   }
   .modal-dialog-centered {

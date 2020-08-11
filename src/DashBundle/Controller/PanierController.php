@@ -165,10 +165,11 @@ class PanierController extends Controller
             $articles->setCommande($commande);
             $articles->setArticle($value['reference']);
             $articles->setPrice($value['prix']);
+            $articles->setDescription($value['name']);
             $articles->setQte($value['qte']);
             $articles->setTotalprice($value['totalSingle']);
+            $em->persist($articles);
         }
-        $em->persist($articles);
         $em->persist($commande);
         $em->flush();
         //send email

@@ -20,3 +20,34 @@ $('.command-detail').on('click', function(e) {
         }
     });
 });
+
+function updateQts(e){
+    console.log('clicked')
+    var arr = [];
+    $('.articles-table *').filter(':input').each(function(){
+        arr.push({
+            id: $(this).data('id'),
+            qte: $(this).val()
+        });
+    });
+    var url = $('#order-listing').data('url');
+    $.ajax({
+        url: url,
+        type: "POST",
+        dataType: "json",
+        data: {
+            "articleCollection": arr,
+            "type" : 'updateArticles',
+            "commande" : $('.articles-table').data('unique')
+        },
+        async: true,
+        success: function (data)
+        {
+            $('.articles-table').html(data);
+        }
+    });
+}
+
+function validateurConfirm(e){
+    alert('not yet implemented')
+}

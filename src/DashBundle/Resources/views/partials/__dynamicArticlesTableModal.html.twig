@@ -1,0 +1,30 @@
+<table border="1px" class="table table-striped  table-bordered">
+    <tbody>
+    <tr><td colspan="6">Les Articles</td></tr>
+    <tr>
+        <td>
+            <b>#Refecerence#</b>
+        </td>
+        <td>
+            <b>Description</b>
+        </td>
+        <td>
+            <b>Qte</b>
+        </td>
+        <td>
+            <b>Prix Unitaire</b>
+        </td>
+    </tr>
+    {% for item in command.detcmd %}
+        <tr>
+            <td>{{ item.article }}</td>
+            <td>{{ item.description }}</td>
+            <td style="width: 20%;"><input class="form-control" type="number" value="{{ item.qte }}" data-id="{{ item.id }}" style="width: 100%;"></td>
+            <td>{{ item.price }} TND</td>
+        </tr>
+    {% endfor %}
+    {#                    <tr>#}
+    {#                        <td colspan="6"><h4 class="pull-right">Prix Total : 0 DT</h4></td>#}
+    {#                    </tr>#}
+    </tbody>
+</table>
