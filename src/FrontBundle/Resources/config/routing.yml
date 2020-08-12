@@ -29,3 +29,6 @@ compte_client:
 apercu_rapide_ajx:
     path: /apercu-rapide-ajx
     defaults: { _controller: FrontBundle\Controller\ArticlesController::apercuRapideAction }
+facture_detail_ajx:
+    path: /facture-detail-ajx
+    defaults: { _controller: FrontBundle\Controller\PanierController::generatePdfInvoiceAction }

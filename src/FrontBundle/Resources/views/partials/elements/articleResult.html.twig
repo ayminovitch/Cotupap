@@ -30,7 +30,7 @@
                                 {% if status == 'in' %}
                                     <a href="javascript:void(0)" class="btn-product btn-cart btn-carta" data-desc="{{ article['tdescription'] }}" data-prix="{{ article['prix'] }}" data-ref="{{ article['tarticle'] }}"><span>ajouter au panier</span></a>
                                 {% else %}
-                                    <a href="{{ path('login_page') }}" class="btn-product btn-cart" ><span>ajouter au panier</span></a>
+                                    <a href="#signin-modal" data-toggle="modal" class="btn-product btn-cart" ><span>ajouter au panier</span></a>
                                 {% endif %}
                                 <a href="{{ path('single_article_result', { tcateg: catso, tsouscateg: article.tsouscateg, ref: article.tarticle }) }}" class="btn-product btn-quickview" title="aperçu rapide"><span>aperçu rapide</span></a>
                             </div><!-- End .product-action -->

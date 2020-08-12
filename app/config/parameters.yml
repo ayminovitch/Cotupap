@@ -1,22 +1,23 @@
 # This file is auto-generated during the composer install
 parameters:
-  database_host: localhost
-  database_port: null
-  database_name: cotupap
-  database_user: root
-  database_password: null
-  mailer_transport: smtp
-  mailer_host: 127.0.0.1
-  mailer_user: web2@yetgroup.com
-  mailer_password: null
-  secret: ThisTokenIsNotSoSecretChangeIt
-  articles_path: "/web/uploads/test.xml"
-  #    articles_path: '%kernel.project_dir%/web/uploads/articles.xml'
-  clients_path: "%kernel.project_dir%/web/uploads/clients.xml"
-  products_images_directory: "%kernel.project_dir%/web/uploads/media"
-  general_upload_directory: "%kernel.project_dir%/web/uploads/"
-  ads_images_directory: "%kernel.project_dir%/web/uploads/media/banners"
-  marques_images_directory: "%kernel.project_dir%/web/uploads/media/marques"
-  articles_images_directory: "%kernel.project_dir%/web/upload/articles"
-  finder_articles_images_directory: "%kernel.project_dir%"
-  web_path: "%kernel.root_dir%/../web/uploads/articles/"
+    database_host: localhost
+    database_port: null
+    database_name: cotupap
+    database_user: root
+    database_password: null
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: web2@yetgroup.com
+    mailer_password: null
+    secret: ThisTokenIsNotSoSecretChangeIt
+    articles_path: "/web/uploads/test.xml"
+    #    articles_path: '%kernel.project_dir%/web/uploads/articles.xml'
+    clients_path: "%kernel.project_dir%/web/uploads/clients.xml"
+    products_images_directory: "%kernel.project_dir%/web/uploads/media"
+    general_upload_directory: "%kernel.project_dir%/web/uploads/"
+    ads_images_directory: "%kernel.project_dir%/web/uploads/media/banners"
+    marques_images_directory: "%kernel.project_dir%/web/uploads/media/marques"
+    articles_images_directory: "%kernel.project_dir%/web/upload/articles"
+    finder_articles_images_directory: "%kernel.project_dir%"
+    web_path: "%kernel.root_dir%/../web/uploads/articles/"
+    pdf_bin_path: "%kernel.project_dir%/web/pdf/bin/wkhtmltopdf.exe"

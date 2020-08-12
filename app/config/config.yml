@@ -98,3 +98,12 @@ fos_user:
     from_email:
         address: "%mailer_user%"
         sender_name: "%mailer_user%"
+
+knp_snappy:
+    temporary_folder: "%kernel.cache_dir%/snappy"
+    process_timeout: 20 # In seconds
+    pdf:
+        enabled:    true
+#        binary:     /usr/local/bin/wkhtmltopdf #"\"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe\"" for Windows users
+        binary:     '%pdf_bin_path%'
+        options:    []

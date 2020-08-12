@@ -38,7 +38,7 @@
                         <div class="col-md-8 col-lg-9">
                             <div class="tab-content">
                                 <div class="tab-pane fade show active" id="tab-dashboard" role="tabpanel" aria-labelledby="tab-dashboard-link">
-                                    <p>Bonjour <span class="font-weight-normal text-dark">utilisateur</span> (Pas <span class="font-weight-normal text-dark">Utilisateur</span>? <a href="{{ path('logout_page') }}">Se déconnecter</a>)
+                                    <p>Bonjour <span class="font-weight-normal text-dark">{{ client['tnom'] }}</span> (Pas <span class="font-weight-normal text-dark">{{ client['tnom'] }}</span>? <a href="{{ path('logout_page') }}">Se déconnecter</a>)
                                         <br>
                                         Depuis le tableau de bord de votre compte, vous pouvez voir votre <a href="#tab-orders" class="tab-trigger-link link-underline">Dernières commandes</a>.</p>
                                 </div><!-- .End .tab-pane -->
@@ -54,6 +54,7 @@
                                                 <th>Devis ID</th>
                                                 <th>Date</th>
                                                 <th>Status</th>
+                                                <th>Facture</th>
                                             </tr>
                                             {% for clientOrder in clientOrders %}
                                             <tr>
@@ -63,6 +64,11 @@
 {#                                                {% for panier in clientOrder.detcmd %}#}
 {#                                                    {{ dump(panier) }}#}
 {#                                                {% endfor %}#}
+                                                <td>
+                                                    <a href="{{ path('facture_detail_ajx', {'id': clientOrder.id}) }}" class="facture-detail" target="_blank">
+                                                        <i class="icon-arrow-down">Telecharger</i>
+                                                    </a>
+                                                </td>
                                             </tr>
                                             {% endfor %}
                                         </table>
