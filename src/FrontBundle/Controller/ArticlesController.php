@@ -114,39 +114,6 @@ class ArticlesController extends Controller
         return $this->render('@Front/pages/articleResult.html.twig', array('category' =>$category, 'page'=>$page, 'categoryName'=>$categoryName, 'parentCategory' => $parentCategory));
     }
 
-    public function searchAction(Request $request){
-        $query = $request->get('q');
-        $jsonArray = $this->getArticleContent();
-        //Filter HERE
-        if ($request->isMethod('POST')) {
-        $filteredResult = $this->in_array_r($query, $jsonArray, false,'single');
-        }
-        $recordsTotoal = count($filteredResult);
-
-        $adapter = new ArrayAdapter($filteredResult);
-        $pagerfanta = new Pagerfanta($adapter);
-        $productsPaged = $pagerfanta
-            ->setMaxPerPage(24)
-            ->setCurrentPage(1)
-            ->getCurrentPageResults();
-        if ($request->isMethod('POST')) {
-            $result = $this->renderView('@Front/partials/elements/articleResult.html.twig',
-                array(
-                    'productsPaged' => $productsPaged,
-                    'pager' => $pagerfanta,
-                    'category' => $query
-                ));
-            return new JsonResponse($result) ;
-        }
-        return $this->render('@Front/partials/elements/articleResult.html.twig',
-            array(
-                'productsPaged' => $productsPaged,
-                'pager' => $pagerfanta,
-                'category' => $query
-            ));
-//        }
-    }
-
     public function apercuRapideAction($tcateg, $tsouscateg, $ref, Request $request){
         //Get Article List From File And Convert From XML To Json Array
         $jsonArray = $this->getArticleContent();

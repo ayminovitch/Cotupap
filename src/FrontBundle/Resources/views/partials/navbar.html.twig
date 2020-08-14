@@ -50,10 +50,10 @@
                 {% if settings.settings.search == "true" %}
                 <div class="header-search header-search-extended header-search-visible header-search-no-radius d-none d-lg-block">
                     <a href="#" class="search-toggle" role="button"><i class="icon-search"></i></a>
-                    <form action="{{ path('global_articles_result', {'category': 'CA01' , 'page': 1}) }}" method="get">
+                    <form action="{{ path('pre_searrch')}}" method="post">
                         <div class="header-search-wrapper search-wrapper-wide">
-                            <label for="q" class="sr-only">Rechercher</label>
-                            <input type="search" class="form-control" name="q" id="q" placeholder="Rechercher ..." required>
+                            <label for="query" class="sr-only">Rechercher</label>
+                            <input type="search" class="form-control" name="query" id="query" placeholder="Rechercher ..." required>
                             <button class="btn btn-primary" type="submit">OK</button>
                         </div><!-- End .header-search-wrapper -->
                     </form>

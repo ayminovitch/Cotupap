@@ -1,0 +1,39 @@
+{% extends '@Front/base.html.twig' %}
+{% block mainContent %}
+    <main class="main">
+        <div class="page-header text-center"
+             style="background-image: url({{ asset('assets/FrontBundle/images/page-header-bg.jpg') }})">
+            <div class="container">
+                <h1 class="page-title">{{ query }}</h1>
+            </div><!-- End .container -->
+        </div><!-- End .page-header -->
+        <nav aria-label="breadcrumb" class="breadcrumb-nav mb-2">
+            <div class="container">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ path('dash_homepage') }}">Accueil</a></li>
+                    <li class="breadcrumb-item"><a href="javascript:void(0)">Recherche</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ query }}</li>
+                </ol>
+            </div><!-- End .container -->
+        </nav><!-- End .breadcrumb-nav -->
+        <div id="articles-result">
+            {{ render(controller('FrontBundle:Search:search',{ 'query':query, 'page': page })) }}
+        </div>
+    </main><!-- End .main -->
+{% endblock %}
+{% block javascript %}
+{{ parent() }}
+<script src="{{ asset('assets/FrontBundle/js/panier.js') }}"></script>
+<script>
+// function loadTablePage(categoryId, page) {
+//    $.ajax({
+//        url: '/search/' + categoryId + '/' + page,
+//        method: 'POST',
+//        success: function (content) {
+//            // $('#articles-result').html(content);
+//            console.log(content)
+//        }
+//    })
+// }
+</script>
+{% endblock %}

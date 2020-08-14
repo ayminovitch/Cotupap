@@ -1,0 +1,113 @@
+<div class="page-content">
+    <div class="container">
+        {% set client = app.session.get('client') %}
+        {% if client['status'] is defined %}
+            {% set status = client['status'] %}
+        {% else %}
+            {% set status = 'out' %}
+        {% endif %}
+        <div id="products" class="products" data-url="{{ path('ajouter_produit') }}">
+            {% if status != 'in' %}<p style="color: red;text-align: end;">*Veuillez vous connecter pour afficher les prix</p>{% endif %}
+            <div class="row">
+                {% for article in productsPaged %}
+                <div class="col-6 col-md-4 col-lg-4 col-xl-3">
+                    <div class="product">
+                        <figure class="product-media" style="height: 210px">
+                            {#                            <span class="product-label label-new">New</span>#}
+                            {% if article.tcateg is not empty and article.tsouscateg is not empty %}
+                            <a href="{{ path('single_article_result', { tcateg: article.tcateg, tsouscateg: article.tsouscateg, ref: article.tarticle }) }}">
+                                {% if file_exists(web_path ~ article.tcateg ~ ('/') ~ article.tsouscateg ~ ('/') ~ article.tarticle | split('.', 3)[2] ~ ('.jpg')) %}
+                                    <img src="{{ asset('uploads/articles/') ~ article.tcateg ~ ('/') ~ article.tsouscateg ~ ('/') ~ article.tarticle | split('.', 3)[2] ~ ('.jpg') }}" alt="{{ article.tdescription }} " class="product-image">
+                                {% else %}
+                                    <img src="https://via.placeholder.com/443x338.png?text=Article+Cotupap" alt="{{ article.tdescription }}" class="product-image">
+                                {% endif %}
+                            </a>
+                            {% else %}
+                                <img src="https://via.placeholder.com/443x338.png?text=Article+Cotupap" alt="{{ article.tdescription }}" class="product-image">
+                            {% endif %}
+
+                            {#                            <div class="product-action-vertical">#}
+                            {#                                <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>favoris</span></a>#}
+                            {#                            </div><!-- End .product-action -->#}
+
+                            <div class="product-action action-icon-top">
+                                {% if status == 'in' %}
+                                    <a href="javascript:void(0)" class="btn-product btn-cart btn-carta" data-desc="{{ article['tdescription'] }}" data-prix="{{ article['prix'] }}" data-ref="{{ article['tarticle'] }}"><span>ajouter au panier</span></a>
+                                {% else %}
+                                    <a href="#signin-modal" data-toggle="modal" class="btn-product btn-cart" ><span>ajouter au panier</span></a>
+                                {% endif %}
+                                {% if article.tcateg is not empty and article.tsouscateg is not empty %}
+                                    <a href="{{ path('single_article_result', { tcateg: article.tcateg, tsouscateg: article.tsouscateg, ref: article.tarticle }) }}" class="btn-product btn-quickview" title="aperçu rapide"><span>aperçu rapide</span></a>
+                                {% endif %}
+                            </div><!-- End .product-action -->
+                        </figure><!-- End .product-media -->
+
+                        <div class="product-body">
+                            <div class="product-cat">
+                                {#                                <a href="#">{{ article['tmarque'] }}</a>#}
+                            </div><!-- End .product-cat -->
+                            <h3 class="product-title"><a href="javascript:void(0)">{{ article['tdescription'] }}</a></h3><!-- End .product-title -->
+                            <div id="blur" class="product-price{% if status != 'in' %} noselect" style="filter: blur(3px);-webkit-filter: blur(3px);-moz-filter: blur(3px); -o-filter: blur(3px); -ms-filter: blur(3px); filter: url(#blur); filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius='3');{% endif %}">{% if status != 'in' %}--{% else %}{{ article.prix }}{% endif %} DT</div>
+                        </div><!-- End .product-body -->
+                    </div><!-- End .product -->
+                </div><!-- End .col-sm-6 col-lg-4 col-xl-3 -->
+                {% if loop.index is divisible by(4) %}
+            </div><div class="row">
+                {% endif %}
+                {% endfor %}
+            </div><!-- End .row -->
+
+            {% spaceless %}
+                {% if pager.getNbPages() > 1 %}
+
+                    {# Number of page around current page+1 #}
+                    {% set nearbyPagesLimit = 4 %}
+
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination justify-content-center">
+                            {% set state = '' %}
+                            {% set aria = '' %}
+                            {% if pager.getCurrentPage() != 1 %}
+                                {% set state = 'disabled' %}
+                                {% set aria = 'true' %}
+                                <li class=" page-item {{ state }}">
+                                    <a class="page-link page-link-prev" href="{{ path('search', { 'query': query, 'page': 1 }) }}">
+                                        <span aria-hidden="{{ aria }}"><i class="icon-long-arrow-left"></i></span>Prev
+                                    </a>
+                                </li>
+                            {% endif %}
+
+                            {% for i in 1..pager.getNbPages() %}
+                                {% if 0 == (pager.getCurrentPage() - nearbyPagesLimit) - loop.index %} {# dot before #}
+                                    <li  class="disabled page-item"><a href="#">...</a></li>
+                                {% elseif 0 == (pager.getCurrentPage() + nearbyPagesLimit) - loop.index %} {# dot after #}
+                                    <li class="disabled page-item"><a href="#">...</a></li>
+                                {% elseif 0 < (pager.getCurrentPage() - nearbyPagesLimit) - loop.index %} {# hide all before #}
+                                {% elseif 0 > (pager.getCurrentPage() + nearbyPagesLimit) - loop.index %} {# hide all after #}
+                                {% else %}
+                                    <li class="page-item {% if pager.getCurrentPage() == loop.index  %}active{% endif %}">
+                                        <a class="page-link" href="{{ path('search', { 'query': query, 'page': loop.index  }) }}">
+                                            {{ loop.index }}
+                                        </a>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                            {% set state = '' %}
+                            {% set aria = '' %}
+                            {% if pager.getCurrentPage() != pager.getNbPages() %}
+                                {% set state = 'disabled' %}
+                                {% set aria = 'true' %}
+                                <li class="page-item {{ state }}" >
+                                    <a class="page-link page-link-next" href="{{ path('search', { 'query': query, 'page': pager.getNbPages()  }) }}">
+                                        Next <span aria-hidden="{{ aria }}"><i class="icon-long-arrow-right"></i></span>
+                                    </a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                {% endif %}
+            {% endspaceless %}
+        </div><!-- End .products -->
+
+    </div><!-- End .container -->
+</div><!-- End .page-content -->

@@ -22,6 +22,14 @@ favoris:
     path: /favoris
     defaults: { _controller: FrontBundle\Controller\FavorisController::favorisAction }
 
+pre_searrch:
+    path: /presearch
+    defaults: { _controller: FrontBundle\Controller\SearchController::preSearchContainerAction }
+
+search:
+    path: /search/{query}/{page}
+    defaults: { _controller: FrontBundle\Controller\SearchController::searchContainerAction }
+
 #Client Account Routing
 compte_client:
     path: /espace-client
