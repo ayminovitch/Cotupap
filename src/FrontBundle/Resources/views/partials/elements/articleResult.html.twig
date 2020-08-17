@@ -1,12 +1,11 @@
-<div class="page-content">
-    <div class="container">
+
         {% set client = app.session.get('client') %}
         {% if client['status'] is defined %}
             {% set status = client['status'] %}
         {% else %}
             {% set status = 'out' %}
         {% endif %}
-        <div id="products" class="products" data-url="{{ path('ajouter_produit') }}">
+        <div id="products" class="col-lg-9 products" data-url="{{ path('ajouter_produit') }}">
             {% if status != 'in' %}<p style="color: red;text-align: end;">*Veuillez vous connecter pour afficher les prix</p>{% endif %}
             <div class="row">
             {% for article in productsPaged %}
@@ -102,6 +101,3 @@
                 {% endif %}
             {% endspaceless %}
         </div><!-- End .products -->
-
-    </div><!-- End .container -->
-</div><!-- End .page-content -->

@@ -65,39 +65,4 @@ class DefaultController extends Controller
         $heading = $em->findBy(array('id' => $id));
         return $this->render('@Dash/pages/product/product-list.html.twig', array('categorys' => $category, 'heading' => $heading));
     }
-
-    public function loginAction(Request $request){
-        if (($request->isMethod('POST'))){
-            $login = $request->get('login');
-            $pass = $request->get('pass');
-            $session = $request->getSession();
-            if (!($session->has('client'))){
-                $session->set('client', []);
-            }
-            //START SOAP AUTH Verification
-            //END SOAP AUTH Verification
-            $authClient = array();
-            $frmArray = [
-                'status' =>'in',
-                'tclient'   => '123456789',
-                'tnom'   => 'Aymen Hammami',
-                'tadresse'   => '01 Rue omar ibn wardi ks2 bardo tunis',
-                'tphone'  => '25494741',
-                'tfax'  => '25494741',
-                'tmatFiscale'     => 'MF 133785'
-            ];
-            $session->set('client', $frmArray);
-            $client = $session->get('client');
-            return new JsonResponse($client);
-        }
-        return $this->render('@Front/pages/login.html.twig');
-    }
-
-    public function logoutAction(Request $request){
-        $session = $request->getSession();
-        $session->clear();
-//        $session->set('client', ['status'=> 'out']);
-        return $this->redirectToRoute('dash_homepage');
-    }
-
 }

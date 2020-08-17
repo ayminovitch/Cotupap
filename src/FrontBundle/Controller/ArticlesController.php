@@ -139,4 +139,8 @@ class ArticlesController extends Controller
                 'options' => $files
             ));
     }
+
+    public function filterAction(){
+        return $this->render('@Front/partials/elements/side_filter.html.twig');
+    }
 }

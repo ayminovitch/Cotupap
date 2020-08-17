@@ -7,10 +7,10 @@ dash_homepage:
 #    defaults: { _controller: DashBundle:Default:articlesList }
 login_page:
     path:     /login
-    defaults: { _controller: DashBundle:Default:login }
+    defaults: { _controller: DashBundle:Auth:login }
 logout_page:
     path:     /logout
-    defaults: { _controller: DashBundle:Default:logout }
+    defaults: { _controller: DashBundle:Auth:logout }
 categorys_list:
     path:     /comptoir-client/catalogue
     defaults: { _controller: DashBundle:Category:index }
@@ -57,3 +57,8 @@ validateur_list_clients:
 validateur_list_commands:
     path: /validateur/list-commands
     defaults: { _controller: DashBundle:Validateur:commandList }
+
+#AUTH SYSTEM
+refresh_clients_db:
+    path: /clients/refresh/ajax
+    defaults: { _controller: DashBundle:Auth:refreshClients }

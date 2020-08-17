@@ -19,7 +19,14 @@
             </div><!-- End .container -->
         </nav><!-- End .breadcrumb-nav -->
         <div id="articles-result">
-        {{ render(controller('FrontBundle:Articles:articleResult',{ 'catRef':category, 'page': page })) }}
+            <div class="page-content">
+                <div class="container">
+                    <div class="row">
+                        {{ render(controller('FrontBundle:Articles:articleResult',{ 'catRef':category, 'page': page })) }}
+                        {{ render(controller('FrontBundle:Articles:filter')) }}
+                    </div>
+                </div>
+            </div>
         </div>
     </main><!-- End .main -->
 {% endblock %}
