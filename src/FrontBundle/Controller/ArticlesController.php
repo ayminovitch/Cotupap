@@ -76,8 +76,8 @@ class ArticlesController extends Controller
         $recordsTotoal = count($filteredResult);
         $session = $request->getSession();
         if ($session->has('filter')){
-            if (!empty($session->get('filter'))) {
-                $refs = $session->get('filter');
+            $refs = $session->get('filter');
+            if (!empty($refs)) {
                 $filteredResultMarques = [];
                 foreach ((array)$refs as $ref) {
                     $filteredResultMarques = array_merge($filteredResultMarques, $this->in_array_r($ref, $filteredResult, false, 'single'));
