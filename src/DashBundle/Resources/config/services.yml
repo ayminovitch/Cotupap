@@ -1,4 +1,4 @@
-services:
+#services:
 #  DashBundle\Command\ReloadArticlesCommand:
 #    tags:
 #      - { name: 'console.command', command: 'webside:reload-articles' }
@@ -9,3 +9,6 @@ services:
 #    arguments:
 #      ['@service_container']
 
+services:
+  reload_clients_from_soap:
+    class: DashBundle\Controller\CronArticlesReloadController

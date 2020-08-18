@@ -40,3 +40,7 @@ apercu_rapide_ajx:
 facture_detail_ajx:
     path: /facture-detail-ajx
     defaults: { _controller: FrontBundle\Controller\PanierController::generatePdfInvoiceAction }
+
+filter_marque:
+    path: /filter/session
+    defaults: { _controller: FrontBundle\Controller\ArticlesController::filterSessionAction }

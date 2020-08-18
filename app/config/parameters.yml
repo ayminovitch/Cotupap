@@ -12,7 +12,7 @@ parameters:
     secret: ThisTokenIsNotSoSecretChangeIt
     articles_path: "/web/uploads/test.xml"
     #    articles_path: '%kernel.project_dir%/web/uploads/articles.xml'
-    clients_path: "%kernel.project_dir%/web/uploads/clients.xml"
+    clients_path: "../../web/uploads/clients.xml"
     products_images_directory: "%kernel.project_dir%/web/uploads/media"
     general_upload_directory: "%kernel.project_dir%/web/uploads/"
     ads_images_directory: "%kernel.project_dir%/web/uploads/media/banners"

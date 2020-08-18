@@ -5,6 +5,38 @@
         {% else %}
             {% set status = 'out' %}
         {% endif %}
+        {% set filter = app.session.get('filter') %}
+        <aside class="col-lg-3 order-lg-first">
+            <div class="sidebar sidebar-shop">
+                <div class="widget widget-clean">
+                    <label>Filtres:</label>
+                    {#            <a href="#" class="sidebar-filter-clear">Clean All</a>#}
+                </div><!-- End .widget widget-clean -->
+
+                <div class="widget widget-collapsible" id="marque-filter">
+                    <h3 class="widget-title">
+                        <a data-toggle="collapse" href="#widget-2" role="button" aria-expanded="true" aria-controls="widget-2">
+                            Marques
+                        </a>
+                    </h3><!-- End .widget-title -->
+
+                    <div class="collapse show" id="widget-2">
+                        <div class="widget-body">
+                            <div class="filter-items">
+                                {% for marque in marques %}
+                                    <div class="filter-item">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" value="{{ marque.ref }}" id="size-{{ marque.id }}" {% if marque.ref in filter %}checked{% endif %}>
+                                            <label class="custom-control-label" for="size-{{ marque.id }}">{{ marque.name }}</label>
+                                        </div><!-- End .custom-checkbox -->
+                                    </div><!-- End .filter-item -->
+                                {% endfor %}
+                            </div><!-- End .filter-items -->
+                        </div><!-- End .widget-body -->
+                    </div><!-- End .collapse -->
+                </div><!-- End .widget -->
+            </div><!-- End .sidebar sidebar-shop -->
+        </aside><!-- End .col-lg-3 -->
         <div id="products" class="col-lg-9 products" data-url="{{ path('ajouter_produit') }}">
             {% if status != 'in' %}<p style="color: red;text-align: end;">*Veuillez vous connecter pour afficher les prix</p>{% endif %}
             <div class="row">

@@ -46,6 +46,7 @@ class ArticlesController extends Controller
     {
 
         $em = $this->getDoctrine()->getManager()->getRepository(Category::class);
+        $marques = $this->getDoctrine()->getManager()->getRepository('AdminBundle:Marques')->findAll();
         $article = $em->findOneBy(array('reference' => $catRef));
         if (substr($catRef,0,2) == 'CA'){
             $catRef = $article->getReference();
@@ -73,7 +74,17 @@ class ArticlesController extends Controller
 //            $filteredResult = $this->in_array_r($category, $jsonArray, false, 'all');
 //        }
         $recordsTotoal = count($filteredResult);
-
+        $session = $request->getSession();
+        if ($session->has('filter')){
+            if (!empty($session->get('filter'))) {
+                $refs = $session->get('filter');
+                $filteredResultMarques = [];
+                foreach ((array)$refs as $ref) {
+                    $filteredResultMarques = array_merge($filteredResultMarques, $this->in_array_r($ref, $filteredResult, false, 'single'));
+                }
+                $filteredResult = $filteredResultMarques;
+            }
+        }
         $adapter = new ArrayAdapter($filteredResult);
         $pagerfanta = new Pagerfanta($adapter);
         $productsPaged = $pagerfanta
@@ -87,7 +98,8 @@ class ArticlesController extends Controller
                     'pager' => $pagerfanta,
                     'category' => $article,
                     'catso' => $catRef,
-                    'soucatso' => $categoryb
+                    'soucatso' => $categoryb,
+                    'marques' => $marques
                 ));
             return new JsonResponse($result) ;
         }
@@ -97,7 +109,8 @@ class ArticlesController extends Controller
                 'pager' => $pagerfanta,
                 'category' => $article,
                 'catso' => $catRef,
-                'soucatso' => $categoryb
+                'soucatso' => $categoryb,
+                'marques' => $marques
             ));
 //        }
     }
@@ -140,7 +153,14 @@ class ArticlesController extends Controller
             ));
     }
 
-    public function filterAction(){
-        return $this->render('@Front/partials/elements/side_filter.html.twig');
+    public function filterSessionAction(Request $request){
+        $session = $request->getSession();
+        if (!($session->has('filter'))){
+            $session->set('filter', []);
+        }
+        $filters = $session->get('filter');
+        (array)$refs = $request->get('refs');
+        $session->set('filter', $refs);
+        return new JsonResponse('Done');
     }
 }

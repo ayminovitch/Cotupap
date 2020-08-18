@@ -18,12 +18,12 @@
                 </ol>
             </div><!-- End .container -->
         </nav><!-- End .breadcrumb-nav -->
-        <div id="articles-result">
+        <div id="articles-result" data-category="{{ category }}" data-url="{{ path('filter_marque') }}">
             <div class="page-content">
                 <div class="container">
                     <div class="row">
                         {{ render(controller('FrontBundle:Articles:articleResult',{ 'catRef':category, 'page': page })) }}
-                        {{ render(controller('FrontBundle:Articles:filter')) }}
+{#                        {{ render(controller('FrontBundle:Articles:filter')) }}#}
                     </div>
                 </div>
             </div>
@@ -33,6 +33,7 @@
 {% block javascript %}
 {{ parent() }}
 <script src="{{ asset('assets/FrontBundle/js/panier.js') }}"></script>
+<script src="{{ asset('assets/FrontBundle/js/cotupap/filter.js') }}"></script>
 <script>
 function loadTablePage(categoryId, page) {
    $.ajax({

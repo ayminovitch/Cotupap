@@ -4,10 +4,10 @@
 namespace DashBundle\Controller;
 
 
-use http\Client;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use DashBundle\Controller\CronArticlesReloadController;
 
 class AuthController extends Controller
 {
@@ -57,6 +57,9 @@ class AuthController extends Controller
     }
 
     public function refreshClientsAction(Request $request){
+        //Update Local Client File with new one
+        $cronController = $this->get('reload_clients_from_soap');
+        $cronController->cronClientsAction();
         //Get Article List From File And Convert From XML To Json Array
         $xmlfile = file_get_contents(dirname($this->get('kernel')->getRootDir()).'/web/uploads/clients.xml');
         $response1 = str_replace("<SOAP-ENV:Body>", "", $xmlfile);
@@ -66,22 +69,31 @@ class AuthController extends Controller
         $element = $em->getRepository('DashBundle:Client');
         $counter = 0;
         foreach ($jsonArray as $row){
-//            dump(print_r($row['tclient'], true));
-//            die();
             if (empty($element->findOneBy(array('codeClient' => print_r($row['tclient'], true))))){
                 $client = new \DashBundle\Entity\Client();
                 $client->setCodeClient(empty($row['tclient'])?null:print_r($row['tclient'], true));
-                $client->setAddresse(empty($row['tadresse'])?null:print_r($row['tadresse'], true));
+                $client->setAddresse(empty($row['tadresse']) || $row['tadresse'][0] == ' '?null:print_r($row['tadresse'], true));
                 $client->setPhone(empty($row['tphone'])?null:print_r($row['tphone'], true));
                 $client->setFax(empty($row['tfax'])?null:print_r($row['tfax'], true));
                 $client->setFullname(empty($row['tnom'])?null:print_r($row['tnom'], true));
                 $client->setVerified(0);
+                $client->setPassword($this->randomPassword());
                 $em->persist($client);
                 $counter +=1;
             }
         }
         $em->flush();
-        return new JsonResponse($counter.' Client Added to the database');
+        return new JsonResponse($counter.' Client ajouté à la base de données');
+    }
+    public function randomPassword() {
+        $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+        $pass = array();
+        $alphaLength = strlen($alphabet) - 1;
+        for ($i = 0; $i < 8; $i++) {
+            $n = rand(0, $alphaLength);
+            $pass[] = $alphabet[$n];
+        }
+        return implode($pass);
     }
 
     public function getClientsAction(){
