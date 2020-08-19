@@ -56,6 +56,13 @@ class Marques
     private $alt;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="front", type="boolean", options={"default": 0})
+     */
+    private $front;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="created_at", type="datetime")
@@ -213,5 +220,20 @@ class Marques
         $this->size = $size;
     }
 
+    /**
+     * @return bool
+     */
+    public function isFront()
+    {
+        return $this->front;
+    }
+
+    /**
+     * @param bool $front
+     */
+    public function setFront($front)
+    {
+        $this->front = $front;
+    }
 }
 

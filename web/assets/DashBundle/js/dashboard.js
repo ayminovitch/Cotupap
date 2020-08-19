@@ -147,3 +147,24 @@
     });
   }
 })(jQuery);
+
+// Jquery Tag Input Starts
+$('#tags').tagsInput({
+  'width': '100%',
+  'height': '75%',
+  'interactive': true,
+  'defaultText': 'Add More',
+  'removeWithBackspace': true,
+  'minChars': 0,
+  'maxChars': 20, // if not provided there is no limit
+  'placeholderColor': '#666666'
+});
+
+$('#tags').editable({
+  inputclass: 'input-large',
+  select2: {
+    tags: ['html', 'javascript', 'css', 'ajax'],
+    tokenSeparators: [",", " "]
+  }
+});
+

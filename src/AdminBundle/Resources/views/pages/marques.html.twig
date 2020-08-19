@@ -35,6 +35,14 @@
                         </span>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input name="front-show" type="checkbox" class="form-check-input" checked="">
+                                    Show this marque on the Front Page?
+                                    <i class="input-helper"></i></label>
+                            </div>
+                        </div>
                         <button id="ads-submitd" type="submit" class="btn btn-primary mr-2">Submit</button>
                     </form>
                 </div>
@@ -70,13 +78,14 @@
                     {% endif %}
                     {% for marque in marques %}
                         <div class="d-flex align-items-center py-3 border-bottom">
-                            <img class="img-sm rounded-circle" src="{{ asset('uploads/media/marques/') ~ marque.files }}" alt="{{ marque.alt }}">
+                            {% if marque.files is not empty %}
+                                <img class="img-sm rounded-circle" src="{{ asset('uploads/media/marques/') ~ marque.files }}" alt="{{ marque.alt }}">
+                            {% else %}
+                                <img class="img-sm rounded-circle" src="https://via.placeholder.com/60x60" alt="{{ marque.alt }}">
+                            {% endif %}
                             <div class="ml-3">
-                                {% if marque.size matches '/^\\d+$/' %}
-                                    <h6 class="mb-1">File-Size: {{ (marque.size / 1024)|round(2) }} Kb</h6>
-                                {% else %}
-                                    <h6 class="mb-1">File-Size: 0 Kb</h6>
-                                {% endif %}
+                                <h6 class="mb-1">{{ marque.name }} : {{ marque.ref }}</h6>
+                                <small class="text-muted mb-0"><i class="icon-location-pin-outline mr-1"></i>Appear on the Front: {% if marque.front == 1 %}YES{% else %}NO{% endif %}</small><br>
                                 <small class="text-muted mb-0"><i class="icon-location-pin-outline mr-1"></i>Date of creation: {{ marque.createdAt | date }}</small>
                             </div>
                             <i class="icon-trash font-weight-bold ml-auto px-1 py-1 text-info" style="cursor: pointer;" onclick="removeMarque({{ marque.id }}, '{{ path('remove_marque') }}')"></i>

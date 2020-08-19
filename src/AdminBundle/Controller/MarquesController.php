@@ -34,6 +34,7 @@ class MarquesController extends Controller
         $alt = $request->request->get('alt');
         $ref = $request->request->get('ref');
         $name = $request->request->get('name');
+        $frontShow = $request->request->get('front-show');
 
         $uploaded = false;
         $message = null;
@@ -41,16 +42,10 @@ class MarquesController extends Controller
 
 //        $mimeTypes = array('jpeg','jpg','png','gif','bmp');
 
-        if(!empty($files))
-        {
-//            for($count; $count < count($files); $count++)
-//            {
-//                if(in_array($files->guessClientExtension(), $mimeTypes)){
-            $uploaded = $this->uploadExec($files, $alt, $name, $ref);
-//                }
-//                    $countValid++;
-//            if($countValid == count($files))
-        }
+//        if(!empty($files))
+//        {
+            $uploaded = $this->uploadExec($files, $alt, $name, $ref, $frontShow);
+//        }
 
         if($uploaded)
             $message = "All Images have been uploaded & saved!!";
@@ -74,17 +69,11 @@ class MarquesController extends Controller
      * @return Boolean
      *
      */
-    private function uploadExec($args, $alt, $name, $ref)
+    private function uploadExec($args, $alt, $name, $ref, $front)
     {
-        /**
-         * Make sure this is a new product without images saved yet
-         */
-        $count = 0;
-//        $image_files = [];
         $doctrine = $this->getDoctrine()->getManager();
-
+        $marques = new Marques();
         $uploadDir = $this->getParameter('marques_images_directory') . DIRECTORY_SEPARATOR ;
-
         if(!is_dir($uploadDir))
         {
             mkdir($uploadDir, 0775, TRUE);
@@ -92,38 +81,28 @@ class MarquesController extends Controller
 
         if(!empty($args))
         {
-//            for($count; $count < count($args); $count++)
-//            {
             $randomize = rand();
             $filename =  $randomize . '.' . $args->guessClientExtension();
-
             if(!file_exists($uploadDir . $filename))
             {
                 if($args->move($uploadDir, $filename))
                 {
                     $image_files['file'] = $filename;
                     $image_files['file_size'] = $args->getClientSize();
-                    //$image_files[$count]['file_location'] = $uploadDir;
                 }
             }
-//                }
-
-//            $jsonEncodeFiles = json_encode($image_files);
-            /*
-             * Persist Uploaded Image(s) to the Database
-             */
-            $marques = new Marques();
             $marques->setFiles($image_files['file']);
             $marques->setSize($image_files['file_size']);
+        }
             $marques->setAlt($alt);
             $marques->setName($name);
             $marques->setRef($ref);
+            $marques->setFront($front == null? 0 : 1);
 
             $doctrine->persist($marques);
             $doctrine->flush();
 
             if( NULL != $marques->getId() )return TRUE;
-        }
 
         return FALSE;
     }

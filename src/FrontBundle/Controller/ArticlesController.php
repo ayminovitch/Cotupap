@@ -42,11 +42,37 @@ class ArticlesController extends Controller
         }
         return $filterContainer;
     }
+
+    public function in_array_b($category, $jsonArray, $strict = false, $mode)
+    {
+        $filterContainer = array();
+        foreach ($jsonArray as $row) {
+            if ($mode == 'single') {
+                if (($strict ? $row === $category : $row == $category) || (is_array($row) && $this->in_array_r($category, $row, $strict, $mode))) {
+                    array_push($filterContainer, $category);
+                    break;
+                }
+            }
+        }
+        return $filterContainer;
+    }
+
+    public function marquesResult ($filteredResult){
+        $entityManager = $this->getDoctrine()->getManager();
+        $marques = $entityManager->getRepository('AdminBundle:Marques')->findAll();
+        $marquesArray = [];
+        foreach ($marques as $marque) {
+            $marquesArray = array_merge($marquesArray, $this->in_array_b($marque->getRef(), $filteredResult, false, 'single'));
+        }
+        $finalMarquesResult = $entityManager->getRepository('AdminBundle:Marques')->findBy(array('ref' => $marquesArray));
+        return $finalMarquesResult;
+    }
+
+
     public function articleResultAction($catRef, $page, Request $request)
     {
 
         $em = $this->getDoctrine()->getManager()->getRepository(Category::class);
-        $marques = $this->getDoctrine()->getManager()->getRepository('AdminBundle:Marques')->findAll();
         $article = $em->findOneBy(array('reference' => $catRef));
         if (substr($catRef,0,2) == 'CA'){
             $catRef = $article->getReference();
@@ -69,6 +95,7 @@ class ArticlesController extends Controller
         }else{
             $filteredResult = $this->in_array_r($category, $jsonArray, false,'single');
         }
+        $finalMarquesResult = $this->marquesResult($filteredResult);
         //End Of Merging two categorys
 //        }else{
 //            $filteredResult = $this->in_array_r($category, $jsonArray, false, 'all');
@@ -85,6 +112,8 @@ class ArticlesController extends Controller
                 $filteredResult = $filteredResultMarques;
             }
         }
+
+
         $adapter = new ArrayAdapter($filteredResult);
         $pagerfanta = new Pagerfanta($adapter);
         $productsPaged = $pagerfanta
@@ -99,7 +128,7 @@ class ArticlesController extends Controller
                     'category' => $article,
                     'catso' => $catRef,
                     'soucatso' => $categoryb,
-                    'marques' => $marques
+                    'marques' => $finalMarquesResult
                 ));
             return new JsonResponse($result) ;
         }
@@ -110,7 +139,7 @@ class ArticlesController extends Controller
                 'category' => $article,
                 'catso' => $catRef,
                 'soucatso' => $categoryb,
-                'marques' => $marques
+                'marques' => $finalMarquesResult
             ));
 //        }
     }
